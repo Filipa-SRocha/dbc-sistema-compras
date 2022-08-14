@@ -88,6 +88,10 @@ export const FormContainer = styled.div`
 		right: 30px;
 		color: gray;
 	}
+
+	& > * > button {
+		margin-top: 20px;
+	}
 `;
 
 export const Errors = styled.div`

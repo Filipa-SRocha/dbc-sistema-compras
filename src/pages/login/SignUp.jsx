@@ -7,6 +7,7 @@ import { AiOutlineUnlock } from 'react-icons/ai';
 import { useState } from 'react';
 import PopUpForm from '../../components/forms/PopUpForm';
 import { Errors } from '../../components/forms/form.styled';
+import { PrimaryButton } from '../../components/buttons/buttons';
 
 const SignUp = () => {
 	YupPassword(Yup);
@@ -110,7 +111,7 @@ const SignUp = () => {
 						<FileBase64 multiple={false} onDone={getFiles} />
 						{testeImagem ? <img src={testeImagem.base64} /> : <p>sem imagem</p>}
 
-						<button type='submit'>Cadastrar</button>
+						<PrimaryButton text='Cadastrar' type='submit' />
 					</Form>
 				)}
 			</Formik>

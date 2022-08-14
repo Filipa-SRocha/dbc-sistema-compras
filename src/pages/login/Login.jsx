@@ -1,5 +1,4 @@
 import { Formik, Form, Field } from 'formik';
-import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import { useState } from 'react';
 
@@ -7,6 +6,7 @@ import PopUpForm from '../../components/forms/PopUpForm';
 import { BsEyeSlash } from 'react-icons/bs';
 import { BsEye } from 'react-icons/bs';
 import { Errors } from '../../components/forms/form.styled';
+import { PrimaryButton } from '../../components/buttons/buttons';
 
 const Login = () => {
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -70,12 +70,10 @@ const Login = () => {
 							) : null}
 						</div>
 
-						<button>LOGIN</button>
+						<PrimaryButton text='entrar' type='submit' />
 					</Form>
 				)}
 			</Formik>
-
-			{/* <Link to='/new-user'>Não possuo cadastro</Link> */}
 		</PopUpForm>
 	);
 };
