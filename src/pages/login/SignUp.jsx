@@ -44,7 +44,6 @@ const SignUp = () => {
 	return (
 		<PopUpForm
 			height='560px'
-			title='Nova Conta'
 			externalLink={{ description: 'Já tem uma conta? Entre', path: '/login' }}
 		>
 			<Formik
@@ -108,8 +107,10 @@ const SignUp = () => {
 							) : null}
 						</div>
 
-						<FileBase64 multiple={false} onDone={getFiles} />
-						{testeImagem ? <img src={testeImagem.base64} /> : <p>sem imagem</p>}
+						<div className='signup-profile-img'>
+							<FileBase64 multiple={false} onDone={getFiles} />
+							{testeImagem ? <img src={testeImagem.base64} /> : null}
+						</div>
 
 						<PrimaryButton text='Cadastrar' type='submit' />
 					</Form>

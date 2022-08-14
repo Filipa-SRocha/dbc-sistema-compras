@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { primaryBlue, primaryGreen, secondaryBlue } from '../../consts';
 
 export const Background = styled.div`
 	width: 100vw;
@@ -23,23 +24,32 @@ export const Container = styled.div`
 	& h2 {
 		font-size: 20px;
 		font-weight: 500;
-		margin-bottom: 28px;
 	}
 
 	& a {
 		position: relative;
 		bottom: 0;
-		color: black;
+		color: ${secondaryBlue};
+		text-decoration: underline;
 	}
 
 	& a:hover {
-		text-decoration: underline;
+		color: ${primaryBlue};
 	}
 `;
 
 export const LogoContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	color: ${primaryGreen};
+
 	& img {
 		width: 80px;
+	}
+	& h1 {
+		font-size: 20px;
 	}
 `;
 
@@ -48,6 +58,7 @@ export const FormContainer = styled.div`
 	flex-direction: column;
 	width: 80%;
 	align-items: center;
+	margin-top: 28px;
 	height: 80%;
 
 	& > * > div {
@@ -91,6 +102,21 @@ export const FormContainer = styled.div`
 
 	& > * > button {
 		margin-top: 20px;
+	}
+
+	& div.signup-profile-img {
+		flex-direction: row;
+		height: 40px;
+		align-items: center;
+		& input {
+			border: none;
+			width: 220px;
+		}
+
+		& img {
+			height: 32px;
+			border-radius: 100%;
+		}
 	}
 `;
 

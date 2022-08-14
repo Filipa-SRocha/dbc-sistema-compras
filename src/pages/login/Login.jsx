@@ -29,7 +29,6 @@ const Login = () => {
 	return (
 		<PopUpForm
 			height='400px'
-			title='Login'
 			externalLink={{ description: 'Não possuo cadastro', path: '/new-user' }}
 		>
 			<Formik
