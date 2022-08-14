@@ -80,13 +80,12 @@ export const FormContainer = styled.div`
 		margin-bottom: 2px;
 	}
 
-	& div > div > button {
+	& > * > div > div > button {
 		width: 20px;
 		background-color: transparent;
 		border: none;
 		position: relative;
-		top: -20px;
-		right: -230px;
+		right: 30px;
 		color: gray;
 	}
 `;
