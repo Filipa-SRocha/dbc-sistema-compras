@@ -1,5 +1,10 @@
 import styled from 'styled-components';
-import { primaryBlue, primaryGreen, secondaryBlue } from '../../consts';
+import {
+	primaryColor,
+	secondaryColor,
+	primaryLight,
+	primaryDark,
+} from '../../consts';
 
 export const Background = styled.div`
 	width: 100vw;
@@ -29,12 +34,12 @@ export const Container = styled.div`
 	& a {
 		position: relative;
 		bottom: 0;
-		color: ${secondaryBlue};
+		color: ${primaryLight};
 		text-decoration: underline;
 	}
 
 	& a:hover {
-		color: ${primaryBlue};
+		color: ${primaryDark};
 	}
 `;
 
@@ -43,7 +48,7 @@ export const LogoContainer = styled.div`
 	flex-direction: column;
 	align-items: center;
 
-	color: ${primaryGreen};
+	color: ${secondaryColor};
 
 	& img {
 		width: 80px;
