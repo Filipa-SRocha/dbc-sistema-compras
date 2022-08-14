@@ -82,7 +82,9 @@ export const FormContainer = styled.div`
 	}
 
 	& label {
-		font-size: 14px;
+		font-size: 12px;
+		color: gray;
+		text-transform: uppercase;
 		margin-bottom: 4px;
 	}
 
@@ -94,15 +96,15 @@ export const FormContainer = styled.div`
 		border: 1px solid #6ea3bb;
 		padding: 0 4px;
 		margin-bottom: 2px;
+
+		::placeholder {
+			color: #a3a2a2;
+		}
 	}
 
 	& > * > div > div > button {
-		width: 20px;
-		background-color: transparent;
-		border: none;
 		position: relative;
 		right: 30px;
-		color: gray;
 	}
 
 	& > * > button {

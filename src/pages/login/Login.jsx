@@ -3,19 +3,12 @@ import * as Yup from 'yup';
 import { useState } from 'react';
 
 import PopUpForm from '../../components/forms/PopUpForm';
-import { BsEyeSlash } from 'react-icons/bs';
-import { BsEye } from 'react-icons/bs';
 import { Errors } from '../../components/forms/form.styled';
 import { PrimaryButton } from '../../components/buttons/buttons';
+import VisibilityButton from '../../components/forms/components/visibilityButton/VisibilityButton';
 
 const Login = () => {
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-
-	const changePasswordVisibility = () => {
-		isPasswordVisible
-			? setIsPasswordVisible(false)
-			: setIsPasswordVisible(true);
-	};
 
 	const handleLogin = () => {
 		//logica de login
@@ -45,7 +38,7 @@ const Login = () => {
 					<Form>
 						<div>
 							<label htmlFor='nome'>NOME DE USUÁRIO</label>
-							<Field name='nome' placeholder='Nome de usuário' />
+							<Field name='nome' />
 							{errors.nome && touched.nome ? (
 								<Errors>{errors.nome}</Errors>
 							) : null}
@@ -60,9 +53,10 @@ const Login = () => {
 									placeholder='Senha'
 								/>
 
-								<button type='button' onClick={changePasswordVisibility}>
-									{isPasswordVisible ? <BsEye /> : <BsEyeSlash />}
-								</button>
+								<VisibilityButton
+									setIsPasswordVisible={setIsPasswordVisible}
+									isPasswordVisible={isPasswordVisible}
+								/>
 							</div>
 							{errors.senha && touched.senha ? (
 								<Errors>{errors.senha}</Errors>
