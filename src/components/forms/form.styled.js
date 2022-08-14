@@ -50,25 +50,18 @@ export const FormContainer = styled.div`
 	align-items: center;
 	height: 80%;
 
-	& div:first-child {
+	& > * > div {
 		display: flex;
 		flex-direction: column;
-		justify-content: space-around;
-		height: 68px;
-		margin-bottom: 10px;
+		height: 64px;
 	}
 
 	div.StrongPassword {
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-start;
-		height: 18px;
 		& svg {
 			margin-left: 10px;
-			margin-bottom: 0;
-		}
-		& label {
-			margin-bottom: 0;
 		}
 	}
 

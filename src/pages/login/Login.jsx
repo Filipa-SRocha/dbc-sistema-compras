@@ -22,7 +22,7 @@ const Login = () => {
 	};
 
 	const SignInSchema = Yup.object().shape({
-		login: Yup.string().required('Login obrigatório'),
+		nome: Yup.string().required('Login obrigatório'),
 		senha: Yup.string().required('Por favor digite a sua senha!'),
 	});
 
