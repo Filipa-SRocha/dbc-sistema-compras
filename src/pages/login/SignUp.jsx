@@ -5,6 +5,8 @@ import FileBase64 from 'react-file-base64';
 import { AiOutlineLock } from 'react-icons/ai';
 import { AiOutlineUnlock } from 'react-icons/ai';
 import { useState } from 'react';
+import PopUpForm from '../../components/forms/PopUpForm';
+import { Errors } from '../../components/forms/form.styled';
 
 const SignUp = () => {
 	YupPassword(Yup);
@@ -39,7 +41,11 @@ const SignUp = () => {
 	};
 
 	return (
-		<div>
+		<PopUpForm
+			height='560px'
+			title='Nova Conta'
+			externalLink={{ description: 'Já tem uma conta? Entre', path: '/login' }}
+		>
 			<Formik
 				initialValues={{
 					nome: '',
@@ -57,7 +63,9 @@ const SignUp = () => {
 						<div>
 							<label htmlFor='nome'>Nome* </label>
 							<Field name='nome' placeholder='Nome completo' />
-							{errors.nome && touched.nome ? <div>{errors.nome}</div> : null}
+							{errors.nome && touched.nome ? (
+								<Errors>{errors.nome}</Errors>
+							) : null}
 						</div>
 
 						<div>
@@ -67,7 +75,9 @@ const SignUp = () => {
 								type='email'
 								placeholder='email@dbccompany.com'
 							/>
-							{errors.email && touched.email ? <div>{errors.email}</div> : null}
+							{errors.email && touched.email ? (
+								<Errors>{errors.email}</Errors>
+							) : null}
 						</div>
 
 						<div>
@@ -84,14 +94,16 @@ const SignUp = () => {
 							</div>
 
 							<Field name='senha' type='password' placeholder='Senha' />
-							{errors.senha && touched.senha ? <div>{errors.senha}</div> : null}
+							{errors.senha && touched.senha ? (
+								<Errors>{errors.senha}</Errors>
+							) : null}
 						</div>
 
 						<div>
 							<label htmlFor='confirmacaoSenha'>Confirme a sua senha* </label>
 							<Field name='confirmacaoSenha' type='password' />
 							{errors.confirmacaoSenha && touched.confirmacaoSenha ? (
-								<div>{errors.confirmacaoSenha}</div>
+								<Errors>{errors.confirmacaoSenha}</Errors>
 							) : null}
 						</div>
 
@@ -102,7 +114,7 @@ const SignUp = () => {
 					</Form>
 				)}
 			</Formik>
-		</div>
+		</PopUpForm>
 	);
 };
 export default SignUp;
