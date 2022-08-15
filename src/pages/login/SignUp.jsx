@@ -137,7 +137,8 @@ const SignUp = () => {
 						</div>
 
 						<div className='signup-profile-img'>
-							<FileBase64 multiple={false} onDone={getFiles} />
+							<label htmlFor="profilepicture">Imagem de perfil</label>
+							<FileBase64 multiple={false} onDone={getFiles} className='fileBase64' />
 							{testeImagem ? <img src={testeImagem.base64} /> : null}
 						</div>
 

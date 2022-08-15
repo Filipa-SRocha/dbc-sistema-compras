@@ -122,12 +122,13 @@ export const FormContainer = styled.div`
 	}
 
 	& div.signup-profile-img {
-		flex-direction: row;
+		flex-direction: column;
 		height: 40px;
-		align-items: center;
 		& input {
 			border: none;
 			width: 220px;
+			padding: 0;
+			width: 90%;
 		}
 
 		& img {
@@ -135,6 +136,7 @@ export const FormContainer = styled.div`
 			border-radius: 100%;
 		}
 	}
+
 `;
 
 export const Errors = styled.div`
