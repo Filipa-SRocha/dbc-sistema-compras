@@ -125,7 +125,7 @@ export const FormContainer = styled.div`
 			border: none;
 			width: 220px;
 			padding: 0;
-			width: 90%;
+			font-size: 12px;
 		}
 
 		& img {

@@ -15,7 +15,9 @@ const Login = () => {
 	};
 
 	const SignInSchema = Yup.object().shape({
-		nome: Yup.string().required('Login obrigatório'),
+		email: Yup.string()
+			.required('Email obrigatório')
+			.email('Formato de email inválido'),
 		senha: Yup.string().required('Por favor digite a sua senha!'),
 	});
 
@@ -26,7 +28,7 @@ const Login = () => {
 		>
 			<Formik
 				initialValues={{
-					nome: '',
+					email: '',
 					senha: '',
 				}}
 				validationSchema={SignInSchema}
@@ -37,10 +39,10 @@ const Login = () => {
 				{({ errors, touched }) => (
 					<Form>
 						<div>
-							<label htmlFor='nome'>NOME DE USUÁRIO</label>
-							<Field name='nome' />
-							{errors.nome && touched.nome ? (
-								<Errors>{errors.nome}</Errors>
+							<label htmlFor='email'>Email</label>
+							<Field name='email' />
+							{errors.email && touched.email ? (
+								<Errors>{errors.email}</Errors>
 							) : null}
 						</div>
 
