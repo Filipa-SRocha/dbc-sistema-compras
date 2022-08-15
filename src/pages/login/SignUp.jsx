@@ -31,6 +31,9 @@ const SignUp = () => {
 			.minNumbers(1, 'Senha precisa conter pelo menos um número')
 			.minSymbols(1, 'Senha precisa conter pelo menos um caractere especial')
 			.min(8, 'Senha precisa conter pelo menos oito caracteres'),
+		confirmacaoSenha: Yup.string()
+			.required('Por favor, confirme a sua senha')
+			.oneOf([Yup.ref('senha'), null], 'Senhas devem ser iguais'),
 	});
 
 	const handleSignup = (values) => {
@@ -44,7 +47,7 @@ const SignUp = () => {
 
 	return (
 		<PopUpForm
-			height='560px'
+			height='580px'
 			externalLink={{ description: 'Já tem uma conta? Entre', path: '/login' }}
 		>
 			<Formik
@@ -93,10 +96,7 @@ const SignUp = () => {
 									)}
 									Senha*
 								</label>
-								<PasswordStrengthMeter
-									errors={errors.senha}
-									touched={touched.senha}
-								>
+								<PasswordStrengthMeter errors={errors.senha}>
 									<Field name='senha' type='password' placeholder='Senha' />
 								</PasswordStrengthMeter>
 							</div>
