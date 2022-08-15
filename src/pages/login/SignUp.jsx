@@ -110,22 +110,20 @@ const SignUp = () => {
 							) : null}
 						</div>
 
-						<div>
-							<div className='StrongPassword'>
-								<label htmlFor='senha'>
-									{errors.senha && touched.senha ? (
-										<AiOutlineUnlock style={{ color: 'red' }} />
-									) : touched.senha ? (
-										<AiOutlineLock style={{ color: 'green' }} />
-									) : (
-										<AiOutlineUnlock style={{ color: '#gray' }} />
-									)}
-									Senha*
-								</label>
-								<PasswordStrengthMeter errors={errors.senha}>
-									<Field name='senha' type='password' placeholder='Senha' />
-								</PasswordStrengthMeter>
-							</div>
+						<div className='StrongPassword'>
+							<label htmlFor='senha'>
+								{errors.senha && touched.senha ? (
+									<AiOutlineUnlock style={{ color: 'red' }} />
+								) : touched.senha ? (
+									<AiOutlineLock style={{ color: 'green' }} />
+								) : (
+									<AiOutlineUnlock style={{ color: '#gray' }} />
+								)}
+								Senha*
+							</label>
+							<PasswordStrengthMeter errors={errors.senha}>
+								<Field name='senha' type='password' placeholder='Senha' />
+							</PasswordStrengthMeter>
 						</div>
 
 						<div>
@@ -137,8 +135,12 @@ const SignUp = () => {
 						</div>
 
 						<div className='signup-profile-img'>
-							<label htmlFor="profilepicture">Imagem de perfil</label>
-							<FileBase64 multiple={false} onDone={getFiles} className='fileBase64' />
+							<label htmlFor='profilepicture'>Imagem de perfil</label>
+							<FileBase64
+								multiple={false}
+								onDone={getFiles}
+								className='fileBase64'
+							/>
 							{testeImagem ? <img src={testeImagem.base64} /> : null}
 						</div>
 

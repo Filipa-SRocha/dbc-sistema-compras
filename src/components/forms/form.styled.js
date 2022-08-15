@@ -73,12 +73,9 @@ export const FormContainer = styled.div`
 		height: 64px;
 	}
 
-	& > * > div:nth-child(4) {
-		height: 76px;
-	}
-
 	div.StrongPassword {
 		display: flex;
+		height: 76px;
 		flex-direction: column;
 		justify-content: flex-start;
 		& > div {
@@ -136,7 +133,6 @@ export const FormContainer = styled.div`
 			border-radius: 100%;
 		}
 	}
-
 `;
 
 export const Errors = styled.div`
