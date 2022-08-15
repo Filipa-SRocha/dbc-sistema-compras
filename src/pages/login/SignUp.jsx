@@ -12,7 +12,7 @@ import PasswordStrengthMeter from '../../components/forms/components/passwordStr
 
 const SignUp = () => {
 	YupPassword(Yup);
-
+	const testIsAdministrator = false;
 	const [testeImagem, setTesteImagem] = useState(null);
 
 	const SignupSchema = Yup.object().shape({
@@ -23,6 +23,7 @@ const SignUp = () => {
 		email: Yup.string()
 			.email('Formato de e-mail inválido')
 			.required('Email obrigatório'),
+		tipo: Yup.string().required('Por favor indique o tipo de usuário'),
 		senha: Yup.string()
 			.required('Por favor digite uma senha forte')
 			.password()
@@ -47,12 +48,13 @@ const SignUp = () => {
 
 	return (
 		<PopUpForm
-			height='580px'
+			height={testIsAdministrator ? '630px' : '600px'}
 			externalLink={{ description: 'Já tem uma conta? Entre', path: '/login' }}
 		>
 			<Formik
 				initialValues={{
 					nome: '',
+					tipo: 'Colaborador',
 					email: '',
 					senha: '',
 					confirmacaoSenha: '',
@@ -71,6 +73,30 @@ const SignUp = () => {
 								<Errors>{errors.nome}</Errors>
 							) : null}
 						</div>
+
+						{testIsAdministrator ? (
+							<div>
+								<label htmlFor='tipo'>Tipo de Usuário* </label>
+								<Field
+									id='tipo'
+									name='tipo'
+									as='select'
+									disabled={!testIsAdministrator}
+								>
+									<option value='' hidden>
+										Escolha uma opção
+									</option>
+									<option value='Administrador'>Administrador</option>
+									<option value='Colaborador'>Colaborador</option>
+									<option value='Comprador'>Comprador</option>
+									<option value='Gestor'>Gestor</option>
+									<option value='Financeiro'>Financeiro</option>
+								</Field>
+								{errors.tipo && touched.tipo ? (
+									<Errors>{errors.tipo}</Errors>
+								) : null}
+							</div>
+						) : null}
 
 						<div>
 							<label htmlFor='email'>E-mail* </label>

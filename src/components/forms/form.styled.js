@@ -73,7 +73,7 @@ export const FormContainer = styled.div`
 		height: 64px;
 	}
 
-	& > * > div:nth-child(3) {
+	& > * > div:nth-child(4) {
 		height: 76px;
 	}
 
@@ -97,7 +97,8 @@ export const FormContainer = styled.div`
 		margin-bottom: 4px;
 	}
 
-	& input {
+	& input,
+	& select {
 		width: 260px;
 		height: 24px;
 		background-color: transparent;
