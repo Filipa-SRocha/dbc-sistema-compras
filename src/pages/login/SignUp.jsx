@@ -38,7 +38,7 @@ const SignUp = () => {
 	});
 
 	const handleSignup = (values) => {
-		//logica de cadastro
+		console.log('Teste');
 	};
 
 	const getFiles = (files) => {

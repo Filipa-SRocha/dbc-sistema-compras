@@ -18,3 +18,39 @@ export async function handleLogin(values, dispatch, navigate) {
 		console.log('Senha ou login inválido');
 	}
 }
+
+export function handleLogout(dispatch) {
+	try {
+		localStorage.removeItem('token');
+		api.defaults.headers.common['Authorization'] = undefined;
+		const logout = {
+			type: 'SET_LOGOUT',
+		};
+
+		dispatch(logout);
+		window.location.href = '/login';
+	} catch (error) {
+		console.log(error);
+	}
+}
+
+export function isAuth(dispatch) {
+	const token = localStorage.getItem('token');
+
+	if (token) {
+		api.defaults.headers.common['Authorization'] = token;
+		const logado = {
+			type: 'SET_LOGIN',
+			token: token,
+		};
+		dispatch(logado);
+		console.log('logado');
+		//window.location.href = '/';
+	} else {
+		const logout = {
+			type: 'SET_LOGOUT',
+		};
+
+		dispatch(logout);
+	}
+}
