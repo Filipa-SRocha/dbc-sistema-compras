@@ -8,6 +8,7 @@ import { useState } from 'react';
 import PopUpForm from '../../components/forms/PopUpForm';
 import { Errors } from '../../components/forms/form.styled';
 import { PrimaryButton } from '../../components/buttons/buttons';
+import PasswordStrengthMeter from '../../components/forms/components/passwordStrengthMeter/PasswordStrengthMeter';
 
 const SignUp = () => {
 	YupPassword(Yup);
@@ -25,11 +26,11 @@ const SignUp = () => {
 		senha: Yup.string()
 			.required('Por favor digite uma senha forte')
 			.password()
-			.min(8, 'Senha precisa conter pelo menos oito caracteres')
 			.minLowercase(1, 'Senha precisa conter pelo menos uma letra minuscula')
 			.minUppercase(1, 'Senha precisa conter pelo menos uma letra maiuscula')
 			.minNumbers(1, 'Senha precisa conter pelo menos um número')
-			.minSymbols(1, 'Senha precisa conter pelo menos um caractere especial'),
+			.minSymbols(1, 'Senha precisa conter pelo menos um caractere especial')
+			.min(8, 'Senha precisa conter pelo menos oito caracteres'),
 	});
 
 	const handleSignup = (values) => {
@@ -82,21 +83,23 @@ const SignUp = () => {
 
 						<div>
 							<div className='StrongPassword'>
-								<label htmlFor='senha'>Senha </label>
-
-								{errors.senha && touched.senha ? (
-									<AiOutlineUnlock style={{ color: 'red' }} />
-								) : touched.senha ? (
-									<AiOutlineLock style={{ color: 'green' }} />
-								) : (
-									<></>
-								)}
+								<label htmlFor='senha'>
+									{errors.senha && touched.senha ? (
+										<AiOutlineUnlock style={{ color: 'red' }} />
+									) : touched.senha ? (
+										<AiOutlineLock style={{ color: 'green' }} />
+									) : (
+										<AiOutlineUnlock style={{ color: '#gray' }} />
+									)}
+									Senha*
+								</label>
+								<PasswordStrengthMeter
+									errors={errors.senha}
+									touched={touched.senha}
+								>
+									<Field name='senha' type='password' placeholder='Senha' />
+								</PasswordStrengthMeter>
 							</div>
-
-							<Field name='senha' type='password' placeholder='Senha' />
-							{errors.senha && touched.senha ? (
-								<Errors>{errors.senha}</Errors>
-							) : null}
 						</div>
 
 						<div>

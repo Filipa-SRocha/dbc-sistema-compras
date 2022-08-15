@@ -4,6 +4,7 @@ import {
 	secondaryColor,
 	primaryLight,
 	primaryDark,
+	errorColor,
 } from '../../consts';
 
 export const Background = styled.div`
@@ -72,12 +73,20 @@ export const FormContainer = styled.div`
 		height: 64px;
 	}
 
+	& > * > div:nth-child(3) {
+		height: 76px;
+	}
+
 	div.StrongPassword {
 		display: flex;
-		flex-direction: row;
+		flex-direction: column;
 		justify-content: flex-start;
+		& > div {
+			height: 50px;
+		}
+
 		& svg {
-			margin-left: 10px;
+			margin-right: 6px;
 		}
 	}
 
@@ -128,6 +137,6 @@ export const FormContainer = styled.div`
 `;
 
 export const Errors = styled.div`
-	color: #961515;
+	color: ${errorColor};
 	font-size: 10px;
 `;
