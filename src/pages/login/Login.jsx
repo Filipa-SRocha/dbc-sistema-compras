@@ -1,24 +1,24 @@
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { useState } from 'react';
+import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { handleLogin } from '../../store/actions/authActions';
 
 import PopUpForm from '../../components/forms/PopUpForm';
 import { Errors } from '../../components/forms/form.styled';
 import { PrimaryButton } from '../../components/buttons/buttons';
 import VisibilityButton from '../../components/forms/components/visibilityButton/VisibilityButton';
 
-const Login = () => {
+const Login = ({ dispatch }) => {
+	const navigate = useNavigate();
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-
-	const handleLogin = () => {
-		//logica de login
-	};
 
 	const SignInSchema = Yup.object().shape({
 		email: Yup.string()
 			.required('Email obrigatório')
 			.email('Formato de email inválido'),
-		senha: Yup.string().required('Por favor digite a sua senha!'),
+		password: Yup.string().required('Por favor digite a sua senha!'),
 	});
 
 	return (
@@ -29,11 +29,11 @@ const Login = () => {
 			<Formik
 				initialValues={{
 					email: '',
-					senha: '',
+					password: '',
 				}}
 				validationSchema={SignInSchema}
 				onSubmit={(values) => {
-					handleLogin(values);
+					handleLogin(values, dispatch, navigate);
 				}}
 			>
 				{({ errors, touched }) => (
@@ -47,12 +47,12 @@ const Login = () => {
 						</div>
 
 						<div>
-							<label htmlFor='senha'>SENHA </label>
+							<label htmlFor='password'>Senha </label>
 							<div style={{ marginBottom: 0 }}>
 								<Field
-									name='senha'
+									name='password'
 									type={isPasswordVisible ? 'text' : 'password'}
-									placeholder='Senha'
+									placeholder='password'
 								/>
 
 								<VisibilityButton
@@ -60,8 +60,8 @@ const Login = () => {
 									isPasswordVisible={isPasswordVisible}
 								/>
 							</div>
-							{errors.senha && touched.senha ? (
-								<Errors>{errors.senha}</Errors>
+							{errors.password && touched.password ? (
+								<Errors>{errors.password}</Errors>
 							) : null}
 						</div>
 
@@ -72,4 +72,9 @@ const Login = () => {
 		</PopUpForm>
 	);
 };
-export default Login;
+
+const mapStateToProps = (state) => ({
+	auth: state.authReducer.auth,
+});
+
+export default connect(mapStateToProps)(Login);
