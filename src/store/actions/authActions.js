@@ -44,8 +44,6 @@ export function isAuth(dispatch) {
 			token: token,
 		};
 		dispatch(logado);
-		console.log('logado');
-		//window.location.href = '/';
 	} else {
 		const logout = {
 			type: 'SET_LOGOUT',

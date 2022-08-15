@@ -19,7 +19,6 @@ const Router = ({ auth, dispatch }) => {
 		}
 
 		if (!auth.isLogged) {
-			//window.location.href = '/login';
 			return <Navigate to='/login' />;
 		}
 		return children;
