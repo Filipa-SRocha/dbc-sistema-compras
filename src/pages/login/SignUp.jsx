@@ -4,13 +4,19 @@ import YupPassword from 'yup-password';
 import FileBase64 from 'react-file-base64';
 import { AiOutlineLock } from 'react-icons/ai';
 import { AiOutlineUnlock } from 'react-icons/ai';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PopUpForm from '../../components/forms/PopUpForm';
 import { Errors } from '../../components/forms/form.styled';
 import { PrimaryButton } from '../../components/buttons/buttons';
 import PasswordStrengthMeter from '../../components/forms/components/passwordStrengthMeter/PasswordStrengthMeter';
+import { handleSignUp } from '../../store/actions/signUp';
+import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-const SignUp = () => {
+const SignUp = ({handleSignUp}) => {
+	
+	const navigate = useNavigate();
+	
 	YupPassword(Yup);
 	const testIsAdministrator = false;
 	const [testeImagem, setTesteImagem] = useState(null);
@@ -23,8 +29,8 @@ const SignUp = () => {
 		email: Yup.string()
 			.email('Formato de e-mail inválido')
 			.required('Email obrigatório'),
-		tipo: Yup.string().required('Por favor indique o tipo de usuário'),
-		senha: Yup.string()
+		// tipo: Yup.string().required('Por favor indique o tipo de usuário'),
+		password: Yup.string()
 			.required('Por favor digite uma senha forte')
 			.password()
 			.minLowercase(1, 'Senha precisa conter pelo menos uma letra minuscula')
@@ -32,14 +38,10 @@ const SignUp = () => {
 			.minNumbers(1, 'Senha precisa conter pelo menos um número')
 			.minSymbols(1, 'Senha precisa conter pelo menos um caractere especial')
 			.min(8, 'Senha precisa conter pelo menos oito caracteres'),
-		confirmacaoSenha: Yup.string()
-			.required('Por favor, confirme a sua senha')
-			.oneOf([Yup.ref('senha'), null], 'Senhas devem ser iguais'),
+		// confirmacaoSenha: Yup.string()
+		// 	.required('Por favor, confirme a sua senha')
+		// 	.oneOf([Yup.ref('senha'), null], 'Senhas devem ser iguais'),
 	});
-
-	const handleSignup = (values) => {
-		console.log('Teste');
-	};
 
 	const getFiles = (files) => {
 		setTesteImagem({ ...files });
@@ -54,14 +56,15 @@ const SignUp = () => {
 			<Formik
 				initialValues={{
 					nome: '',
-					tipo: 'Colaborador',
+					// ! tipo: 'Colaborador', -> colocar depois
 					email: '',
-					senha: '',
-					confirmacaoSenha: '',
+					password: '',
+					// confirmacaoSenha: '', // -> colocar depois
 				}}
 				validationSchema={SignupSchema}
 				onSubmit={(values) => {
-					handleSignup(values);
+					console.log("submit")
+					handleSignUp(values, navigate);
 				}}
 			>
 				{({ errors, touched }) => (
@@ -111,28 +114,28 @@ const SignUp = () => {
 						</div>
 
 						<div className='StrongPassword'>
-							<label htmlFor='senha'>
-								{errors.senha && touched.senha ? (
+							<label htmlFor='password'>
+								{errors.password && touched.password ? (
 									<AiOutlineUnlock style={{ color: 'red' }} />
-								) : touched.senha ? (
+								) : touched.password ? (
 									<AiOutlineLock style={{ color: 'green' }} />
 								) : (
 									<AiOutlineUnlock style={{ color: '#gray' }} />
 								)}
 								Senha*
 							</label>
-							<PasswordStrengthMeter errors={errors.senha}>
-								<Field name='senha' type='password' placeholder='Senha' />
+							<PasswordStrengthMeter errors={errors.password}>
+								<Field name='password' type='password' placeholder='Senha' />
 							</PasswordStrengthMeter>
 						</div>
 
-						<div>
+						{/* <div>
 							<label htmlFor='confirmacaoSenha'>Confirme a sua senha* </label>
 							<Field name='confirmacaoSenha' type='password' />
 							{errors.confirmacaoSenha && touched.confirmacaoSenha ? (
 								<Errors>{errors.confirmacaoSenha}</Errors>
 							) : null}
-						</div>
+						</div> */}
 
 						<div className='signup-profile-img'>
 							<label htmlFor='profilepicture'>Imagem de perfil</label>
@@ -151,4 +154,9 @@ const SignUp = () => {
 		</PopUpForm>
 	);
 };
-export default SignUp;
+
+const mapDispatchToProps = () => ({
+	handleSignUp: (values, navigate) => handleSignUp(values, navigate)
+});
+
+export default connect(mapDispatchToProps)(SignUp);
