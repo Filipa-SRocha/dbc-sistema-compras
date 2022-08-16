@@ -1,12 +1,13 @@
 import SaleForm from '../saleForm';
+import DashboardPage from '../../../components/dashboardPage/dashboardPage';
 
 const NewSalePage = () => {
 	return (
-		<section>
-			<h2>Solicitação de Compra</h2>
-
-			<SaleForm />
-		</section>
+		<DashboardPage title='Solicitação de Compra'>
+			<>
+				<SaleForm />
+			</>
+		</DashboardPage>
 	);
 };
 export default NewSalePage;

@@ -3,7 +3,6 @@ import * as Yup from 'yup';
 import { connect } from 'react-redux';
 import { Errors } from '../../components/forms/form.styled';
 import { PrimaryButton } from '../../components/buttons/buttons';
-import AsideMenu from '../../components/asideMenu/asideMenu';
 
 const SaleForm = ({ dispatch }) => {
 	const handleNewBuy = (values) => {
