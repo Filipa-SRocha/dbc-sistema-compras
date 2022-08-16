@@ -16,6 +16,30 @@ export const Background = styled.div`
 	background: linear-gradient(178deg, #2a5ca6 10%, #77b256 90%);
 `;
 
+export const FormStyle = styled.div`
+	& label {
+		font-size: 12px;
+		color: gray;
+		text-transform: uppercase;
+		margin-bottom: 4px;
+	}
+
+	& input,
+	& select {
+		width: 260px;
+		height: 24px;
+		background-color: transparent;
+		border-radius: 5px;
+		border: 1px solid #6ea3bb;
+		padding: 0 4px;
+		margin-bottom: 2px;
+
+		::placeholder {
+			color: #a3a2a2;
+		}
+	}
+`;
+
 export const Container = styled.div`
 	width: 400px;
 	height: ${(props) => (props.height ? props.height : '600px')};
@@ -59,7 +83,7 @@ export const LogoContainer = styled.div`
 	}
 `;
 
-export const FormContainer = styled.div`
+export const PopUpFormContainer = styled(FormStyle)`
 	display: flex;
 	flex-direction: column;
 	width: 80%;
@@ -87,28 +111,6 @@ export const FormContainer = styled.div`
 		}
 	}
 
-	& label {
-		font-size: 12px;
-		color: gray;
-		text-transform: uppercase;
-		margin-bottom: 4px;
-	}
-
-	& input,
-	& select {
-		width: 260px;
-		height: 24px;
-		background-color: transparent;
-		border-radius: 5px;
-		border: 1px solid #6ea3bb;
-		padding: 0 4px;
-		margin-bottom: 2px;
-
-		::placeholder {
-			color: #a3a2a2;
-		}
-	}
-
 	& > * > div > div > button {
 		position: relative;
 		right: 30px;
@@ -132,6 +134,23 @@ export const FormContainer = styled.div`
 			height: 32px;
 			border-radius: 100%;
 		}
+	}
+`;
+
+export const RegularFormContainer = styled(FormStyle)`
+	width: 100%;
+	margin-left: 80px;
+
+	& h3 {
+		color: ${secondaryColor};
+	}
+
+	& > * > div {
+		display: flex;
+
+		align-items: center;
+		gap: 20px;
+		height: 40px;
 	}
 `;
 

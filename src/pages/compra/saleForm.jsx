@@ -3,6 +3,7 @@ import * as Yup from 'yup';
 import { connect } from 'react-redux';
 import { Errors } from '../../components/forms/form.styled';
 import { PrimaryButton } from '../../components/buttons/buttons';
+import RegularForm from '../../components/forms/RegularForm';
 
 const SaleForm = ({ dispatch }) => {
 	const handleNewBuy = (values) => {
@@ -17,9 +18,7 @@ const SaleForm = ({ dispatch }) => {
 	});
 
 	return (
-		<>
-			<h2>Nova compra</h2>
-
+		<RegularForm title='Nova Compra'>
 			<Formik
 				initialValues={{
 					name: '',
@@ -42,7 +41,7 @@ const SaleForm = ({ dispatch }) => {
 						</div>
 
 						<div>
-							<label htmlFor='descricao'>Descrção da compra: </label>
+							<label htmlFor='descricao'>Descrição da compra: </label>
 							<div>
 								<Field name='descricao' />
 							</div>
@@ -55,7 +54,7 @@ const SaleForm = ({ dispatch }) => {
 					</Form>
 				)}
 			</Formik>
-		</>
+		</RegularForm>
 	);
 };
 

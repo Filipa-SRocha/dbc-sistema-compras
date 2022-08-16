@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import {
 	Background,
-	FormContainer,
+	PopUpFormContainer,
 	LogoContainer,
 	Container,
 } from './form.styled';
@@ -16,7 +16,7 @@ const PopUpForm = ({ height, title, externalLink, children }) => {
 					<h1>Sistema de Compras</h1>
 				</LogoContainer>
 				{title ? <h2>{title.toUpperCase()}</h2> : null}
-				<FormContainer>{children}</FormContainer>
+				<PopUpFormContainer>{children}</PopUpFormContainer>
 				<Link to={externalLink.path}>{externalLink.description}</Link>
 			</Container>
 		</Background>
