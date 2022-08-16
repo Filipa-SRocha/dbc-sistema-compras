@@ -10,7 +10,7 @@ const SaleForm = ({ dispatch }) => {
 		const completeSale = { ...values, data: new Date() };
 	};
 
-	const SignInSchema = Yup.object().shape({
+	const SaleSchema = Yup.object().shape({
 		name: Yup.string()
 			.required('Nome obrigatório')
 			.min(2, 'Nome demasiado curto'),
@@ -25,7 +25,7 @@ const SaleForm = ({ dispatch }) => {
 					status: 'EM_ANALISE',
 					descricao: '',
 				}}
-				validationSchema={SignInSchema}
+				validationSchema={SaleSchema}
 				onSubmit={(values) => {
 					handleNewBuy(values, dispatch);
 				}}
