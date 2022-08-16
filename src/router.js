@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { useEffect } from 'react';
 import { isAuth } from './store/actions/authActions';
 import { Navigate } from 'react-router-dom';
+import NewSalePage from './pages/compra/salePage/newSalePage';
 
 const Router = ({ auth, dispatch }) => {
 	useEffect(() => {
@@ -46,6 +47,7 @@ const Router = ({ auth, dispatch }) => {
 						</ProtectedRoute>
 					}
 				/>
+				<Route path='/solicitacao-compra' element={<NewSalePage />} />
 
 				<Route
 					path='/login'
