@@ -11,7 +11,8 @@ export const getLoggedUser = async (dispatch) => {
 			type: 'SET_LOGGED_USER',
 			idUser: data.idUser,
 			nome: data.nome,
-			email: data.email
+			email: data.email,
+			imagemPerfilB64: data.imagemPerfilB64
 		}
 
 		dispatch(user);

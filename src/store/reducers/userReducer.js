@@ -2,7 +2,8 @@ const INITIAL_STATE = {
   user: {
 		idUser: '',
 		nome: '',
-		email: ''
+		email: '',
+		imagemPerfilB64: ''
 	}
 }
 
@@ -12,7 +13,8 @@ function userReducer(state = INITIAL_STATE, action){
 			user: {
 				idUser: action.idUser,
 				nome: action.nome,
-				email: action.email
+				email: action.email,
+				imagemPerfilB64: action.imagemPerfilB64
 			}
 		}
 	}

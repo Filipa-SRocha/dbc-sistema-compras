@@ -4,7 +4,7 @@ import YupPassword from 'yup-password';
 import FileBase64 from 'react-file-base64';
 import { AiOutlineLock } from 'react-icons/ai';
 import { AiOutlineUnlock } from 'react-icons/ai';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import PopUpForm from '../../components/forms/PopUpForm';
 import { Errors } from '../../components/forms/form.styled';
 import { PrimaryButton } from '../../components/buttons/buttons';
@@ -30,7 +30,7 @@ const SignUp = ({handleSignUp}) => {
 			.email('Formato de e-mail inválido')
 			.required('Email obrigatório'),
 		// tipo: Yup.string().required('Por favor indique o tipo de usuário'),
-		password: Yup.string()
+		senha: Yup.string()
 			.required('Por favor digite uma senha forte')
 			.password()
 			.minLowercase(1, 'Senha precisa conter pelo menos uma letra minuscula')
@@ -43,9 +43,12 @@ const SignUp = ({handleSignUp}) => {
 		// 	.oneOf([Yup.ref('senha'), null], 'Senhas devem ser iguais'),
 	});
 
-	const getFiles = (files) => {
+	const getFiles = (files, setFieldValue) => {
 		setTesteImagem({ ...files });
-		console.log(files);
+		const imgCode = files.base64.split(',');
+		const imgBase64 = imgCode[1];
+		setFieldValue("foto", imgBase64);
+		// console.log(imgBase64);
 	};
 
 	return (
@@ -58,16 +61,17 @@ const SignUp = ({handleSignUp}) => {
 					nome: '',
 					// ! tipo: 'Colaborador', -> colocar depois
 					email: '',
-					password: '',
+					senha: '',
+					foto: ''
 					// confirmacaoSenha: '', // -> colocar depois
 				}}
 				validationSchema={SignupSchema}
 				onSubmit={(values) => {
-					console.log("submit")
+					console.log(values)
 					handleSignUp(values, navigate);
 				}}
 			>
-				{({ errors, touched }) => (
+				{({ errors, touched, setFieldValue }) => (
 					<Form>
 						<div>
 							<label htmlFor='nome'>Nome* </label>
@@ -106,7 +110,7 @@ const SignUp = ({handleSignUp}) => {
 							<Field
 								name='email'
 								type='email'
-								placeholder='email@dbccompany.com'
+								placeholder='email@dbccompany.com.br'
 							/>
 							{errors.email && touched.email ? (
 								<Errors>{errors.email}</Errors>
@@ -114,18 +118,18 @@ const SignUp = ({handleSignUp}) => {
 						</div>
 
 						<div className='StrongPassword'>
-							<label htmlFor='password'>
-								{errors.password && touched.password ? (
+							<label htmlFor='senha'>
+								{errors.senha && touched.senha ? (
 									<AiOutlineUnlock style={{ color: 'red' }} />
-								) : touched.password ? (
+								) : touched.senha ? (
 									<AiOutlineLock style={{ color: 'green' }} />
 								) : (
 									<AiOutlineUnlock style={{ color: '#gray' }} />
 								)}
 								Senha*
 							</label>
-							<PasswordStrengthMeter errors={errors.password}>
-								<Field name='password' type='password' placeholder='Senha' />
+							<PasswordStrengthMeter errors={errors.senha}>
+								<Field name='senha' type='password' placeholder='Senha' />
 							</PasswordStrengthMeter>
 						</div>
 
@@ -138,10 +142,11 @@ const SignUp = ({handleSignUp}) => {
 						</div> */}
 
 						<div className='signup-profile-img'>
-							<label htmlFor='profilepicture'>Imagem de perfil</label>
+							<label htmlFor='foto'>Imagem de perfil</label>
 							<FileBase64
+								name='foto'
 								multiple={false}
-								onDone={getFiles}
+								onDone={e => getFiles(e, setFieldValue)}
 								className='fileBase64'
 							/>
 							{testeImagem ? <img src={testeImagem.base64} /> : null}

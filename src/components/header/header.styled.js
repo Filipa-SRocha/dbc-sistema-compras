@@ -13,4 +13,11 @@ export const HeaderComponent = styled.div`
   span {
     font-size: 20px;
   }
+
+  .profilePicture {
+    width: 28px;
+    height: 28px;
+    border-radius: 100%;
+  }
+
 `
