@@ -1,10 +1,10 @@
 import { BiUserCircle } from 'react-icons/bi';
 import { HeaderComponent } from './header.styled';
 
-const Header = () => {
+const Header = ({ nomeUsuario }) => {
   return (
     <HeaderComponent>
-      <span>Fulano de tal</span>
+      <span>{nomeUsuario}</span>
       <BiUserCircle />
     </HeaderComponent>
   )

@@ -3,7 +3,7 @@ const INITIAL_STATE = {
 		token: '',
 		isLogged: false,
 		isLoading: true,
-	},
+	}
 };
 
 function authReducer(state = INITIAL_STATE, action) {
