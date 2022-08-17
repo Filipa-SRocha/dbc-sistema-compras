@@ -1,6 +1,7 @@
 import { Formik, Form, Field, FieldArray } from 'formik';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Errors } from '../../components/forms/form.styled';
 import {
 	IconButton,
@@ -11,10 +12,7 @@ import RegularForm from '../../components/forms/RegularForm';
 import { handleNewSale } from '../../store/actions/saleActions';
 
 const FullSaleForm = ({ dispatch }) => {
-	const handleNewBuy = (values) => {
-		console.log('newBuy');
-		console.log(values);
-	};
+	const navigate = useNavigate();
 
 	const SaleSchema = Yup.object().shape({
 		name: Yup.string()
@@ -40,7 +38,7 @@ const FullSaleForm = ({ dispatch }) => {
 				}}
 				validationSchema={SaleSchema}
 				onSubmit={(values) => {
-					handleNewSale(values);
+					handleNewSale(values, navigate);
 				}}
 			>
 				{({ values, errors, touched }) => (
