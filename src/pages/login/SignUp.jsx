@@ -9,7 +9,7 @@ import PopUpForm from '../../components/forms/PopUpForm';
 import { Errors } from '../../components/forms/form.styled';
 import { PrimaryButton } from '../../components/buttons/buttons';
 import PasswordStrengthMeter from '../../components/forms/components/passwordStrengthMeter/PasswordStrengthMeter';
-import { handleSignUp } from '../../store/actions/signUp';
+import { handleSignUp } from '../../store/actions/signUpAction';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 

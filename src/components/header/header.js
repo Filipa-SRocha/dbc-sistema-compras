@@ -9,9 +9,9 @@ const Header = ({ dispatch, user }) => {
   const imgBase64Prefix = 'data:image/png;base64,'
   
   useEffect(() => {
-		console.log("chegou aqui no use effect");
+		// console.log("chegou aqui no use effect");
 		getLoggedUser(dispatch);
-    console.log(user.imagemPerfilB64)
+    // console.log(user.imagemPerfilB64)
 	}, [])
 
   return (
