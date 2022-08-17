@@ -8,6 +8,8 @@ import { useEffect } from 'react';
 import { isAuth } from './store/actions/authActions';
 import { Navigate } from 'react-router-dom';
 import NewSalePage from './pages/compra/salePage/newSalePage';
+import User from './pages/user/User';
+import ChangeUserInfo from './components/changeUserInfo/changeUserInfo';
 
 const Router = ({ auth, dispatch }) => {
 	useEffect(() => {
@@ -47,6 +49,21 @@ const Router = ({ auth, dispatch }) => {
 						</ProtectedRoute>
 					}
 				/>
+				<Route
+					path='/user'
+					element={
+						<ProtectedRoute>
+							<User />
+						</ProtectedRoute>
+					}
+				/>
+
+					<Route path='/user/change-info' element={
+						<ProtectedRoute>
+							<User changeType="info" />
+						</ProtectedRoute> 
+					} />
+
 				<Route path='/solicitacao-compra' element={<NewSalePage />} />
 
 				<Route
