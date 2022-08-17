@@ -33,24 +33,27 @@ const SaleForm = ({ dispatch }) => {
 				{({ errors, touched }) => (
 					<Form>
 						<div>
-							<label htmlFor='name'>Nome: </label>
-							<Field name='name' />
-							{errors.name && touched.name ? (
-								<Errors>{errors.name}</Errors>
-							) : null}
-						</div>
-
-						<div>
-							<label htmlFor='descricao'>Descrição da compra: </label>
 							<div>
-								<Field name='descricao' />
+								<div>
+									<label htmlFor='name'>Nome: </label>
+									<Field name='name' />
+								</div>
+								{errors.name && touched.name ? (
+									<Errors>{errors.name}</Errors>
+								) : null}
 							</div>
-							{errors.descricao && touched.descricao ? (
-								<Errors>{errors.descricao}</Errors>
-							) : null}
-						</div>
 
-						<PrimaryButton text='Solicitar' type='submit' />
+							<div>
+								<div>
+									<label htmlFor='descricao'>Descrição da compra: </label>
+									<Field name='descricao' />
+								</div>
+								{errors.descricao && touched.descricao ? (
+									<Errors>{errors.descricao}</Errors>
+								) : null}
+							</div>
+						</div>
+						{/* <PrimaryButton text='Solicitar' type='submit' /> */}
 					</Form>
 				)}
 			</Formik>

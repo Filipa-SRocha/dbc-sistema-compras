@@ -143,14 +143,26 @@ export const RegularFormContainer = styled(FormStyle)`
 
 	& h3 {
 		color: ${secondaryColor};
+		margin-bottom: 12px;
 	}
 
 	& > * > div {
 		display: flex;
+		gap: 40px;
+		height: 60px;
+	}
 
+	& > * > div > div {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		gap: 2px;
+	}
+
+	& > * > div > div > div {
+		display: flex;
 		align-items: center;
-		gap: 20px;
-		height: 40px;
+		gap: 10px;
 	}
 `;
 
