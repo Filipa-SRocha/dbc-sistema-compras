@@ -1,6 +1,6 @@
 import { AsideMenuComponent } from './asideMenu.styled';
 import { Link } from 'react-router-dom';
-import { RiLogoutBoxRFill } from 'react-icons/ri';
+import { RiLogoutBoxFill } from 'react-icons/ri';
 import { HiUserGroup } from 'react-icons/hi';
 import { BsFillCartFill } from 'react-icons/bs';
 import { MdAddShoppingCart } from 'react-icons/md';
@@ -31,7 +31,7 @@ const AsideMenu = ({ dispatch }) => {
 						handleLogout(dispatch);
 					}}
 				>
-					<RiLogoutBoxRFill className='navItem' />
+					<RiLogoutBoxFill className='navItem' />
 				</button>
 			</AsideMenuComponent>
 		</div>
