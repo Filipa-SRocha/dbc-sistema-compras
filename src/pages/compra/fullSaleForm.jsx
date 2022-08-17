@@ -8,6 +8,7 @@ import {
 	SecondaryButton,
 } from '../../components/buttons/buttons';
 import RegularForm from '../../components/forms/RegularForm';
+import { handleNewSale } from '../../store/actions/saleActions';
 
 const FullSaleForm = ({ dispatch }) => {
 	const handleNewBuy = (values) => {
@@ -15,15 +16,16 @@ const FullSaleForm = ({ dispatch }) => {
 		console.log(values);
 	};
 
-	const fim = (values) => {
-		console.log('valores finais:', values);
-	};
-
 	const SaleSchema = Yup.object().shape({
 		name: Yup.string()
 			.required('Nome obrigatório')
 			.min(2, 'Nome demasiado curto'),
 		descricao: Yup.string().required('Por favor introduza uma descrição'),
+		items: Yup.array(
+			Yup.object({
+				nome: Yup.string().required('Nome obrigatório'),
+			})
+		).min(1),
 	});
 
 	return (
@@ -32,12 +34,13 @@ const FullSaleForm = ({ dispatch }) => {
 				initialValues={{
 					name: '',
 					status: 'EM_ANALISE',
+					valor: 0,
 					descricao: '',
 					items: [{ nome: '', quantidade: 1 }],
 				}}
 				validationSchema={SaleSchema}
 				onSubmit={(values) => {
-					handleNewBuy(values, dispatch);
+					handleNewSale(values);
 				}}
 			>
 				{({ values, errors, touched }) => (
@@ -70,6 +73,7 @@ const FullSaleForm = ({ dispatch }) => {
 
 									{values.items.map((item, index) => (
 										<>
+											{/* {console.log(errors.items[index].nome)} */}
 											<h5>Item {index}</h5>
 											<div className='item-container'>
 												<div>
@@ -77,8 +81,12 @@ const FullSaleForm = ({ dispatch }) => {
 													<Field name={`items[${index}].nome`} />
 												</div>
 												<div>
-													<label htmlFor=''>Quandidade</label>
-													<Field name={`items[${index}].quantidade`} />
+													<label htmlFor=''>Quantidade</label>
+													<Field
+														name={`items[${index}].quantidade`}
+														type='number'
+														min={1}
+													/>
 												</div>
 												<div>
 													<IconButton onClick={() => remove(index)} />
@@ -88,23 +96,15 @@ const FullSaleForm = ({ dispatch }) => {
 									))}
 
 									<SecondaryButton
+										type='button'
 										text='Adicionar Item'
 										onClick={() => push({ nome: '', quantidade: 1 })}
 									/>
-									{/* <PrimaryButton
-										text='Adicionar Item'
-										onClick={() => push({ nome: '', quantidade: 1 })}
-									/> */}
 								</div>
 							)}
 						</FieldArray>
 
-						<PrimaryButton
-							text='Finalizar'
-							onClick={() => {
-								fim(values);
-							}}
-						/>
+						<PrimaryButton type='submit' text='Finalizar' />
 					</Form>
 				)}
 			</Formik>
