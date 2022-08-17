@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { secondaryColor } from '../../consts';
 
 export const AsideMenuComponent = styled.aside`
 	height: 100vh;
@@ -24,10 +25,26 @@ export const AsideMenuComponent = styled.aside`
 		cursor: pointer;
 	}
 
-	.navItem {
+	& li {
+		cursor: none;
+		margin-bottom: 20px;
+	}
+
+	& li > button {
+		width: 60px;
+		height: 50px;
+		border-radius: 20px;
+	}
+	& li > button > * {
 		font-size: 40px;
 		color: white;
-		cursor: pointer;
+		pointer-events: none;
+	}
+
+	.active {
+		height: 50px;
+		border-radius: 20px;
+		background-color: #1f1f1f45;
 	}
 
 	& button {

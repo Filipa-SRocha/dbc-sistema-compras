@@ -6,11 +6,11 @@ import {
 import Header from '../header/header';
 import AsideMenu from '../asideMenu/asideMenu';
 
-const DashboardPage = ({ title, children }) => {
+const DashboardPage = ({ title, page, children }) => {
 	return (
 		<section>
 			<Container>
-				<AsideMenu></AsideMenu>
+				<AsideMenu nowActive={page}></AsideMenu>
 				<DashboardContainer>
 					<Header />
 					<h2>{title}</h2>

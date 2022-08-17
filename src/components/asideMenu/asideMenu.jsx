@@ -7,9 +7,16 @@ import { MdAddShoppingCart } from 'react-icons/md';
 import { handleLogout } from '../../store/actions/authActions';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
-const AsideMenu = ({ dispatch }) => {
+const AsideMenu = ({ nowActive, dispatch }) => {
 	const navigate = useNavigate();
+	const [active, setActive] = useState();
+
+	useEffect(() => {
+		nowActive ? setActive(nowActive) : setActive('/');
+	}, []);
+
 	return (
 		<div>
 			<AsideMenuComponent>
@@ -17,15 +24,46 @@ const AsideMenu = ({ dispatch }) => {
 					<Link to='/' className='logo'>
 						DBC
 					</Link>
-					<BsFillCartFill className='navItem' />
-					<MdAddShoppingCart
-						className='navItem'
-						onClick={() => {
-							navigate('/solicitacao-compra');
-						}}
-					/>
-					<HiUserGroup className='navItem' />
+
+					<ul>
+						<li className={active === '/' ? 'navItem active' : 'navItem'}>
+							<button
+								onClick={() => {
+									setActive('/');
+									navigate('/');
+								}}
+							>
+								<BsFillCartFill />
+							</button>
+						</li>
+
+						<li
+							className={
+								active === '/solicitacao-compra' ? 'navItem active' : 'navItem'
+							}
+						>
+							<button
+								onClick={() => {
+									setActive('/solicitacao-compra');
+									navigate('/solicitacao-compra');
+								}}
+							>
+								<MdAddShoppingCart />
+							</button>
+						</li>
+
+						<li className={active === 'users' ? 'navItem active' : 'navItem'}>
+							<button
+								onClick={() => {
+									setActive('users');
+								}}
+							>
+								<HiUserGroup />
+							</button>
+						</li>
+					</ul>
 				</div>
+
 				<button
 					onClick={() => {
 						handleLogout(dispatch);

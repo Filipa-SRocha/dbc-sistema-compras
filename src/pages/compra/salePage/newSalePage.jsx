@@ -4,7 +4,7 @@ import FullSaleForm from '../fullSaleForm';
 
 const NewSalePage = () => {
 	return (
-		<DashboardPage title='Solicitação de Compra'>
+		<DashboardPage page={'/solicitacao-compra'} title='Solicitação de Compra'>
 			<>
 				<FullSaleForm />
 			</>
