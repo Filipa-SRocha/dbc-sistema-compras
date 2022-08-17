@@ -1,13 +1,12 @@
-import SaleForm from '../saleForm';
 import DashboardPage from '../../../components/dashboardPage/dashboardPage';
-import ItemForm from '../itemForm';
+
+import FullSaleForm from '../fullSaleForm';
 
 const NewSalePage = () => {
 	return (
 		<DashboardPage title='Solicitação de Compra'>
 			<>
-				<SaleForm />
-				<ItemForm />
+				<FullSaleForm />
 			</>
 		</DashboardPage>
 	);

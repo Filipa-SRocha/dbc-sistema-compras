@@ -140,29 +140,49 @@ export const PopUpFormContainer = styled(FormStyle)`
 export const RegularFormContainer = styled(FormStyle)`
 	width: 100%;
 	margin-left: 80px;
-
+	display: flex;
+	flex-direction: column;
 	& h3 {
 		color: ${secondaryColor};
 		margin-bottom: 12px;
 	}
+	& h5 {
+		color: ${secondaryColor};
+	}
 
-	& > * > div {
+	& > * > div:nth-of-type(1) {
 		display: flex;
 		gap: 40px;
 		height: 60px;
+
+		& > div {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-end;
+			gap: 2px;
+		}
 	}
 
-	& > * > div > div {
+	& > * > div:nth-of-type(2) {
 		display: flex;
+		gap: 16px;
 		flex-direction: column;
-		align-items: flex-end;
-		gap: 2px;
+		margin-bottom: 40px;
 	}
 
-	& > * > div > div > div {
+	& div.item-container {
 		display: flex;
 		align-items: center;
-		gap: 10px;
+		gap: 40px;
+		& > div {
+			display: flex;
+			gap: 12px;
+			align-items: center;
+		}
+	}
+
+	& > * > button {
+		justify-self: center;
 	}
 `;
 
