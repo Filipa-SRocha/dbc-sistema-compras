@@ -11,6 +11,7 @@ import NewPurchasePage from './pages/purchase/purchasePage/newPurchasePage';
 import User from './pages/user/User';
 import ChangeUserInfo from './components/changeUserInfo/changeUserInfo';
 import EditPurchasePage from './pages/purchase/editPurchasePage';
+import PurchaseDetails from './pages/purchase/purchaseDetails';
 
 const Router = ({ auth, dispatch }) => {
 	useEffect(() => {
@@ -58,7 +59,6 @@ const Router = ({ auth, dispatch }) => {
 						</ProtectedRoute>
 					}
 				/>
-
 				<Route
 					path='/user/change-info'
 					element={
@@ -67,8 +67,7 @@ const Router = ({ auth, dispatch }) => {
 						</ProtectedRoute>
 					}
 				/>
-
-<Route
+				<Route
 					path='/user/change-password'
 					element={
 						<ProtectedRoute>
@@ -76,7 +75,6 @@ const Router = ({ auth, dispatch }) => {
 						</ProtectedRoute>
 					}
 				/>
-
 				<Route path='/solicitacao-compra' element={<NewPurchasePage />} />
 				<Route
 					path='/editar-compra/:idCompra'
@@ -86,6 +84,15 @@ const Router = ({ auth, dispatch }) => {
 						</ProtectedRoute>
 					}
 				/>
+				<Route
+					path='/details-page/:idCompra'
+					element={
+						<ProtectedRoute>
+							<PurchaseDetails />
+						</ProtectedRoute>
+					}
+				/>
+
 				<Route
 					path='/login'
 					element={

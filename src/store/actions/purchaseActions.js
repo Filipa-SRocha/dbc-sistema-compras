@@ -92,3 +92,11 @@ export async function handleEditPurchase(
 export const disableEditMode = (dispatch) => {
 	dispatch({ type: 'DISABLE_EDIT_MODE' });
 };
+
+export const setPurchaseToShow = (purchase, dispatch) => {
+	const showPurchase = {
+		type: 'SET_SHOW_PURCHASE',
+		purchase: purchase,
+	};
+	dispatch(showPurchase);
+};

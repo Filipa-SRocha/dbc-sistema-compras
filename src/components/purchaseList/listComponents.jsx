@@ -15,6 +15,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import {
 	deletePurchase,
 	editPurchase,
+	setPurchaseToShow,
 } from '../../store/actions/purchaseActions';
 
 export const ListHeader = () => {
@@ -60,7 +61,6 @@ export const ListMenu = ({ purchase, updateList, dispatch }) => {
 			<IconButton
 				type='delete'
 				onClick={() => {
-					console.log('delete');
 					deletePurchase(purchase.idCompra);
 					updateList();
 				}}
@@ -77,8 +77,14 @@ export const ListMenu = ({ purchase, updateList, dispatch }) => {
 };
 
 export const ListItem = ({ purchase, updateList, dispatch }) => {
+	const navigate = useNavigate();
+
+	const openDetailsPage = () => {
+		navigate(`/details-page/${purchase.idCompra}`);
+		setPurchaseToShow(purchase, dispatch);
+	};
 	return (
-		<PurchaseItem>
+		<PurchaseItem onClick={openDetailsPage}>
 			<span>{purchase.name}</span>
 			<span>{moment(purchase.dataCompra).format('ll')}</span>
 			{purchase.valorTotal ? (

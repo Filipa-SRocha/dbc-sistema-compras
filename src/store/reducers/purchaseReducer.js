@@ -1,6 +1,7 @@
 const INITIAL_STATE = {
 	purchasesList: [],
 	purchaseToEdit: {},
+	purchaseToShow: {},
 	isLoading: true,
 	isEditMode: false,
 };
@@ -29,6 +30,15 @@ function purchaseReducer(state = INITIAL_STATE, action) {
 			purchaseToEdit: {},
 			loading: false,
 			isEditMode: false,
+		};
+	}
+
+	if (action.type === 'SET_SHOW_PURCHASE') {
+		return {
+			...state,
+			loading: false,
+			isEditMode: false,
+			purchaseToShow: action.purchase,
 		};
 	}
 

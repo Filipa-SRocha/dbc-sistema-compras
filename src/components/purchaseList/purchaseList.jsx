@@ -19,6 +19,7 @@ const PurchaseList = ({ purchasesList, dispatch }) => {
 			<PurchaseComponent>
 				{purchasesList.map((purchase) => (
 					<ListItem
+						key={purchase.idCompra}
 						purchase={purchase}
 						updateList={updateList}
 						dispatch={dispatch}
