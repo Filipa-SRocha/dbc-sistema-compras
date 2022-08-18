@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { useEffect } from 'react';
 import { isAuth } from './store/actions/authActions';
 import { Navigate } from 'react-router-dom';
-import NewSalePage from './pages/compra/salePage/newSalePage';
+import NewPurchasePage from './pages/purchases/purchasePage/newPurchasePage';
 import User from './pages/user/User';
 import ChangeUserInfo from './components/changeUserInfo/changeUserInfo';
 
@@ -58,13 +58,16 @@ const Router = ({ auth, dispatch }) => {
 					}
 				/>
 
-					<Route path='/user/change-info' element={
+				<Route
+					path='/user/change-info'
+					element={
 						<ProtectedRoute>
-							<User changeType="info" />
-						</ProtectedRoute> 
-					} />
+							<User changeType='info' />
+						</ProtectedRoute>
+					}
+				/>
 
-				<Route path='/solicitacao-compra' element={<NewSalePage />} />
+				<Route path='/solicitacao-compra' element={<NewPurchasePage />} />
 
 				<Route
 					path='/login'

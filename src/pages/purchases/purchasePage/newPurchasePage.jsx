@@ -1,14 +1,14 @@
 import DashboardPage from '../../../components/dashboardPage/dashboardPage';
 
-import FullSaleForm from '../fullSaleForm';
+import FullPurchaseForm from '../fullPurchaseForm';
 
-const NewSalePage = () => {
+const NewPurchasePage = () => {
 	return (
 		<DashboardPage page={'/solicitacao-compra'} title='Solicitação de Compra'>
 			<>
-				<FullSaleForm />
+				<FullPurchaseForm />
 			</>
 		</DashboardPage>
 	);
 };
-export default NewSalePage;
+export default NewPurchasePage;

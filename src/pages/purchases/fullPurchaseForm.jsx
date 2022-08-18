@@ -9,9 +9,9 @@ import {
 	SecondaryButton,
 } from '../../components/buttons/buttons';
 import RegularForm from '../../components/forms/RegularForm';
-import { handleNewSale } from '../../store/actions/saleActions';
+import { handleNewPurchase } from '../../store/actions/purchaseActions';
 
-const FullSaleForm = ({ dispatch }) => {
+const FullPurchaseForm = ({ dispatch }) => {
 	const navigate = useNavigate();
 
 	const SaleSchema = Yup.object().shape({
@@ -38,7 +38,7 @@ const FullSaleForm = ({ dispatch }) => {
 				}}
 				validationSchema={SaleSchema}
 				onSubmit={(values) => {
-					handleNewSale(values, navigate);
+					handleNewPurchase(values, navigate);
 				}}
 			>
 				{({ values, errors, touched }) => (
@@ -114,4 +114,4 @@ const mapStateToProps = (state) => ({
 	auth: state.authReducer.auth,
 });
 
-export default connect(mapStateToProps)(FullSaleForm);
+export default connect(mapStateToProps)(FullPurchaseForm);
