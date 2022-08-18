@@ -138,7 +138,6 @@ export const PopUpFormContainer = styled(FormStyle)`
 `;
 
 export const RegularFormContainer = styled(FormStyle)`
-	width: 100%;
 	margin-left: 80px;
 	display: flex;
 	flex-direction: column;

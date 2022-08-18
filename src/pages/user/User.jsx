@@ -29,6 +29,7 @@ const User = ({ dispatch, user, changeType }) => {
   }, []);
 
   console.log(changeType)
+  console.log(user)
 
   return (
     <UserGlobalContainer>

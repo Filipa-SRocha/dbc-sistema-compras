@@ -5,6 +5,8 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import YupPassword from 'yup-password';
 import { useNavigate } from 'react-router-dom';
+import { Errors } from '../../components/forms/form.styled';
+import { PrimaryButton } from '../../components/buttons/buttons';
 
 const ChangeUserPassword = () => {
   
@@ -13,6 +15,8 @@ const ChangeUserPassword = () => {
   YupPassword(Yup);
 
   const newPasswordSchema = Yup.object().shape({
+    senhaAtual: Yup.string()
+      .required('Por favor digite sua senha atual'),
     novaSenha: Yup.string()
 			.required('Por favor digite uma senha forte')
 			.password()
@@ -41,13 +45,22 @@ const ChangeUserPassword = () => {
             <Form>
               <div className="formCampo">
                 <label htmlFor="senhaAtual">Senha atual</label>
-                <Field name='senhaAtual' type='password' placeholder='********' />
+                <Field name='senhaAtual' type='password' placeholder='********'
+                />
+                {errors.senhaAtual && touched.senhaAtual ? (
+                  <Errors>{errors.senhaAtual}</Errors>
+                    ) : null}
               </div>
               <div className="formCampo">
                 <label htmlFor="novaSenha">Nova senha</label>
                 <Field name='novaSenha' type='password' placeholder='********' />
+                {errors.novaSenha && touched.novaSenha ? (
+                  <Errors>{errors.novaSenha}</Errors>
+                    ) : null}
               </div>
-              <button type="submit">Atualizar Senha</button>
+              <div className='button'>
+                <PrimaryButton type="submit" text="Atualizar senha" />
+              </div>
             </Form>
           )}
 
