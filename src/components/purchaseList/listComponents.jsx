@@ -2,6 +2,7 @@ import { CgRename } from 'react-icons/cg';
 import { BsCalendar2Date, BsJournalCheck } from 'react-icons/bs';
 import { MdAttachMoney } from 'react-icons/md';
 import { GrAttachment } from 'react-icons/gr';
+import moment from 'moment';
 
 import {
 	PurchaseLabel,
@@ -36,14 +37,26 @@ export const ListHeader = () => {
 	);
 };
 
-export const ListItem = ({ list }) => {
+// dataCompra: "2022-08-17"
+// descricao: "Compra de teste"
+// idCompra: 44
+// itens: (2) [{…}, {…}]
+// name: "Compra 1"
+// status: "aberto"
+// valorTotal: null
+
+export const ListItem = ({ purchase }) => {
 	return (
 		<PurchaseItem>
-			<span>Teste</span>
-			<span>15/08/2022</span>
-			<span>R$ 200</span>
-			<span>Nome do arquivo.pdf</span>
-			<span>Reprovado</span>
+			<span>{purchase.name}</span>
+			<span>{moment(purchase.dataCompra).format('ll')}</span>
+			{purchase.valorTotal ? (
+				<span>purchase.valorTotal</span>
+			) : (
+				<span> - </span>
+			)}
+			<span> - </span>
+			<span>{purchase.status}</span>
 		</PurchaseItem>
 	);
 };

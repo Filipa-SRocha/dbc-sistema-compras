@@ -1,18 +1,28 @@
-import {
-	PurchaseContainer,
-	PurchaseComponent,
-	PurchaseItem,
-} from './purchaseList.styled';
+import { PurchaseContainer, PurchaseComponent } from './purchaseList.styled';
 import { ListHeader, ListItem } from './listComponents';
+import { connect } from 'react-redux';
+import { useEffect } from 'react';
+import { getAllPurchases } from '../../store/actions/purchaseActions';
 
-const PurchaseList = () => {
+const PurchaseList = ({ purchasesList, dispatch }) => {
+	useEffect(() => {
+		getAllPurchases(dispatch);
+	}, []);
+
 	return (
 		<PurchaseContainer>
 			<ListHeader />
 			<PurchaseComponent>
-				<ListItem />
+				{purchasesList.map((purchase) => (
+					<ListItem purchase={purchase} />
+				))}
 			</PurchaseComponent>
 		</PurchaseContainer>
 	);
 };
-export default PurchaseList;
+
+const mapStateToProps = (state) => ({
+	purchasesList: state.purchaseReducer.purchasesList,
+});
+
+export default connect(mapStateToProps)(PurchaseList);
