@@ -36,7 +36,7 @@ export const updateUserInfo = async(values, userData, dispatch) => {
 		
 		try {
 			api.defaults.headers.common['Authorization'] = token;
-			await api.put('/usuario/logged-user/nome-email-foto', data);
+			await api.put('/usuario/logged-user/', data);
 			alert("Cadastro atualizado com sucesso!");
 
 			getLoggedUser(dispatch);
@@ -47,4 +47,21 @@ export const updateUserInfo = async(values, userData, dispatch) => {
 
 	}
 
+}
+
+export const updateUserPassword = async (data, navigate) => {
+	const token = localStorage.getItem('token');
+
+	if(token) {
+		try {
+			api.defaults.headers.common['Authorization'] = token;
+			await api.put('/usuario/change-password/', data);
+			alert("Senha atualizada com sucesso!");
+
+			navigate('/user');
+
+		} catch (error) {
+			console.log(`Erro -> ${error}`);
+		}
+	}
 }
