@@ -23,6 +23,15 @@ const PurchaseList = () => {
           <span>Reprovado</span>
         </PurchaseItem>
       </PurchaseComponent>
+      <PurchaseComponent>
+        <PurchaseItem>
+          <span>Teste</span>
+          <span>15/08/2022</span>
+          <span>R$ 200</span>
+          <span>Nome do arquivo.pdf</span>
+          <span>Reprovado</span>
+        </PurchaseItem>
+      </PurchaseComponent>
 
     </PurchaseContainer>
   )

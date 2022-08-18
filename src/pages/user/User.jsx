@@ -1,4 +1,4 @@
-import { BiUserCircle, BiRename } from 'react-icons/bi';
+import { BiUserCircle, BiRename, BiArrowBack } from 'react-icons/bi';
 import { MdOutlineEmail } from 'react-icons/md';
 import { FiEdit } from 'react-icons/fi';
 import { RiLockPasswordFill } from 'react-icons/ri';
@@ -20,13 +20,15 @@ const User = ({ dispatch, user, changeType }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(user)
+    // console.log(user)
 
     if(!user.idUser){
       getLoggedUser(dispatch)
     }
 
-  }, [])
+  }, []);
+
+  console.log(changeType)
 
   return (
     <UserGlobalContainer>
@@ -55,13 +57,15 @@ const User = ({ dispatch, user, changeType }) => {
               </div>
             </div>
             <div className='userEdit'>
-                <Button onClick={() => {navigate('/user/change-info')}}><FiEdit />Editar perfil</Button>
-                <Button><RiLockPasswordFill />Mudar senha</Button>
+                {(changeType === 'info' || changeType === 'password') && <Button onClick={() => navigate('/')}><BiArrowBack />Voltar para home</Button>}
+                {(changeType === 'password' || !changeType) && <Button onClick={() => {navigate('/user/change-info')}}><FiEdit />Editar perfil</Button>}
+                {(changeType === 'info' || !changeType) && <Button onClick={() => {navigate('/user/change-password')}}><RiLockPasswordFill />Mudar senha</Button>}
             </div>
           </div>
         </UserContainer>
-        {changeType === "info" && <ChangeUserInfo userData={user} />}
-        {/* {changeUserPassword && <ChangeUserPassword />} */}
+        {/* {(changeType === 'info' || changeType === 'password') && <ChangeUserInfo userData={user} />} */}
+        {changeType === 'info' && <ChangeUserInfo userData={user} />}
+        {changeType === 'password' && <ChangeUserPassword />}
       </div>
     </UserGlobalContainer>
   )

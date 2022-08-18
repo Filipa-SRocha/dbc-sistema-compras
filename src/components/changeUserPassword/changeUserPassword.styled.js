@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ChangeInfoContainer = styled.div`
+export const ChangePasswordContainer = styled.div`
   width: 800px;
   border: solid 2px #2a5ca6;
   border-radius: 20px;
@@ -21,6 +21,7 @@ export const ChangeInfoContainer = styled.div`
 
   .form {
     display: flex;
+    flex-direction: column;
     font-size: 16px;
   }
 
@@ -30,10 +31,4 @@ export const ChangeInfoContainer = styled.div`
     margin-bottom: 20px;
   }
 
-  .imgPerfil {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    margin-bottom: 20px;
-  }
 `
