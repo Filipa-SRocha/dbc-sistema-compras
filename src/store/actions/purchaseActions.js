@@ -18,6 +18,8 @@ export async function handleNewPurchase(values, navigate) {
 
 export async function getAllPurchases(dispatch) {
 	try {
+		console.log('Getting list data...');
+
 		const { data } = await api.get('/colaborador/compras');
 
 		const newList = {
@@ -30,7 +32,7 @@ export async function getAllPurchases(dispatch) {
 			purchase.dataCompra = convertToDateObject(purchase.dataCompra);
 		});
 
-		//Ascending Data Filter
+		//Descending Data Filter
 		data.sort(
 			(purchaseA, purchaseB) =>
 				Number(purchaseB.dataCompra) - Number(purchaseA.dataCompra)
@@ -42,5 +44,38 @@ export async function getAllPurchases(dispatch) {
 			'Não foi possível atualizar a lista de solicitações. Erro no servidor',
 			error
 		);
+	}
+}
+
+export async function deletePurchase(id) {
+	try {
+		console.log('Deleting id:', id);
+		await api.delete(`/colaborador/compra/${id}`);
+	} catch (error) {
+		console.log(
+			'Não foi possível eliminar esta solicitação. Erro no servidor',
+			error
+		);
+	}
+}
+
+export function editPurchase(purchase, dispatch) {
+	console.log(' TO edit:', purchase);
+	const edit = {
+		type: 'SET_PURCHASE_TO_EDIT',
+		purchase: purchase,
+	};
+
+	dispatch(edit);
+	// await api.delete(`/colaborador/compra/${id}`);
+}
+
+export async function handleEditPurchase(values, idCompra, navigate) {
+	console.log('SET EDIT', values);
+	try {
+		await api.put(`/colaborador/compra/${idCompra}`, values);
+		navigate('/');
+	} catch (error) {
+		console.log('Não foi possível editar esta solicitação!', error);
 	}
 }

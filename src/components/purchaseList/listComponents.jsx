@@ -3,12 +3,19 @@ import { BsCalendar2Date, BsJournalCheck } from 'react-icons/bs';
 import { MdAttachMoney } from 'react-icons/md';
 import { GrAttachment } from 'react-icons/gr';
 import moment from 'moment';
+import { BsThreeDotsVertical } from 'react-icons/bs';
 
 import {
 	PurchaseLabel,
 	PurchaseLabelItem,
 	PurchaseItem,
 } from './purchaseList.styled';
+import { IconButton } from '../buttons/buttons';
+import { Navigate, useNavigate } from 'react-router-dom';
+import {
+	deletePurchase,
+	editPurchase,
+} from '../../store/actions/purchaseActions';
 
 export const ListHeader = () => {
 	return (
@@ -45,7 +52,31 @@ export const ListHeader = () => {
 // status: "aberto"
 // valorTotal: null
 
-export const ListItem = ({ purchase }) => {
+export const ListMenu = ({ purchase, updateList, dispatch }) => {
+	const navigate = useNavigate();
+
+	return (
+		<div>
+			<IconButton
+				type='delete'
+				onClick={() => {
+					console.log('delete');
+					deletePurchase(purchase.idCompra);
+					updateList();
+				}}
+			/>
+			<IconButton
+				type='edit'
+				onClick={() => {
+					editPurchase(purchase, dispatch);
+					navigate(`/editar-compra/${purchase.idCompra}`);
+				}}
+			/>
+		</div>
+	);
+};
+
+export const ListItem = ({ purchase, updateList, dispatch }) => {
 	return (
 		<PurchaseItem>
 			<span>{purchase.name}</span>
@@ -57,6 +88,11 @@ export const ListItem = ({ purchase }) => {
 			)}
 			<span> - </span>
 			<span>{purchase.status}</span>
+			<ListMenu
+				purchase={purchase}
+				updateList={updateList}
+				dispatch={dispatch}
+			/>
 		</PurchaseItem>
 	);
 };

@@ -7,9 +7,10 @@ import { connect } from 'react-redux';
 import { useEffect } from 'react';
 import { isAuth } from './store/actions/authActions';
 import { Navigate } from 'react-router-dom';
-import NewPurchasePage from './pages/purchases/purchasePage/newPurchasePage';
+import NewPurchasePage from './pages/purchase/purchasePage/newPurchasePage';
 import User from './pages/user/User';
 import ChangeUserInfo from './components/changeUserInfo/changeUserInfo';
+import EditPurchasePage from './pages/purchase/editPurchasePage';
 
 const Router = ({ auth, dispatch }) => {
 	useEffect(() => {
@@ -68,7 +69,14 @@ const Router = ({ auth, dispatch }) => {
 				/>
 
 				<Route path='/solicitacao-compra' element={<NewPurchasePage />} />
-
+				<Route
+					path='/editar-compra/:idCompra'
+					element={
+						<ProtectedRoute>
+							<EditPurchasePage />
+						</ProtectedRoute>
+					}
+				/>
 				<Route
 					path='/login'
 					element={

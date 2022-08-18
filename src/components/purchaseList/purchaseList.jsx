@@ -5,8 +5,12 @@ import { useEffect } from 'react';
 import { getAllPurchases } from '../../store/actions/purchaseActions';
 
 const PurchaseList = ({ purchasesList, dispatch }) => {
-	useEffect(() => {
+	const updateList = () => {
 		getAllPurchases(dispatch);
+	};
+
+	useEffect(() => {
+		updateList();
 	}, []);
 
 	return (
@@ -14,7 +18,11 @@ const PurchaseList = ({ purchasesList, dispatch }) => {
 			<ListHeader />
 			<PurchaseComponent>
 				{purchasesList.map((purchase) => (
-					<ListItem purchase={purchase} />
+					<ListItem
+						purchase={purchase}
+						updateList={updateList}
+						dispatch={dispatch}
+					/>
 				))}
 			</PurchaseComponent>
 		</PurchaseContainer>

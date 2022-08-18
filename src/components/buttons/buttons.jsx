@@ -1,15 +1,16 @@
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { AiOutlinePlus } from 'react-icons/ai';
+import { BiEdit } from 'react-icons/bi';
 import { Button, IButton, SButton } from './buttons.styled';
 
 export const PrimaryButton = ({ text, width, color, ...params }) => {
 	return <Button {...params}> {text.toUpperCase()}</Button>;
 };
 
-export const IconButton = ({ width, color, ...params }) => {
+export const IconButton = ({ width, type, color, ...params }) => {
 	return (
 		<IButton {...params}>
-			<RiDeleteBinLine />
+			{type === 'edit' ? <BiEdit /> : <RiDeleteBinLine />}
 		</IButton>
 	);
 };

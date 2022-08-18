@@ -9,10 +9,36 @@ import {
 	SecondaryButton,
 } from '../../components/buttons/buttons';
 import RegularForm from '../../components/forms/RegularForm';
-import { handleNewSale } from '../../store/actions/purchaseActions';
+import {
+	handleNewPurchase,
+	handleEditPurchase,
+} from '../../store/actions/purchaseActions';
+import { useEffect } from 'react';
 
-const FullPurchaseForm = ({ dispatch }) => {
+const FullPurchaseForm = ({
+	idCompra,
+	isEditMode,
+	purchaseToEdit,
+	dispatch,
+}) => {
 	const navigate = useNavigate();
+
+	const handleSubmit = (values) => {
+		if (isEditMode) {
+			const newItens = values.items.map((item) => {
+				return { nome: item.nome, quantidade: item.quantidade };
+			});
+			const newValues = {
+				name: values.name,
+				descricao: values.descricao,
+				itens: newItens,
+			};
+
+			handleEditPurchase(newValues, purchaseToEdit.idCompra, navigate);
+		} else {
+			handleNewPurchase(values, navigate);
+		}
+	};
 
 	const SaleSchema = Yup.object().shape({
 		name: Yup.string()
@@ -30,15 +56,17 @@ const FullPurchaseForm = ({ dispatch }) => {
 		<RegularForm title='Nova Compra'>
 			<Formik
 				initialValues={{
-					name: '',
+					name: isEditMode ? purchaseToEdit.name : '',
 					status: 'EM_ANALISE',
 					valor: 0,
-					descricao: '',
-					items: [{ nome: '', quantidade: 1 }],
+					descricao: isEditMode ? purchaseToEdit.descricao : '',
+					items: isEditMode
+						? purchaseToEdit.itens
+						: [{ nome: '', quantidade: 1 }],
 				}}
 				validationSchema={SaleSchema}
-				onSubmit={(values) => {
-					handleNewSale(values, navigate);
+				onSubmit={(values, { resetForm }) => {
+					handleSubmit(values, resetForm);
 				}}
 			>
 				{({ values, errors, touched }) => (
@@ -111,7 +139,8 @@ const FullPurchaseForm = ({ dispatch }) => {
 };
 
 const mapStateToProps = (state) => ({
-	auth: state.authReducer.auth,
+	purchaseToEdit: state.purchaseReducer.purchaseToEdit,
+	isEditMode: state.purchaseReducer.isEditMode,
 });
 
 export default connect(mapStateToProps)(FullPurchaseForm);

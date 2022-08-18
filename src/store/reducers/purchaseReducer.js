@@ -1,6 +1,8 @@
 const INITIAL_STATE = {
 	purchasesList: [],
+	purchaseToEdit: {},
 	isLoading: true,
+	isEditMode: false,
 };
 
 // dataCompra: "2022-08-17"
@@ -20,6 +22,14 @@ function purchaseReducer(state = INITIAL_STATE, action) {
 		};
 	}
 
+	if (action.type === 'SET_PURCHASE_TO_EDIT') {
+		return {
+			...state,
+			purchaseToEdit: action.purchase,
+			loading: true,
+			isEditMode: true,
+		};
+	}
 	return state;
 }
 
