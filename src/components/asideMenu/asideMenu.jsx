@@ -2,8 +2,7 @@ import { AsideMenuComponent } from './asideMenu.styled';
 import { Link } from 'react-router-dom';
 import { RiLogoutBoxFill } from 'react-icons/ri';
 import { HiUserGroup } from 'react-icons/hi';
-import { BsFillCartFill } from 'react-icons/bs';
-import { MdAddShoppingCart } from 'react-icons/md';
+import { MdAddShoppingCart, MdShoppingCart } from 'react-icons/md';
 import { handleLogout } from '../../store/actions/authActions';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -34,7 +33,7 @@ const AsideMenu = ({ nowActive, dispatch }) => {
 									navigate('/');
 								}}
 							>
-								<BsFillCartFill />
+								<MdShoppingCart />
 							</button>
 						</li>
 
@@ -71,7 +70,7 @@ const AsideMenu = ({ nowActive, dispatch }) => {
 						handleLogout(dispatch);
 					}}
 				>
-					<RiLogoutBoxFill className='navItem' />
+					<RiLogoutBoxFill className='logoutItem' />
 				</button>
 			</AsideMenuComponent>
 		</div>

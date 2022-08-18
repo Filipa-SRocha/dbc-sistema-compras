@@ -13,7 +13,7 @@ import { handleSignUp } from '../../store/actions/signUpAction';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-const SignUp = ({handleSignUp}) => {
+const SignUp = ({handleSignUp, dispatch}) => {
 	
 	const navigate = useNavigate();
 	
@@ -68,7 +68,7 @@ const SignUp = ({handleSignUp}) => {
 				validationSchema={SignupSchema}
 				onSubmit={(values) => {
 					console.log(values)
-					handleSignUp(values, navigate);
+					handleSignUp(values, dispatch, navigate);
 				}}
 			>
 				{({ errors, touched, setFieldValue }) => (
@@ -161,7 +161,7 @@ const SignUp = ({handleSignUp}) => {
 };
 
 const mapDispatchToProps = () => ({
-	handleSignUp: (values, navigate) => handleSignUp(values, navigate)
+	handleSignUp: (values, dispatch, navigate) => handleSignUp(values, dispatch, navigate)
 });
 
 export default connect(mapDispatchToProps)(SignUp);

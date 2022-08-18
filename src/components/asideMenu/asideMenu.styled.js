@@ -41,10 +41,19 @@ export const AsideMenuComponent = styled.aside`
 		pointer-events: none;
 	}
 
+	button:hover {
+		cursor: pointer;
+	}
+
 	.active {
 		height: 50px;
 		border-radius: 20px;
 		background-color: #1f1f1f45;
+	}
+
+	.logoutItem {
+		font-size: 40px;
+		color: white;
 	}
 
 	& button {
