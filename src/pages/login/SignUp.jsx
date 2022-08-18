@@ -13,10 +13,9 @@ import { handleSignUp } from '../../store/actions/signUpAction';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-const SignUp = ({handleSignUp, dispatch}) => {
-	
+const SignUp = ({ handleSignUp, dispatch }) => {
 	const navigate = useNavigate();
-	
+
 	YupPassword(Yup);
 	const testIsAdministrator = false;
 	const [testeImagem, setTesteImagem] = useState(null);
@@ -27,8 +26,13 @@ const SignUp = ({handleSignUp, dispatch}) => {
 			.max(60, 'Login demasiado longo!')
 			.required('Nome obrigatório'),
 		email: Yup.string()
+
 			.email('Formato de e-mail inválido')
-			.required('Email obrigatório'),
+			.required('Email obrigatório')
+			.matches(
+				/^[A-Za-z0-9.%+-]+@dbccompany\.com\.br$/gm,
+				'Formato inválido. Ex: nome@dbccompany.com.br'
+			),
 		// tipo: Yup.string().required('Por favor indique o tipo de usuário'),
 		senha: Yup.string()
 			.required('Por favor digite uma senha forte')
@@ -37,7 +41,8 @@ const SignUp = ({handleSignUp, dispatch}) => {
 			.minUppercase(1, 'Senha precisa conter pelo menos uma letra maiuscula')
 			.minNumbers(1, 'Senha precisa conter pelo menos um número')
 			.minSymbols(1, 'Senha precisa conter pelo menos um caractere especial')
-			.min(8, 'Senha precisa conter pelo menos oito caracteres'),
+			.min(8, 'Senha precisa conter pelo menos oito caracteres')
+			.max(16, 'Senha demasiado longa. Máx: 16 caracteres'),
 		// confirmacaoSenha: Yup.string()
 		// 	.required('Por favor, confirme a sua senha')
 		// 	.oneOf([Yup.ref('senha'), null], 'Senhas devem ser iguais'),
@@ -47,7 +52,7 @@ const SignUp = ({handleSignUp, dispatch}) => {
 		setTesteImagem({ ...files });
 		const imgCode = files.base64.split(',');
 		const imgBase64 = imgCode[1];
-		setFieldValue("foto", imgBase64);
+		setFieldValue('foto', imgBase64);
 		// console.log(imgBase64);
 	};
 
@@ -62,12 +67,12 @@ const SignUp = ({handleSignUp, dispatch}) => {
 					// ! tipo: 'Colaborador', -> colocar depois
 					email: '',
 					senha: '',
-					foto: ''
+					foto: '',
 					// confirmacaoSenha: '', // -> colocar depois
 				}}
 				validationSchema={SignupSchema}
 				onSubmit={(values) => {
-					console.log(values)
+					console.log(values);
 					handleSignUp(values, dispatch, navigate);
 				}}
 			>
@@ -146,7 +151,7 @@ const SignUp = ({handleSignUp, dispatch}) => {
 							<FileBase64
 								name='foto'
 								multiple={false}
-								onDone={e => getFiles(e, setFieldValue)}
+								onDone={(e) => getFiles(e, setFieldValue)}
 								className='fileBase64'
 							/>
 							{testeImagem ? <img src={testeImagem.base64} /> : null}
@@ -161,7 +166,8 @@ const SignUp = ({handleSignUp, dispatch}) => {
 };
 
 const mapDispatchToProps = () => ({
-	handleSignUp: (values, dispatch, navigate) => handleSignUp(values, dispatch, navigate)
+	handleSignUp: (values, dispatch, navigate) =>
+		handleSignUp(values, dispatch, navigate),
 });
 
 export default connect(mapDispatchToProps)(SignUp);

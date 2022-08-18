@@ -11,15 +11,17 @@ import { PrimaryButton } from '../../components/buttons/buttons';
 import VisibilityButton from '../../components/forms/components/visibilityButton/VisibilityButton';
 
 const Login = ({ dispatch }) => {
-	
-
 	const navigate = useNavigate();
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
 	const SignInSchema = Yup.object().shape({
 		email: Yup.string()
 			.required('Email obrigatório')
-			.email('Formato de email inválido'),
+			.email('Formato de email inválido')
+			.matches(
+				/^[A-Za-z0-9.%+-]+@dbccompany\.com\.br$/gm,
+				'Formato inválido. Ex: nome@dbccompany.com.br'
+			),
 		password: Yup.string().required('Por favor digite a sua senha!'),
 	});
 
