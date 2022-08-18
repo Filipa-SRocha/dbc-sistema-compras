@@ -68,7 +68,7 @@ const AsideMenu = ({ nowActive, dispatch }) => {
 						handleLogout(dispatch);
 					}}
 				>
-					<RiLogoutBoxFill className='navItem' />
+					<RiLogoutBoxFill className='logoutItem' />
 				</button>
 			</AsideMenuComponent>
 		</div>
