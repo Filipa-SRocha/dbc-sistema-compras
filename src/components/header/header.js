@@ -14,7 +14,7 @@ const Header = ({ dispatch, user }) => {
 		// console.log("chegou aqui no use effect");
 		getLoggedUser(dispatch);
     // console.log(user.imagemPerfilB64)
-    console.log(menuToggle)
+    // console.log(menuToggle)
 	}, [])
 
   return (
@@ -25,7 +25,7 @@ const Header = ({ dispatch, user }) => {
           user.imagemPerfilB64 ? 
           <img src={imgBase64Prefix+user.imagemPerfilB64} alt="Imagem de perfil" className='profilePicture' /> 
           : 
-          <BiUserCircle /> 
+          <BiUserCircle size={20} /> 
         }
       </button>
       {menuToggle && <Menu />}

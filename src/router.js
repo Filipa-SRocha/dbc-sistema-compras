@@ -64,6 +64,12 @@ const Router = ({ auth, dispatch }) => {
 						</ProtectedRoute> 
 					} />
 
+					<Route path='/user/change-password' element={
+						<ProtectedRoute>
+							<User changeType="password" />
+						</ProtectedRoute> 
+					} />
+
 				<Route path='/solicitacao-compra' element={<NewSalePage />} />
 
 				<Route
