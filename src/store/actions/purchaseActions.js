@@ -1,7 +1,7 @@
 import { api } from '../../api';
 import { convertToDateObject } from '../../utils/masks';
 
-export async function handleNewPurchase(values, navigate) {
+export async function handleNewPurchase(values, navigate, resetForm) {
 	try {
 		const newPurchase = {
 			name: values.name,
@@ -11,6 +11,7 @@ export async function handleNewPurchase(values, navigate) {
 
 		await api.post('/colaborador/nova-compra', newPurchase);
 		navigate('/');
+		resetForm();
 	} catch (error) {
 		console.log('Não foi possível concluir a sua solicitação', error);
 	}
@@ -49,7 +50,6 @@ export async function getAllPurchases(dispatch) {
 
 export async function deletePurchase(id) {
 	try {
-		console.log('Deleting id:', id);
 		await api.delete(`/colaborador/compra/${id}`);
 	} catch (error) {
 		console.log(
@@ -60,22 +60,35 @@ export async function deletePurchase(id) {
 }
 
 export function editPurchase(purchase, dispatch) {
-	console.log(' TO edit:', purchase);
 	const edit = {
 		type: 'SET_PURCHASE_TO_EDIT',
 		purchase: purchase,
 	};
-
 	dispatch(edit);
-	// await api.delete(`/colaborador/compra/${id}`);
 }
 
-export async function handleEditPurchase(values, idCompra, navigate) {
-	console.log('SET EDIT', values);
+export async function handleEditPurchase(
+	values,
+	idCompra,
+	dispatch,
+	navigate,
+	resetForm
+) {
 	try {
 		await api.put(`/colaborador/compra/${idCompra}`, values);
+
+		const edit = {
+			type: 'FINALIZE_EDIT',
+		};
+
+		dispatch(edit);
 		navigate('/');
+		resetForm();
 	} catch (error) {
 		console.log('Não foi possível editar esta solicitação!', error);
 	}
 }
+
+export const disableEditMode = (dispatch) => {
+	dispatch({ type: 'DISABLE_EDIT_MODE' });
+};

@@ -13,7 +13,6 @@ import {
 	handleNewPurchase,
 	handleEditPurchase,
 } from '../../store/actions/purchaseActions';
-import { useEffect } from 'react';
 
 const FullPurchaseForm = ({
 	idCompra,
@@ -23,7 +22,7 @@ const FullPurchaseForm = ({
 }) => {
 	const navigate = useNavigate();
 
-	const handleSubmit = (values) => {
+	const handleSubmit = (values, resetForm) => {
 		if (isEditMode) {
 			const newItens = values.items.map((item) => {
 				return { nome: item.nome, quantidade: item.quantidade };
@@ -34,9 +33,15 @@ const FullPurchaseForm = ({
 				itens: newItens,
 			};
 
-			handleEditPurchase(newValues, purchaseToEdit.idCompra, navigate);
+			handleEditPurchase(
+				newValues,
+				purchaseToEdit.idCompra,
+				dispatch,
+				navigate,
+				resetForm
+			);
 		} else {
-			handleNewPurchase(values, navigate);
+			handleNewPurchase(values, navigate, resetForm);
 		}
 	};
 
@@ -65,7 +70,7 @@ const FullPurchaseForm = ({
 						: [{ nome: '', quantidade: 1 }],
 				}}
 				validationSchema={SaleSchema}
-				onSubmit={(values, { resetForm }) => {
+				onSubmit={(values, resetForm) => {
 					handleSubmit(values, resetForm);
 				}}
 			>

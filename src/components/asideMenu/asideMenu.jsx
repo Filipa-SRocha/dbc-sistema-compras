@@ -8,6 +8,7 @@ import { handleLogout } from '../../store/actions/authActions';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { disableEditMode } from '../../store/actions/purchaseActions';
 
 const AsideMenu = ({ nowActive, dispatch }) => {
 	const navigate = useNavigate();
@@ -45,6 +46,7 @@ const AsideMenu = ({ nowActive, dispatch }) => {
 							<button
 								onClick={() => {
 									setActive('/solicitacao-compra');
+									disableEditMode(dispatch);
 									navigate('/solicitacao-compra');
 								}}
 							>

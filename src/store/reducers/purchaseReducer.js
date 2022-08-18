@@ -5,14 +5,6 @@ const INITIAL_STATE = {
 	isEditMode: false,
 };
 
-// dataCompra: "2022-08-17"
-// descricao: "Compra de teste"
-// idCompra: 44
-// itens: (2) [{…}, {…}]
-// name: "Compra 1"
-// status: "aberto"
-// valorTotal: null
-
 function purchaseReducer(state = INITIAL_STATE, action) {
 	if (action.type === 'GET_PURCHASES') {
 		return {
@@ -28,6 +20,24 @@ function purchaseReducer(state = INITIAL_STATE, action) {
 			purchaseToEdit: action.purchase,
 			loading: true,
 			isEditMode: true,
+		};
+	}
+
+	if (action.type === 'FINALIZE_EDIT') {
+		return {
+			...state,
+			purchaseToEdit: {},
+			loading: false,
+			isEditMode: false,
+		};
+	}
+
+	if (action.type === 'DISABLE_EDIT_MODE') {
+		return {
+			...state,
+			purchaseToEdit: {},
+			loading: false,
+			isEditMode: false,
 		};
 	}
 	return state;
