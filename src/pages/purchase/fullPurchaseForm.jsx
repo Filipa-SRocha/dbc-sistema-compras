@@ -53,8 +53,13 @@ const FullPurchaseForm = ({
 		items: Yup.array(
 			Yup.object({
 				nome: Yup.string().required('Nome obrigatório'),
+				quantidade: Yup.number()
+					.required('Quantidade obrigatória')
+					.min(1, 'Quantidade mínima: 1'),
 			})
-		).min(1),
+		)
+			.required('Pelo menos um item obrigatório')
+			.min(1),
 	});
 
 	return (
@@ -104,12 +109,17 @@ const FullPurchaseForm = ({
 
 									{values.items.map((item, index) => (
 										<>
-											{/* {console.log(errors.items[index].nome)} */}
-											<h5>Item {index}</h5>
+											{/* {console.log(errors.items[index])} */}
+											<h5>Item {index + 1}</h5>
 											<div className='item-container'>
 												<div>
 													<label htmlFor=''>Nome</label>
 													<Field name={`items[${index}].nome`} />
+													{/* <Errors>{errors.items[index].nome}</Errors> */}
+													{/* {errors.items[index] &&
+													typeof errors.items[index].nome === 'string' ? (
+														<div>{errors.items[index].nome}</div>
+													) : null} */}
 												</div>
 												<div>
 													<label htmlFor=''>Quantidade</label>
