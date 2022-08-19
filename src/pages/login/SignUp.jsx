@@ -77,12 +77,12 @@ const SignUp = ({ handleSignUp, dispatch }) => {
 				}}
 			>
 				{({ errors, touched, setFieldValue }) => (
-					<Form>
+					<Form id='form-de-signup'>
 						<div>
-							<label htmlFor='nome'>Nome* </label>
-							<Field name='nome' placeholder='Nome completo' />
+							<label htmlFor='nome' id='label-nome'>Nome* </label>
+							<Field name='nome' id='nome-signup' placeholder='Nome completo' />
 							{errors.nome && touched.nome ? (
-								<Errors>{errors.nome}</Errors>
+								<Errors id='erro-no-nome'>{errors.nome}</Errors>
 							) : null}
 						</div>
 
@@ -111,19 +111,20 @@ const SignUp = ({ handleSignUp, dispatch }) => {
 						) : null}
 
 						<div>
-							<label htmlFor='email'>E-mail* </label>
+							<label htmlFor='email' id='label-email-signup'>E-mail* </label>
 							<Field
 								name='email'
+								id='email-signup'
 								type='email'
 								placeholder='email@dbccompany.com.br'
 							/>
 							{errors.email && touched.email ? (
-								<Errors>{errors.email}</Errors>
+								<Errors id='erro-no-email-signup'>{errors.email}</Errors>
 							) : null}
 						</div>
 
 						<div className='StrongPassword'>
-							<label htmlFor='senha'>
+							<label htmlFor='senha' id='label-senha-signup'>
 								{errors.senha && touched.senha ? (
 									<AiOutlineUnlock style={{ color: 'red' }} />
 								) : touched.senha ? (
@@ -134,7 +135,7 @@ const SignUp = ({ handleSignUp, dispatch }) => {
 								Senha*
 							</label>
 							<PasswordStrengthMeter errors={errors.senha}>
-								<Field name='senha' type='password' placeholder='Senha' />
+								<Field name='senha' id='senha-signup' type='password' placeholder='Senha' />
 							</PasswordStrengthMeter>
 						</div>
 
@@ -147,9 +148,10 @@ const SignUp = ({ handleSignUp, dispatch }) => {
 						</div> */}
 
 						<div className='signup-profile-img'>
-							<label htmlFor='foto'>Imagem de perfil</label>
+							<label htmlFor='foto' id='label-foto-perfil'>Imagem de perfil</label>
 							<FileBase64
 								name='foto'
+								id='foto-perfil-signup'
 								multiple={false}
 								onDone={(e) => getFiles(e, setFieldValue)}
 								className='fileBase64'
@@ -157,7 +159,7 @@ const SignUp = ({ handleSignUp, dispatch }) => {
 							{testeImagem ? <img src={testeImagem.base64} /> : null}
 						</div>
 
-						<PrimaryButton text='Cadastrar' type='submit' />
+						<PrimaryButton text='Cadastrar' id='signup-button' type='submit' />
 					</Form>
 				)}
 			</Formik>

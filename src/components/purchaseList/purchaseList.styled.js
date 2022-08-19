@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const PurchaseContainer = styled.div`
 	background-color: white;
-	border: 1px solid #afd0bf;
-	margin: 20px;
+	border: 1px solid #AFD0BF;
+	margin: 30px 30px 20px;
 	padding-bottom: 10px;
 	border-radius: 10px;
 `;
@@ -35,6 +35,7 @@ export const PurchaseItem = styled.div`
 	align-items: center;
 	border-top: 1px solid #afd0bf;
 	padding: 15px 0;
+	transition: 0.3s;
 	:hover {
 		background: #afd0bf;
 		cursor: pointer;

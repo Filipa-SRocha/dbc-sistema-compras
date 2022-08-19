@@ -8,7 +8,7 @@ export const HeaderComponent = styled.header`
   display: flex;
   flex-direction: column;
   align-items: end;
-  padding: 20px 20px 0 0;
+  padding: 20px 30px 0 0;
   
   span {
     font-size: 20px;

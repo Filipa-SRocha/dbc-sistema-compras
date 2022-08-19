@@ -1,7 +1,10 @@
 import { api } from '../../api';
+import { toast } from 'react-toastify';
+import nProgress from 'nprogress';
 
 export async function handleLogin(values, dispatch, navigate) {
 	try {
+		nProgress.start();
 		const { data } = await api.post('/auth', values);
 		localStorage.setItem('token', data);
 
@@ -16,6 +19,18 @@ export async function handleLogin(values, dispatch, navigate) {
 		navigate('/');
 	} catch (error) {
 		console.log('Senha ou login inválido');
+		
+		toast.error('Senha ou login inválidos', {
+			position: "top-center",
+			autoClose: 5000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			});
+	} finally {
+		nProgress.done();
 	}
 }
 
