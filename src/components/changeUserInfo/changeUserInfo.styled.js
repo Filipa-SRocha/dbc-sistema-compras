@@ -4,7 +4,7 @@ export const ChangeInfoContainer = styled.div`
   width: 800px;
   border: solid 2px #2a5ca6;
   border-radius: 20px;
-  font-size: 22px;
+  font-size: 18px;
   height: fit-content;
   padding: 30px;
   margin-top: 30px;

@@ -39,6 +39,7 @@ const ChangeUserInfo = ({ user, dispatch, updateUser }) => {
 
   return (
     <ChangeInfoContainer>
+
       <h3><FiEdit />Editar perfil</h3>
       <div className="form">
         <Formik

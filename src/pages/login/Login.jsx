@@ -41,20 +41,21 @@ const Login = ({ dispatch }) => {
 				}}
 			>
 				{({ errors, touched }) => (
-					<Form>
+					<Form id='form-de-login'>
 						<div>
-							<label htmlFor='email'>Email</label>
-							<Field name='email' />
+							<label htmlFor='email' id='label-email-login'>Email</label>
+							<Field name='email' id='email-login' />
 							{errors.email && touched.email ? (
-								<Errors>{errors.email}</Errors>
+								<Errors id='erro-no-email-login'>{errors.email}</Errors>
 							) : null}
 						</div>
 
 						<div>
-							<label htmlFor='password'>Senha </label>
+							<label htmlFor='password' id='label-password-login'>Senha </label>
 							<div style={{ marginBottom: 0 }}>
 								<Field
 									name='password'
+									id='password-login'
 									type={isPasswordVisible ? 'text' : 'password'}
 									placeholder='password'
 								/>
@@ -65,11 +66,11 @@ const Login = ({ dispatch }) => {
 								/>
 							</div>
 							{errors.password && touched.password ? (
-								<Errors>{errors.password}</Errors>
+								<Errors id='erro-no-password-login'>{errors.password}</Errors>
 							) : null}
 						</div>
 
-						<PrimaryButton text='entrar' type='submit' />
+						<PrimaryButton text='entrar' id='login-button' type='submit' />
 					</Form>
 				)}
 			</Formik>

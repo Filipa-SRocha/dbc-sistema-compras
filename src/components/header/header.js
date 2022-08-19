@@ -25,7 +25,7 @@ const Header = ({ dispatch, user }) => {
           user.imagemPerfilB64 ? 
           <img src={imgBase64Prefix+user.imagemPerfilB64} alt="Imagem de perfil" className='profilePicture' /> 
           : 
-          <BiUserCircle size={20} /> 
+          <BiUserCircle size={30} /> 
         }
       </button>
       {menuToggle && <Menu />}
