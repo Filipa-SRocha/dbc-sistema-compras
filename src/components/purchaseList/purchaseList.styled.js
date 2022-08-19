@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const PurchaseContainer = styled.div`
 	background-color: white;
-	border: 1px solid #AFD0BF;
+	border: 1px solid #afd0bf;
 	margin: 20px;
 	padding-bottom: 10px;
 	border-radius: 10px;
@@ -10,7 +10,7 @@ export const PurchaseContainer = styled.div`
 
 export const PurchaseLabel = styled.div`
 	display: grid;
-	grid-template-columns: repeat(5, 1fr) 40px;
+	grid-template-columns: repeat(5, 1fr) 100px;
 	width: 100%;
 	justify-items: center;
 	padding: 15px 0;
@@ -29,14 +29,14 @@ export const PurchaseComponent = styled.div`
 
 export const PurchaseItem = styled.div`
 	display: grid;
-	grid-template-columns: repeat(5, 1fr) 40px;
+	grid-template-columns: repeat(5, 1fr) 100px;
 	width: 100%;
 	justify-items: center;
 	align-items: center;
-	border-top: 1px solid #AFD0BF;
+	border-top: 1px solid #afd0bf;
 	padding: 15px 0;
 	:hover {
-		background: #AFD0BF;
+		background: #afd0bf;
 		cursor: pointer;
 	}
 `;

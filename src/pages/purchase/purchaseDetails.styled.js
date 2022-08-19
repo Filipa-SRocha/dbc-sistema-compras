@@ -6,6 +6,8 @@ export const Container = styled.section`
 	padding: 40px;
 	display: grid;
 	grid-template-columns: 2fr 2fr 2fr;
+	grid-template-rows: 1fr 1fr;
+
 	justify-items: left;
 	align-content: left;
 `;
@@ -35,4 +37,12 @@ export const ItemsContainer = styled.div`
 		margin-bottom: 10px;
 		font-size: 18px;
 	}
+`;
+
+export const FormContainer = styled.div`
+	background-color: yellow;
+`;
+
+export const CotacoesContainer = styled.div`
+	background-color: green;
 `;
