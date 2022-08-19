@@ -69,7 +69,7 @@ const FullPurchaseForm = ({
 					descricao: isEditMode ? purchaseToEdit.descricao : '',
 					items: isEditMode
 						? purchaseToEdit.itens
-						: [{ nome: '', quantidade: 1 }],
+						: [{ nome: '', quantidade: 1, preco: 0 }],
 				}}
 				validationSchema={SaleSchema}
 				enableReinitialize
