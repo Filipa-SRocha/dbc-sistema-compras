@@ -17,7 +17,9 @@ const PopUpForm = ({ height, title, externalLink, children }) => {
 				</LogoContainer>
 				{title ? <h2>{title.toUpperCase()}</h2> : null}
 				<PopUpFormContainer>{children}</PopUpFormContainer>
-				<Link to={externalLink.path}>{externalLink.description}</Link>
+				{externalLink && (
+					<Link to={externalLink.path}>{externalLink.description}</Link>
+				)}
 			</Container>
 		</Background>
 	);

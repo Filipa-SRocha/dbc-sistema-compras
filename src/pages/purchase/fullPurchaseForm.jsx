@@ -24,13 +24,10 @@ const FullPurchaseForm = ({
 
 	const handleSubmit = (values, resetForm) => {
 		if (isEditMode) {
-			const newItens = values.items.map((item) => {
-				return { nome: item.nome, quantidade: item.quantidade };
-			});
 			const newValues = {
 				name: values.name,
 				descricao: values.descricao,
-				itens: newItens,
+				itens: values.items,
 			};
 
 			handleEditPurchase(
@@ -75,6 +72,7 @@ const FullPurchaseForm = ({
 						: [{ nome: '', quantidade: 1 }],
 				}}
 				validationSchema={SaleSchema}
+				enableReinitialize
 				onSubmit={(values, resetForm) => {
 					handleSubmit(values, resetForm);
 				}}

@@ -19,7 +19,7 @@ export async function handleNewPurchase(values, navigate, resetForm) {
 
 export async function getAllPurchases(dispatch) {
 	try {
-		console.log('Getting list data...');
+		changeLoadingStatus(true, dispatch);
 
 		const { data } = await api.get('/colaborador/compras');
 
@@ -41,6 +41,7 @@ export async function getAllPurchases(dispatch) {
 
 		dispatch(newList);
 	} catch (error) {
+		changeLoadingStatus(false, dispatch);
 		console.log(
 			'Não foi possível atualizar a lista de solicitações. Erro no servidor',
 			error
@@ -48,9 +49,10 @@ export async function getAllPurchases(dispatch) {
 	}
 }
 
-export async function deletePurchase(id) {
+export async function deletePurchase(id, dispatch) {
 	try {
 		await api.delete(`/colaborador/compra/${id}`);
+		getAllPurchases(dispatch);
 	} catch (error) {
 		console.log(
 			'Não foi possível eliminar esta solicitação. Erro no servidor',
@@ -59,12 +61,21 @@ export async function deletePurchase(id) {
 	}
 }
 
-export function editPurchase(purchase, dispatch) {
-	const edit = {
-		type: 'SET_PURCHASE_TO_EDIT',
-		purchase: purchase,
-	};
-	dispatch(edit);
+export async function editPurchase(idCompra, dispatch, navigate) {
+	try {
+		changeLoadingStatus(true, dispatch);
+		const { data } = await api.get(`/colaborador/compras?idCompra=${idCompra}`);
+
+		const edit = {
+			type: 'SET_PURCHASE_TO_EDIT',
+			purchase: data[0],
+		};
+		dispatch(edit);
+	} catch (error) {
+		changeLoadingStatus(false, dispatch);
+		console.log('Não foi possível acessar essa solicitação!', error);
+		navigate('/');
+	}
 }
 
 export async function handleEditPurchase(
@@ -99,4 +110,13 @@ export const setPurchaseToShow = (purchase, dispatch) => {
 		purchase: purchase,
 	};
 	dispatch(showPurchase);
+};
+
+export const changeLoadingStatus = (status, dispatch) => {
+	const loading = {
+		type: 'SET_LOADING',
+		status: status,
+	};
+
+	dispatch(loading);
 };

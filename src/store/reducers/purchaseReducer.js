@@ -19,7 +19,7 @@ function purchaseReducer(state = INITIAL_STATE, action) {
 		return {
 			...state,
 			purchaseToEdit: action.purchase,
-			loading: true,
+			isLoading: false,
 			isEditMode: true,
 		};
 	}
@@ -48,6 +48,14 @@ function purchaseReducer(state = INITIAL_STATE, action) {
 			purchaseToEdit: {},
 			loading: false,
 			isEditMode: false,
+		};
+	}
+
+	if (action.type === 'SET_LOADING') {
+		return {
+			...state,
+
+			loading: action.status,
 		};
 	}
 	return state;

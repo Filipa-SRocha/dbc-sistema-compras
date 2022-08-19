@@ -3,7 +3,6 @@ import { BsCalendar2Date, BsJournalCheck } from 'react-icons/bs';
 import { MdAttachMoney } from 'react-icons/md';
 import { GrAttachment } from 'react-icons/gr';
 import moment from 'moment';
-import { BsThreeDotsVertical } from 'react-icons/bs';
 
 import {
 	PurchaseLabel,
@@ -11,10 +10,9 @@ import {
 	PurchaseItem,
 } from './purchaseList.styled';
 import { IconButton } from '../buttons/buttons';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
 	deletePurchase,
-	editPurchase,
 	setPurchaseToShow,
 } from '../../store/actions/purchaseActions';
 
@@ -45,39 +43,47 @@ export const ListHeader = () => {
 	);
 };
 
-// dataCompra: "2022-08-17"
-// descricao: "Compra de teste"
-// idCompra: 44
-// itens: (2) [{…}, {…}]
-// name: "Compra 1"
-// status: "aberto"
-// valorTotal: null
-
-export const ListMenu = ({ purchase, updateList, dispatch }) => {
+export const ListMenu = ({ idCompra, dispatch }) => {
 	const navigate = useNavigate();
 
 	return (
 		<div>
 			<IconButton
 				type='delete'
-				onClick={() => {
-					deletePurchase(purchase.idCompra);
-					updateList();
+				onClick={(e) => {
+					e.preventDefault();
+					e.stopPropagation();
+					deletePurchase(idCompra, dispatch);
 				}}
 			/>
 			<IconButton
 				type='edit'
-				onClick={() => {
-					editPurchase(purchase, dispatch);
-					navigate(`/editar-compra/${purchase.idCompra}`);
+				onClick={(e) => {
+					e.preventDefault();
+					e.stopPropagation();
+					navigate(`/editar-compra/${idCompra}`);
 				}}
 			/>
 		</div>
 	);
 };
 
-export const ListItem = ({ purchase, updateList, dispatch }) => {
+export const BotaoCotacao = (purchase, dispatch) => {
 	const navigate = useNavigate();
+
+	const cotar = (e) => {
+		e.preventDefault();
+		e.stopPropagation();
+		navigate(`/details-page/${purchase.idCompra}`);
+		setPurchaseToShow(purchase, dispatch);
+	};
+
+	return <button onClick={cotar}> COTAÇÃO</button>;
+};
+
+export const ListItem = ({ purchase, dispatch }) => {
+	const navigate = useNavigate();
+	const variavelTesteComprador = false;
 
 	const openDetailsPage = () => {
 		navigate(`/details-page/${purchase.idCompra}`);
@@ -94,11 +100,12 @@ export const ListItem = ({ purchase, updateList, dispatch }) => {
 			)}
 			<span> - </span>
 			<span>{purchase.status}</span>
-			<ListMenu
-				purchase={purchase}
-				updateList={updateList}
-				dispatch={dispatch}
-			/>
+
+			{variavelTesteComprador ? (
+				<BotaoCotacao purchase={purchase} dispatch={dispatch} />
+			) : (
+				<ListMenu idCompra={purchase.idCompra} dispatch={dispatch} />
+			)}
 		</PurchaseItem>
 	);
 };

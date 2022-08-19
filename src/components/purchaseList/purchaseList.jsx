@@ -21,7 +21,6 @@ const PurchaseList = ({ purchasesList, dispatch }) => {
 					<ListItem
 						key={purchase.idCompra}
 						purchase={purchase}
-						updateList={updateList}
 						dispatch={dispatch}
 					/>
 				))}
