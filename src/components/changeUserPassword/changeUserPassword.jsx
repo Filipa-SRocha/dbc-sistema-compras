@@ -29,6 +29,7 @@ const ChangeUserPassword = () => {
   
   return (
     <ChangePasswordContainer>
+
       <h3><RiLockPasswordFill />Mudar senha</h3>
       <div className="form">
         <Formik

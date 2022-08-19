@@ -9,8 +9,11 @@ import { isAuth } from './store/actions/authActions';
 import { Navigate } from 'react-router-dom';
 import NewPurchasePage from './pages/purchase/purchasePage/newPurchasePage';
 import User from './pages/user/User';
-import ChangeUserInfo from './components/changeUserInfo/changeUserInfo';
 import EditPurchasePage from './pages/purchase/editPurchasePage';
+import 'nprogress/nprogress.css';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Router = ({ auth, dispatch }) => {
 	useEffect(() => {
@@ -40,6 +43,20 @@ const Router = ({ auth, dispatch }) => {
 
 	return (
 		<BrowserRouter>
+			<ToastContainer
+				position="top-right"
+				autoClose={5000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+    	/>
+			{/* Same as */}
+			<ToastContainer />
+
 			<GlobalStyle />
 			<Routes>
 				<Route

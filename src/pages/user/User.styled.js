@@ -28,7 +28,7 @@ export const UserContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 22px;
+    font-size: 18px;
     height: fit-content;
     padding: 30px;
     margin-top: 60px;
@@ -78,10 +78,10 @@ export const Button = styled.button`
   display: flex;
   align-items: center;
   gap: 6px;
+  transition: 0.3s;
 
   :hover {
     background: #2a5ca6;
-    border: none;
     cursor: pointer;
     color: white;
   }
