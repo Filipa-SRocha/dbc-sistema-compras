@@ -104,13 +104,24 @@ export const disableEditMode = (dispatch) => {
 	dispatch({ type: 'DISABLE_EDIT_MODE' });
 };
 
-export const setPurchaseToShow = (purchase, dispatch) => {
-	const showPurchase = {
-		type: 'SET_SHOW_PURCHASE',
-		purchase: purchase,
-	};
-	dispatch(showPurchase);
-};
+export async function setPurchaseToShow(idCompra, dispatch) {
+	try {
+		changeLoadingStatus(true, dispatch);
+		console.log('inside show p');
+		const { data } = await api.get(`/colaborador/compras?idCompra=${idCompra}`);
+		console.log('after api');
+
+		const showPurchase = {
+			type: 'SET_SHOW_PURCHASE',
+			purchase: data[0],
+		};
+		changeLoadingStatus(false, dispatch);
+		dispatch(showPurchase);
+	} catch (error) {
+		changeLoadingStatus(false, dispatch);
+		console.log('Não foi possível aceder a esta solicitação. Erro no servidor');
+	}
+}
 
 export const changeLoadingStatus = (status, dispatch) => {
 	const loading = {

@@ -15,6 +15,7 @@ import 'nprogress/nprogress.css';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ManagerPage from './pages/manager/managerPage';
 
 const Router = ({ auth, dispatch }) => {
 	useEffect(() => {
@@ -45,7 +46,7 @@ const Router = ({ auth, dispatch }) => {
 	return (
 		<BrowserRouter>
 			<ToastContainer
-				position="top-right"
+				position='top-right'
 				autoClose={5000}
 				hideProgressBar={false}
 				newestOnTop={false}
@@ -54,7 +55,7 @@ const Router = ({ auth, dispatch }) => {
 				pauseOnFocusLoss
 				draggable
 				pauseOnHover
-    	/>
+			/>
 			{/* Same as */}
 			<ToastContainer />
 
@@ -109,7 +110,14 @@ const Router = ({ auth, dispatch }) => {
 						</ProtectedRoute>
 					}
 				/>
-
+				<Route
+					path='/gestor'
+					element={
+						<ProtectedRoute>
+							<ManagerPage />
+						</ProtectedRoute>
+					}
+				/>
 				<Route
 					path='/login'
 					element={

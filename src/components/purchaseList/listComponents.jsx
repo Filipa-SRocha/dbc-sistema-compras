@@ -68,14 +68,13 @@ export const ListMenu = ({ idCompra, dispatch }) => {
 	);
 };
 
-export const BotaoCotacao = (purchase, dispatch) => {
+export const BotaoCotacao = ({ idCompra }) => {
 	const navigate = useNavigate();
 
 	const cotar = (e) => {
 		e.preventDefault();
 		e.stopPropagation();
-		navigate(`/details-page/${purchase.idCompra}`);
-		setPurchaseToShow(purchase, dispatch);
+		navigate(`/details-page/${idCompra}`);
 	};
 
 	return <button onClick={cotar}> COTAÇÃO</button>;
@@ -83,7 +82,7 @@ export const BotaoCotacao = (purchase, dispatch) => {
 
 export const ListItem = ({ purchase, dispatch }) => {
 	const navigate = useNavigate();
-	const variavelTesteComprador = false;
+	const variavelTesteComprador = true;
 
 	const openDetailsPage = () => {
 		navigate(`/details-page/${purchase.idCompra}`);
@@ -102,7 +101,7 @@ export const ListItem = ({ purchase, dispatch }) => {
 			<span>{purchase.status}</span>
 
 			{variavelTesteComprador ? (
-				<BotaoCotacao purchase={purchase} dispatch={dispatch} />
+				<BotaoCotacao idCompra={purchase.idCompra} />
 			) : (
 				<ListMenu idCompra={purchase.idCompra} dispatch={dispatch} />
 			)}

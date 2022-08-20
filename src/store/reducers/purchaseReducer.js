@@ -28,17 +28,18 @@ function purchaseReducer(state = INITIAL_STATE, action) {
 		return {
 			...state,
 			purchaseToEdit: {},
-			loading: false,
+			isLoading: false,
 			isEditMode: false,
 		};
 	}
 
 	if (action.type === 'SET_SHOW_PURCHASE') {
+		console.log('reducer');
 		return {
 			...state,
-			loading: false,
 			isEditMode: false,
 			purchaseToShow: action.purchase,
+			isLoading: false,
 		};
 	}
 
@@ -46,16 +47,17 @@ function purchaseReducer(state = INITIAL_STATE, action) {
 		return {
 			...state,
 			purchaseToEdit: {},
-			loading: false,
+			isLoading: false,
 			isEditMode: false,
 		};
 	}
 
 	if (action.type === 'SET_LOADING') {
+		console.log(action.status);
 		return {
 			...state,
 
-			loading: action.status,
+			isLoading: action.status,
 		};
 	}
 	return state;
