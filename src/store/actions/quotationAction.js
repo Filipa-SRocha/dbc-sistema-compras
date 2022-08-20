@@ -1,14 +1,34 @@
 import { api } from '../../api';
 
-export async function getAllQuotations(dispatch) {
+// export async function getAllQuotations(dispatch) {
+// 	try {
+// 		changeLoadingStatus(true, dispatch);
+// 		const { data } = await api.get('/comprador/listar');
+
+// 		console.log('todas cotações', data);
+
+// 		const newList = {
+// 			type: 'GET_ALL_QUOTATIONS',
+// 			list: data,
+// 		};
+
+// 		dispatch(newList);
+// 	} catch (error) {
+// 		changeLoadingStatus(false, dispatch);
+// 		console.log(
+// 			'Não foi possível atualizar a lista de cotações. Erro no servidor',
+// 			error
+// 		);
+// 	}
+// }
+
+export async function getPurchaseQuotations(idCompra, dispatch) {
 	try {
 		changeLoadingStatus(true, dispatch);
-		const { data } = await api.get('/comprador/listar');
-
-		console.log('todas cotações', data);
+		const { data } = await api.get(`/comprador/listar?idCompra=${idCompra}`);
 
 		const newList = {
-			type: 'GET_ALL_QUOTATIONS',
+			type: 'GET_PURCHASE_QUOTATIONS',
 			list: data,
 		};
 

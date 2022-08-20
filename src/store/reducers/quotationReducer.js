@@ -4,7 +4,7 @@ const INITIAL_STATE = {
 };
 
 function quotationReducer(state = INITIAL_STATE, action) {
-	if (action.type === 'GET_ALL_QUOTATIONS') {
+	if (action.type === 'GET_PURCHASE_QUOTATIONS') {
 		return {
 			...state,
 			quotationsList: action.list,

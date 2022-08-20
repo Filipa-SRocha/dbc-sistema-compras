@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getAllQuotations } from '../../store/actions/quotationAction';
+import { getPurchaseQuotations } from '../../store/actions/quotationAction';
 import { QuotationContainer, QuotationsContainer } from './quotation.styled';
 
-const QuotationList = ({ quotationsList, isLoading, dispatch }) => {
+const QuotationList = ({ idCompra, quotationsList, isLoading, dispatch }) => {
 	useEffect(() => {
-		getAllQuotations(dispatch);
+		getPurchaseQuotations(idCompra, dispatch);
 	}, []);
 
 	return (
@@ -19,6 +19,7 @@ const QuotationList = ({ quotationsList, isLoading, dispatch }) => {
 							<h5>{quotation.nome}</h5>
 							{quotation.compraDTO.itens.map((item) => (
 								<p>
+									{}
 									{item.nome} {item.valorUnitario}
 								</p>
 							))}
@@ -31,6 +32,7 @@ const QuotationList = ({ quotationsList, isLoading, dispatch }) => {
 };
 
 const mapStateToProps = (state) => ({
+	idCompra: state.purchaseReducer.purchaseToShow.idCompra,
 	quotationsList: state.quotationReducer.quotationsList,
 	isLoading: state.quotationReducer.isLoading,
 });
