@@ -11,6 +11,7 @@ import NewPurchasePage from './pages/purchase/purchasePage/newPurchasePage';
 import User from './pages/user/User';
 import EditPurchasePage from './pages/purchase/editPurchasePage';
 import PurchaseDetails from './pages/purchase/purchaseDetails';
+import Admin from './pages/admin/Admin'
 import 'nprogress/nprogress.css';
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -73,6 +74,14 @@ const Router = ({ auth, dispatch }) => {
 					element={
 						<ProtectedRoute>
 							<User />
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					path='/admin'
+					element={
+						<ProtectedRoute>
+							<Admin />
 						</ProtectedRoute>
 					}
 				/>
