@@ -128,7 +128,10 @@ const FullPurchaseForm = ({
 													/>
 												</div>
 												<div>
-													<IconButton onClick={() => remove(index)} />
+													<IconButton
+														type='button'
+														onClick={() => remove(index)}
+													/>
 												</div>
 											</div>
 										</>

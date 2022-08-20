@@ -1,20 +1,40 @@
-import AsideMenu from "../../components/asideMenu/asideMenu";
-import { Container, DashboardContainer } from "./dashboard.styled";
-import Header from "../../components/header/header";
-import PurchaseList from "../../components/purchaseList/purchaseList";
+import { connect } from 'react-redux';
+import { useEffect } from 'react';
+import { getAllPurchases } from '../../store/actions/purchaseActions';
+import AsideMenu from '../../components/asideMenu/asideMenu';
+import { Container, DashboardContainer } from './dashboard.styled';
+import Header from '../../components/header/header';
+import PurchaseList from '../../components/purchaseList/purchaseList';
 
-const Dashboard = () => {
+const Dashboard = ({ isLoading, purchasesList, dispatch }) => {
+	const updateList = () => {
+		getAllPurchases(dispatch);
+	};
 
-	return (<div>
-		<Container>
-			<AsideMenu></AsideMenu>
-			<DashboardContainer>
-				<Header />
-				<PurchaseList />
-			</DashboardContainer>
-		</Container>
-	</div>);
+	useEffect(() => {
+		updateList();
+	}, []);
+
+	return (
+		<div>
+			<Container>
+				<AsideMenu></AsideMenu>
+				<DashboardContainer>
+					<Header />
+					{isLoading ? (
+						<h1>Loadinng..</h1>
+					) : (
+						<PurchaseList purchasesList={purchasesList} />
+					)}
+				</DashboardContainer>
+			</Container>
+		</div>
+	);
 };
 
+const mapStateToProps = (state) => ({
+	purchasesList: state.purchaseReducer.purchasesList,
+	isLoading: state.purchaseReducer.isLoading,
+});
 
-export default Dashboard;
+export default connect(mapStateToProps)(Dashboard);

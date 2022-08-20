@@ -5,8 +5,11 @@ export const Container = styled.section`
 	width: 100%;
 	padding: 40px;
 	display: grid;
-	grid-template-columns: 2fr 2fr 3fr;
-	grid-template-rows: 1fr 1fr;
+	grid-template-columns: 2fr 2fr;
+	grid-template-rows: auto;
+	grid-template-areas:
+		'title items'
+		'quote quote';
 
 	justify-items: left;
 	align-content: left;
@@ -26,6 +29,7 @@ export const Container = styled.section`
 `;
 
 export const InfoContainer = styled.div`
+	grid-area: title;
 	> h3 {
 		font-size: 30px;
 		color: ${primaryColor};
@@ -38,7 +42,9 @@ export const InfoContainer = styled.div`
 	}
 `;
 
-export const ItemsContainer = styled.div``;
+export const ItemsContainer = styled.div`
+	grid-area: items;
+`;
 
 export const FormContainer = styled.div`
 	width: 100%;
@@ -53,6 +59,14 @@ export const FormContainer = styled.div`
 `;
 
 export const CotacoesContainer = styled.div`
-	background-color: green;
+	grid-area: quote;
 	width: 100%;
+	h5 {
+		font-size: 14px;
+		text-transform: uppercase;
+		margin-bottom: 6px;
+	}
+	p {
+		text-transform: capitalize;
+	}
 `;

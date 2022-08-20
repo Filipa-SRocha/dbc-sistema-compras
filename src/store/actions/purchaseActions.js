@@ -86,7 +86,7 @@ export async function handleEditPurchase(
 	resetForm
 ) {
 	try {
-		await api.put(`/colaborador/compra/${idCompra}`, values);
+		await api.put(`/colaborador/compra/novos-itens/${idCompra}`, values);
 
 		const edit = {
 			type: 'FINALIZE_EDIT',
@@ -107,15 +107,13 @@ export const disableEditMode = (dispatch) => {
 export async function setPurchaseToShow(idCompra, dispatch) {
 	try {
 		changeLoadingStatus(true, dispatch);
-		console.log('inside show p');
 		const { data } = await api.get(`/colaborador/compras?idCompra=${idCompra}`);
-		console.log('after api');
 
 		const showPurchase = {
 			type: 'SET_SHOW_PURCHASE',
 			purchase: data[0],
 		};
-		changeLoadingStatus(false, dispatch);
+
 		dispatch(showPurchase);
 	} catch (error) {
 		changeLoadingStatus(false, dispatch);

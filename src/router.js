@@ -16,6 +16,7 @@ import 'nprogress/nprogress.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ManagerPage from './pages/manager/managerPage';
+import BuyerDashboard from './pages/buyer/buyerDashboard';
 
 const Router = ({ auth, dispatch }) => {
 	useEffect(() => {
@@ -70,6 +71,22 @@ const Router = ({ auth, dispatch }) => {
 					}
 				/>
 				<Route
+					path='/gestor'
+					element={
+						<ProtectedRoute>
+							<ManagerPage />
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					path='/comprador'
+					element={
+						<ProtectedRoute>
+							<BuyerDashboard />
+						</ProtectedRoute>
+					}
+				/>
+				<Route
 					path='/user'
 					element={
 						<ProtectedRoute>
@@ -110,14 +127,7 @@ const Router = ({ auth, dispatch }) => {
 						</ProtectedRoute>
 					}
 				/>
-				<Route
-					path='/gestor'
-					element={
-						<ProtectedRoute>
-							<ManagerPage />
-						</ProtectedRoute>
-					}
-				/>
+
 				<Route
 					path='/login'
 					element={

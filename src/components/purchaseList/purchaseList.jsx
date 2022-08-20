@@ -1,18 +1,8 @@
 import { PurchaseContainer, PurchaseComponent } from './purchaseList.styled';
 import { ListHeader, ListItem } from './listComponents';
 import { connect } from 'react-redux';
-import { useEffect } from 'react';
-import { getAllPurchases } from '../../store/actions/purchaseActions';
 
 const PurchaseList = ({ purchasesList, dispatch }) => {
-	const updateList = () => {
-		getAllPurchases(dispatch);
-	};
-
-	useEffect(() => {
-		updateList();
-	}, []);
-
 	return (
 		<PurchaseContainer>
 			<ListHeader />
@@ -30,7 +20,7 @@ const PurchaseList = ({ purchasesList, dispatch }) => {
 };
 
 const mapStateToProps = (state) => ({
-	purchasesList: state.purchaseReducer.purchasesList,
+	isLoading: state.purchaseReducer.isLoading,
 });
 
 export default connect(mapStateToProps)(PurchaseList);

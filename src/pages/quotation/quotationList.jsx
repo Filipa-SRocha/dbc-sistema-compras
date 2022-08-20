@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getAllQuotations } from '../../store/actions/quotationAction';
+import { QuotationContainer, QuotationsContainer } from './quotation.styled';
 
 const QuotationList = ({ quotationsList, isLoading, dispatch }) => {
 	useEffect(() => {
@@ -8,24 +9,24 @@ const QuotationList = ({ quotationsList, isLoading, dispatch }) => {
 	}, []);
 
 	return (
-		<div>
+		<QuotationsContainer>
 			{isLoading ? (
 				<h1>Loading...</h1>
 			) : (
 				<>
 					{quotationsList.map((quotation) => (
-						<div key={quotation.idCotacao}>
-							<p>{quotation.nome}</p>
+						<QuotationContainer key={quotation.idCotacao}>
+							<h5>{quotation.nome}</h5>
 							{quotation.compraDTO.itens.map((item) => (
 								<p>
 									{item.nome} {item.valorUnitario}
 								</p>
 							))}
-						</div>
+						</QuotationContainer>
 					))}
 				</>
 			)}
-		</div>
+		</QuotationsContainer>
 	);
 };
 

@@ -7,10 +7,10 @@ export const PrimaryButton = ({ text, width, color, ...params }) => {
 	return <Button {...params}> {text.toUpperCase()}</Button>;
 };
 
-export const IconButton = ({ width, type, color, ...params }) => {
+export const IconButton = ({ width, action, color, ...params }) => {
 	return (
 		<IButton {...params}>
-			{type === 'edit' ? <BiEdit /> : <RiDeleteBinLine />}
+			{action === 'edit' ? <BiEdit /> : <RiDeleteBinLine />}
 		</IButton>
 	);
 };

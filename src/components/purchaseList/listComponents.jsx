@@ -9,12 +9,8 @@ import {
 	PurchaseLabelItem,
 	PurchaseItem,
 } from './purchaseList.styled';
-import { IconButton } from '../buttons/buttons';
 import { useNavigate } from 'react-router-dom';
-import {
-	deletePurchase,
-	setPurchaseToShow,
-} from '../../store/actions/purchaseActions';
+import { DashboardMenu } from '../../pages/dashboard/dashboardMenu';
 
 export const ListHeader = () => {
 	return (
@@ -43,51 +39,16 @@ export const ListHeader = () => {
 	);
 };
 
-export const ListMenu = ({ idCompra, dispatch }) => {
-	const navigate = useNavigate();
-
-	return (
-		<div>
-			<IconButton
-				type='delete'
-				onClick={(e) => {
-					e.preventDefault();
-					e.stopPropagation();
-					deletePurchase(idCompra, dispatch);
-				}}
-			/>
-			<IconButton
-				type='edit'
-				onClick={(e) => {
-					e.preventDefault();
-					e.stopPropagation();
-					navigate(`/editar-compra/${idCompra}`);
-				}}
-			/>
-		</div>
-	);
-};
-
-export const BotaoCotacao = ({ idCompra }) => {
-	const navigate = useNavigate();
-
-	const cotar = (e) => {
-		e.preventDefault();
-		e.stopPropagation();
-		navigate(`/details-page/${idCompra}`);
-	};
-
-	return <button onClick={cotar}> COTAÇÃO</button>;
-};
-
 export const ListItem = ({ purchase, dispatch }) => {
 	const navigate = useNavigate();
-	const variavelTesteComprador = true;
 
 	const openDetailsPage = () => {
 		navigate(`/details-page/${purchase.idCompra}`);
-		setPurchaseToShow(purchase, dispatch);
+		// setPurchaseToShow(purchase, dispatch);
 	};
+
+	const tipoCargo = 'colaborador';
+
 	return (
 		<PurchaseItem onClick={openDetailsPage}>
 			<span>{purchase.name}</span>
@@ -100,10 +61,11 @@ export const ListItem = ({ purchase, dispatch }) => {
 			<span> - </span>
 			<span>{purchase.status}</span>
 
-			{variavelTesteComprador ? (
-				<BotaoCotacao idCompra={purchase.idCompra} />
+			{/* Logica a depender do cargo */}
+			{tipoCargo === 'colaborador' && purchase.status === 'ABERTO' ? (
+				<DashboardMenu idCompra={purchase.idCompra} dispatch={dispatch} />
 			) : (
-				<ListMenu idCompra={purchase.idCompra} dispatch={dispatch} />
+				<></>
 			)}
 		</PurchaseItem>
 	);

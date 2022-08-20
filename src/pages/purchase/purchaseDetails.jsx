@@ -21,19 +21,11 @@ import QuotationList from '../quotation/quotationList';
 const PurchaseDetails = ({ isLoading, dispatch, purchaseToShow }) => {
 	const { idCompra } = useParams();
 
-	const setup = async () => {
-		await setPurchaseToShow(idCompra, dispatch);
-		changeLoadingStatus(false, dispatch);
-	};
-
 	useEffect(() => {
 		if (idCompra) {
-			setup();
+			setPurchaseToShow(idCompra, dispatch);
 		}
 	}, []);
-	//checkar o tipo de usuario, se for comprador
-	const variavelTesteComprador = false;
-	const variavelTesteNovaCotacao = false;
 
 	return (
 		<DashboardPage title='Solicitação de Compra' page='#'>
@@ -57,10 +49,11 @@ const PurchaseDetails = ({ isLoading, dispatch, purchaseToShow }) => {
 							<p>Não existem itens cadastrados!</p>
 						)}
 					</ItemsContainer>
-					<FormContainer>
+
+					{/* <FormContainer>
 						<h4>Nova Cotação</h4>
 						<QuotationForm purchaseToShow={purchaseToShow} />
-					</FormContainer>
+					</FormContainer> */}
 					<CotacoesContainer>
 						<h4>Todas as cotações</h4>
 						<QuotationList />
