@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getNumberPurchaseQuotations } from '../../store/actions/quotationAction';
+import {
+	changeQuotationStatus,
+	getNumberPurchaseQuotations,
+} from '../../store/actions/quotationAction';
 
 const BuyerMenu = ({ idCompra }) => {
 	const [canBeApproved, setCanBeApproved] = useState(false);
@@ -15,6 +18,8 @@ const BuyerMenu = ({ idCompra }) => {
 	const sendToApproval = (e) => {
 		e.preventDefault();
 		e.stopPropagation();
+
+		changeQuotationStatus(idCompra);
 	};
 
 	const setup = async () => {
@@ -30,7 +35,7 @@ const BuyerMenu = ({ idCompra }) => {
 	return (
 		<div>
 			<button onClick={cotar}> COTAR</button>
-			<button disabled={canBeApproved} onClick={sendToApproval}>
+			<button disabled={!canBeApproved} onClick={sendToApproval}>
 				Enviar para aprovação
 			</button>
 		</div>

@@ -9,6 +9,7 @@ import {
 const ManagerPage = ({ isLoading, purchasesList, dispatch }) => {
 	useEffect(() => {
 		getPurchasesWithQuotations(dispatch);
+		console.log(purchasesList);
 	}, []);
 
 	// Falta endpoint a mostrar cotações de cada compra. Depois cada cotação pode ser aprovada ou recusada
@@ -22,6 +23,11 @@ const ManagerPage = ({ isLoading, purchasesList, dispatch }) => {
 				<h1>
 					{purchasesList.map((cotacao) => (
 						<div>
+							{cotacao.status === 'APROVADO' ? (
+								<h1>Aberto</h1>
+							) : (
+								<h1>Fechado</h1>
+							)}
 							<p>{cotacao.nome}</p>
 							<button
 								value='APROVAR'

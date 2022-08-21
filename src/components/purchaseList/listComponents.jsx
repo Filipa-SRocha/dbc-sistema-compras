@@ -46,7 +46,7 @@ export const ListItem = ({ purchase, dispatch }) => {
 	const openDetailsPage = () => {
 		navigate(`/details-page/${purchase.idCompra}`);
 	};
-	const tipoCargo = 'colaborador'; // colaborador, comprador
+	const tipoCargo = 'comprador'; // colaborador, comprador
 
 	return (
 		<PurchaseItem onClick={openDetailsPage}>

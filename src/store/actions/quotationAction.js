@@ -64,6 +64,17 @@ export async function handleNewQuotation(idCompra, values, navigate) {
 	}
 }
 
+export async function changeQuotationStatus(idCompra) {
+	try {
+		await api.put(`/comprador/concluir-cotacao?idCompra=${idCompra}`);
+	} catch (error) {
+		console.log(
+			'Não foi possivel enviar as cotações para aprovação do gestor',
+			error
+		);
+	}
+}
+
 export const changeLoadingStatus = (status, dispatch) => {
 	const loading = {
 		type: 'SET_Q_LOADING',
