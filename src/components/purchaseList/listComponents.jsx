@@ -40,13 +40,13 @@ export const ListHeader = () => {
 	);
 };
 
-export const ListItem = ({ purchase, dispatch }) => {
+export const ListItem = ({ cargos, purchase, dispatch }) => {
 	const navigate = useNavigate();
 
+	console.log('--------------------', cargos);
 	const openDetailsPage = () => {
 		navigate(`/details-page/${purchase.idCompra}`);
 	};
-	const tipoCargo = 'comprador'; // colaborador, comprador
 
 	return (
 		<PurchaseItem onClick={openDetailsPage}>
@@ -61,15 +61,16 @@ export const ListItem = ({ purchase, dispatch }) => {
 			<span>{purchase.status}</span>
 
 			{/* Logica a depender do cargo */}
-			{tipoCargo === 'colaborador' && purchase.status === 'ABERTO' ? (
+			{cargos[0].name === 'ROLE_COLABORADOR' && purchase.status === 'ABERTO' ? (
 				<DashboardMenu idCompra={purchase.idCompra} dispatch={dispatch} />
 			) : (
 				<></>
 			)}
 
-			{(tipoCargo === 'comprador' && purchase.status === 'ABERTO') ||
-			(tipoCargo === 'comprador' && purchase.status === 'EM_COTACAO') ? (
-				<BuyerMenu idCompra={purchase.idCompra} dispatch={dispatch} />
+			{(cargos[0].name === 'ROLE_COMPRADOR' && purchase.status === 'ABERTO') ||
+			(cargos[0].name === 'ROLE_COMPRADOR' &&
+				purchase.status === 'EM_COTACAO') ? (
+				<BuyerMenu idCompra={purchase.idCompra} />
 			) : (
 				<></>
 			)}
