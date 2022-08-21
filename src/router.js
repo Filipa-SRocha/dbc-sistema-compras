@@ -17,6 +17,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ManagerPage from './pages/manager/managerPage';
 import BuyerDashboard from './pages/buyer/buyerDashboard';
+import NewQuotation from './pages/quotation/newQuotation';
 
 const Router = ({ auth, dispatch }) => {
 	useEffect(() => {
@@ -83,6 +84,15 @@ const Router = ({ auth, dispatch }) => {
 					element={
 						<ProtectedRoute>
 							<BuyerDashboard />
+						</ProtectedRoute>
+					}
+				/>
+
+				<Route
+					path='/comprador/nova-cotacao/:idCompra'
+					element={
+						<ProtectedRoute>
+							<NewQuotation />
 						</ProtectedRoute>
 					}
 				/>

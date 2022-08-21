@@ -42,10 +42,23 @@ export async function getPurchaseQuotations(idCompra, dispatch) {
 	}
 }
 
-export async function handleNewQuotation(idCompra, values) {
+export async function getNumberPurchaseQuotations(idCompra) {
 	try {
-		console.log('values', values);
+		const { data } = await api.get(`/comprador/listar?idCompra=${idCompra}`);
+		console.log({ data });
+		return data.length;
+	} catch (error) {
+		console.log(
+			'Não foi possível obter lista de cotações. Erro no servidor',
+			error
+		);
+	}
+}
+
+export async function handleNewQuotation(idCompra, values, navigate) {
+	try {
 		await api.post(`/comprador/cotar?idCompra=${idCompra}`, values);
+		navigate(`/details-page/${idCompra}`);
 	} catch (error) {
 		console.log('Não foi possível adicionar cotação. Erro no servidor', error);
 	}

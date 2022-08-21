@@ -14,7 +14,7 @@ const DashboardPage = ({ title, page, children }) => {
 				<DashboardContainer>
 					<Header />
 					<h2>{title}</h2>
-					<PageContent>{children}</PageContent>
+					{children}
 				</DashboardContainer>
 			</Container>
 		</section>

@@ -1,34 +1,31 @@
 import DashboardPage from '../../components/dashboardPage/dashboardPage';
 import PurchaseList from '../../components/purchaseList/purchaseList';
-import { useNavigate } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { useEffect } from 'react';
+import { getAllPurchases } from '../../store/actions/purchaseActions';
 
-const BuyerDashboard = () => {
-	const BotaoCotacao = ({ idCompra }) => {
-		const navigate = useNavigate();
-
-		const cotar = (e) => {
-			e.preventDefault();
-			e.stopPropagation();
-			navigate(`/details-page/${idCompra}`);
-		};
-
-		return <button onClick={cotar}> COTAÇÃO</button>;
+const BuyerDashboard = ({ purchasesList, dispatch, isLoading }) => {
+	const updateList = () => {
+		getAllPurchases(dispatch);
 	};
 
-	const EndQuotation = ({ idCompra }) => {
-		console.log('IDCompra swagger', idCompra);
-		const sendToApproval = (e) => {
-			e.preventDefault();
-			e.stopPropagation();
-		};
-
-		return <button onClick={sendToApproval}>Enviar para aprovação</button>;
-	};
+	useEffect(() => {
+		updateList();
+	}, []);
 
 	return (
-		<DashboardPage title='Solicitações'>
-			<PurchaseList />
+		<DashboardPage title='Solicitações' page='/'>
+			{isLoading ? (
+				<h1>Loading</h1>
+			) : (
+				<PurchaseList purchasesList={purchasesList} />
+			)}
 		</DashboardPage>
 	);
 };
-export default BuyerDashboard;
+const mapStateToProps = (state) => ({
+	purchasesList: state.purchaseReducer.purchasesList,
+	isLoading: state.purchaseReducer.isLoading,
+});
+
+export default connect(mapStateToProps)(BuyerDashboard);

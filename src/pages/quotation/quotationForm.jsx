@@ -7,8 +7,15 @@ import {
 	FormContainer,
 	FormStyle,
 } from '../../components/forms/form.styled';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const QuotationForm = ({ purchaseToShow }) => {
+	const navigate = useNavigate();
+	useEffect(() => {
+		console.log(purchaseToShow);
+	});
+
 	const handleSubmit = (values) => {
 		const newItems = values.items.map((item) => {
 			return { idItem: item.idItem, valorDoItem: Number(item.preco) };
@@ -19,7 +26,7 @@ const QuotationForm = ({ purchaseToShow }) => {
 			listaDeValores: newItems,
 			anexo: 'string',
 		};
-		handleNewQuotation(purchaseToShow.idCompra, newValues);
+		handleNewQuotation(purchaseToShow.idCompra, newValues, navigate);
 	};
 
 	const QuoteSchema = Yup.object().shape({
@@ -47,7 +54,7 @@ const QuotationForm = ({ purchaseToShow }) => {
 					<Form>
 						<div>
 							<div>
-								<label htmlFor='nome'>Nome </label>
+								<label htmlFor='nome'>Nome da Cotação </label>
 								<Field name='nome' id='nome' />
 							</div>
 							{errors.nome && touched.nome ? (

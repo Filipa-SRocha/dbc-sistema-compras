@@ -11,6 +11,7 @@ import {
 } from './purchaseList.styled';
 import { useNavigate } from 'react-router-dom';
 import { DashboardMenu } from '../../pages/dashboard/dashboardMenu';
+import BuyerMenu from '../../pages/buyer/buyerMenu';
 
 export const ListHeader = () => {
 	return (
@@ -46,8 +47,7 @@ export const ListItem = ({ purchase, dispatch }) => {
 		navigate(`/details-page/${purchase.idCompra}`);
 		// setPurchaseToShow(purchase, dispatch);
 	};
-
-	const tipoCargo = 'colaborador';
+	const tipoCargo = 'comprador';
 
 	return (
 		<PurchaseItem onClick={openDetailsPage}>
@@ -64,6 +64,13 @@ export const ListItem = ({ purchase, dispatch }) => {
 			{/* Logica a depender do cargo */}
 			{tipoCargo === 'colaborador' && purchase.status === 'ABERTO' ? (
 				<DashboardMenu idCompra={purchase.idCompra} dispatch={dispatch} />
+			) : (
+				<></>
+			)}
+
+			{(tipoCargo === 'comprador' && purchase.status === 'ABERTO') ||
+			purchase.status === 'EM_COTACAO' ? (
+				<BuyerMenu idCompra={purchase.idCompra} />
 			) : (
 				<></>
 			)}
