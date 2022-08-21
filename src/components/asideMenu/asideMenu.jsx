@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { disableEditMode } from '../../store/actions/purchaseActions';
 
-const AsideMenu = ({ nowActive, dispatch }) => {
+const AsideMenu = ({ nowActive, user, dispatch }) => {
 	const navigate = useNavigate();
 	const [active, setActive] = useState();
 
@@ -53,16 +53,18 @@ const AsideMenu = ({ nowActive, dispatch }) => {
 							</button>
 						</li>
 
-						<li className={active === '/admin' ? 'navItem active' : 'navItem'}>
-							<button
-								onClick={() => {
-									setActive('/admin');
-									navigate('/admin')
-								}}
-							>
-								<HiUserGroup />
-							</button>
-						</li>
+						{user.isAdmin ? 
+						(<li className={active === '/admin' ? 'navItem active' : 'navItem'}>
+						<button
+							onClick={() => {
+								setActive('/admin');
+								navigate('/admin');
+							}}
+						>
+							<HiUserGroup />
+						</button>
+					</li>)
+					: null}
 					</ul>
 				</div>
 
@@ -80,6 +82,7 @@ const AsideMenu = ({ nowActive, dispatch }) => {
 
 const mapStateToProps = (state) => ({
 	auth: state.authReducer.auth,
+	user: state.userReducer.user,
 });
 
 export default connect(mapStateToProps)(AsideMenu);

@@ -1,27 +1,29 @@
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
+import { useLocation, useNavigate } from "react-router-dom";
+
 import { BiUserCircle, BiRename, BiArrowBack } from 'react-icons/bi';
 import { MdOutlineEmail, MdWorkOutline } from 'react-icons/md';
+import { UserRoleInfo, RoleButton, UserRoleContainer, RoleEdit } from "./userEditRole.styled";
+import { Errors } from '../../components/forms/form.styled'
 
-import { useRef } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
 import { editUserRole } from "../../store/actions/adminActions";
-import { UserRoleInfo, RoleButton, UserRoleContainer, RoleEdit, BackButton } from "./userEditRole.styled";
 
 const UserEditRole = () => {
 
   const imgBase64Prefix = 'data:image/png;base64,';
   const navigate = useNavigate();
+
+  const newUserSchema = Yup.object().shape({
+    cargo: Yup.string().required('Por favor indique o cargo')
+  });
   
   const { state } = useLocation();
-  // console.log(state);
-  const selectRole = useRef(null);
   
   const userCurrentRole = state.cargos.length === 1 ? state.cargos[0].name.replace(/ROLE_([A-Za-z])([A-Za-z]*)/, (p0, p1, p2) => { return (p1 + p2.toLowerCase()) }) : 'Administrador';
   
   return (
     <UserRoleContainer>
-     <div className="goBackButton">
-      <BackButton onClick={() => {navigate('/admin')}}><BiArrowBack size={26} /></BackButton>
-     </div>
       <UserRoleInfo>
         <div className='userProfile'>
           <div className="userInfo">
@@ -55,21 +57,37 @@ const UserEditRole = () => {
       </UserRoleInfo>
         <h2>Editar cargo</h2>
       <RoleEdit>
-        <form className='editRoleForm' onSubmit={(e) => {
-          e.preventDefault();
+        <Formik
+          initialValues={{cargo: ''}}
+          validationSchema={newUserSchema}
+          onSubmit={(values) => {editUserRole(state.idUser, values)}}
+        >
+          {({ errors, touched, setFieldValue}) => (
+            <Form id="edit-user-role-form" className='editRoleForm'>
+              <label htmlFor="cargo">Novo cargo</label>
+              <Field
+                id='cargo'
+                name='cargo'
+                as='select'
+                onChange={(e) => {setFieldValue('cargo', e.target.value)}}
+              >
+                <option value="" hidden>Selecione o novo cargo</option>
+                <option value='ADMINISTRADOR'>Administrador</option>
+								<option value='COLABORADOR'>Colaborador</option>
+								<option value='COMPRADOR'>Comprador</option>
+								<option value='GESTOR'>Gestor</option>
+								<option value='FINANCEIRO'>Financeiro</option>
+              </Field>
 
-          editUserRole(state.idUser, selectRole.current.value);
-        }}>
-          <select name="userRole" ref={selectRole} id="user-role-select">
-            <option disabled selected value></option>
-            <option value="COLABORADOR">Colaborador</option>
-            <option value="FINANCEIRO">Financeiro</option>
-            <option value="COMPRADOR">Comprador</option>
-            <option value="GESTOR">Gestor</option>
-            <option value="ADMINISTRADOR">Administrador</option>
-          </select>
-        <RoleButton type="submit">Editar cargo</RoleButton>
-        </form>
+              {errors.cargo && touched.cargo ?
+              (<Errors>{errors.cargo}</Errors>)
+              : null}
+
+              <button type="submit">oi</button>
+            </Form>
+          )}
+        </Formik>
+        
       </RoleEdit>
     </UserRoleContainer>
   )

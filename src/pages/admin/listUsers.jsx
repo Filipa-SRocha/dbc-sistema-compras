@@ -14,10 +14,7 @@ const ListUsers = ({ usersList, dispatch }) => {
   return (
     <UsersListContainer>
       {usersList.map((user) => (
-        <UserBeingListed
-          key={user.idUser}
-          user={user}
-          />
+        <UserBeingListed key={user.idUser} user={user} />
       ))}
     </UsersListContainer>
   )

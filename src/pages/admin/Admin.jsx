@@ -19,12 +19,12 @@ const Admin = ({ user }) => {
   return (
     <>
       <Container>
-        <AsideMenu />
+        <AsideMenu nowActive={'/admin'} />
         <DashboardContainer>
           <Header />
           <AdminHeader>
             <AdminPageTitle>Lista de usuários</AdminPageTitle>
-            <AddUserButton onClick={() => {navigate('/new-user')}}><BsPersonPlusFill size={20} />Adicionar novo usuário</AddUserButton>
+            <AddUserButton onClick={() => {navigate('/admin/new-user')}}><BsPersonPlusFill size={20} />Adicionar novo usuário</AddUserButton>
           </AdminHeader>
           <ListUsers />
         </DashboardContainer>

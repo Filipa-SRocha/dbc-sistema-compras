@@ -35,7 +35,7 @@ export const UserRoleInfo = styled.div`
     gap: 20px;
     height: fit-content;
     padding: 30px;
-    /* background-color: blue; */
+    margin-top: 20px;
     border: solid 2px #2a5ca6;
     border-radius: 20px;
   }
@@ -107,7 +107,7 @@ export const RoleEdit = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
   }
 
   .editRoleForm select {
@@ -115,11 +115,31 @@ export const RoleEdit = styled.div`
     height: 30px;
     text-align: center;
     outline: none;
+    background-color: white;
     border: solid 1px #2a5ca6;
     border-radius: 10px;
 
     :hover {
       cursor: pointer;
+    }
+  }
+
+  .editRoleForm button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    width: 260px;
+    height: 32px;
+    background-color: ${primaryColor};
+    color: white;
+    border-radius: 10px;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+
+    :hover {
+      background-color: ${primaryDark};
     }
   }
 `
