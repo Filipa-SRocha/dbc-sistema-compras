@@ -83,7 +83,7 @@ const UserEditRole = () => {
               (<Errors>{errors.cargo}</Errors>)
               : null}
 
-              <button type="submit">oi</button>
+              <button type="submit">Editar cargo</button>
             </Form>
           )}
         </Formik>
