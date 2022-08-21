@@ -3,8 +3,11 @@ const INITIAL_STATE = {
 		idUser: '',
 		nome: '',
 		email: '',
-		imagemPerfilB64: ''
-	}
+		cargos: [],
+		imagemPerfilB64: '',
+		isAdmin: false
+	},
+	
 }
 
 function userReducer(state = INITIAL_STATE, action){
@@ -14,7 +17,9 @@ function userReducer(state = INITIAL_STATE, action){
 				idUser: action.idUser,
 				nome: action.nome,
 				email: action.email,
-				imagemPerfilB64: action.imagemPerfilB64
+				cargos: action.cargos,
+				imagemPerfilB64: action.imagemPerfilB64,
+				isAdmin: action.isAdmin
 			}
 		}
 	}

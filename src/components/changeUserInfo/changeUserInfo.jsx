@@ -51,14 +51,14 @@ const ChangeUserInfo = ({ user, dispatch, updateUser }) => {
           }}
           validationSchema={UserSchema}
           onSubmit={(values) => {
-            updateUser(values, user);
+            updateUser(values);
           }}
           >
             {({errors, touched, setFieldValue}) => (
-                <Form>
+                <Form id='form-user-edit-info'>
                 <div className="formCampo">
-                  <label htmlFor="nome">Nome</label>
-                  <Field name='nome' placeholder='Nome completo'
+                  <label htmlFor="nome" id='user-edit-info-nome-label'>Nome</label>
+                  <Field name='nome' id='user-edit-info-nome' placeholder='Nome completo'
                     onChange={e => {
                       setFieldValue("nome", e.target.value);
                   }}
@@ -69,8 +69,8 @@ const ChangeUserInfo = ({ user, dispatch, updateUser }) => {
                 </div>
                 <div className="formCampo">
 
-                  <label htmlFor="email">E-mail</label>
-                  <Field name='email' placeholder='email@dbccompany.com.br'
+                  <label htmlFor="email" id='user-edit-info-email-label'>E-mail</label>
+                  <Field name='email' id='user-edit-info-email' placeholder='email@dbccompany.com.br'
                   onChange={e => {
                     setFieldValue("email", e.target.value);
                   }}
@@ -83,16 +83,17 @@ const ChangeUserInfo = ({ user, dispatch, updateUser }) => {
                   </div>
                 </div>
                 <div className="imgPerfil">
-                  <label htmlFor='foto'>Imagem de perfil</label>
+                  <label htmlFor='foto' id='user-edit-info-imagem-label'>Imagem de perfil</label>
                   <FileBase64
                     name='foto'
+                    id='user-edit-info-imagem'
                     multiple={false}
                     onDone={e => getFiles(e, setFieldValue)}
                     className='fileBase64'
                   />
                 </div>
                 <div className="button">
-                  <PrimaryButton type="submit" text="Atualizar perfil" />
+                  <PrimaryButton type="submit" id='user-edit-info-button-submit' text="Atualizar perfil" />
                 </div>
               </Form>
             )}
@@ -107,7 +108,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateUser: (values, user) => updateUserInfo(values, user, dispatch)
+  updateUser: (values) => updateUserInfo(values, dispatch)
 });
 
 

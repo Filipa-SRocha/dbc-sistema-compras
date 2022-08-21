@@ -9,13 +9,19 @@ export const getLoggedUser = async (dispatch) => {
 		nProgress.start();
 		api.defaults.headers.common['Authorization'] = token;
 		const { data } = await api.get('/usuario/get-logged');
+		
+		// console.log(data);
+
+		const isAdmin = data.cargos.some(item => item.name === 'ROLE_ADMINISTRADOR')
 
 		const user = {
 			type: 'SET_LOGGED_USER',
 			idUser: data.idUser,
 			nome: data.nome,
 			email: data.email,
-			imagemPerfilB64: data.imagemPerfilB64
+			cargos: data.cargos,
+			imagemPerfilB64: data.imagemPerfilB64,
+			isAdmin,
 		}
 
 		dispatch(user);
@@ -23,26 +29,26 @@ export const getLoggedUser = async (dispatch) => {
 	}
 }
 
-export const updateUserInfo = async(values, userData, dispatch) => {
+export const updateUserInfo = async(values, dispatch) => {
 	
 	const token = localStorage.getItem('token');
-	const data = {}
+	// const data = {}
 
 	if(token){
 
 		nProgress.start();
 		
-		Object.keys(values).forEach(
-			key => {
-				if(values[key] !== userData[key]){
-					data[key] = values[key]
-				}
-			}
-		)
+		// Object.keys(values).forEach(
+		// 	key => {
+		// 		if(values[key] !== userData[key]){
+		// 			data[key] = values[key]
+		// 		}
+		// 	}
+		// )
 		
 		try {
 			api.defaults.headers.common['Authorization'] = token;
-			await api.put('/usuario/logged-user/', data);
+			await api.put('/usuario/logged-user/', values);
 			// alert("Cadastro atualizado com sucesso!");
 
 			toast.success('Cadastro atualizado com sucesso!', {

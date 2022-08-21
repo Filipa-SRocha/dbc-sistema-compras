@@ -43,9 +43,9 @@ const SignUp = ({ handleSignUp, dispatch }) => {
 			.minSymbols(1, 'Senha precisa conter pelo menos um caractere especial')
 			.min(8, 'Senha precisa conter pelo menos oito caracteres')
 			.max(16, 'Senha demasiado longa. Máx: 16 caracteres'),
-		// confirmacaoSenha: Yup.string()
-		// 	.required('Por favor, confirme a sua senha')
-		// 	.oneOf([Yup.ref('senha'), null], 'Senhas devem ser iguais'),
+		confirmacaoSenha: Yup.string()
+		.required('Por favor, confirme a sua senha')
+		.oneOf([Yup.ref('senha'), null], 'Senhas devem ser iguais'),
 	});
 
 	const getFiles = (files, setFieldValue) => {
@@ -68,7 +68,7 @@ const SignUp = ({ handleSignUp, dispatch }) => {
 					email: '',
 					senha: '',
 					foto: '',
-					// confirmacaoSenha: '', // -> colocar depois
+					confirmacaoSenha: '', // -> colocar depois
 				}}
 				validationSchema={SignupSchema}
 				onSubmit={(values) => {
@@ -139,13 +139,13 @@ const SignUp = ({ handleSignUp, dispatch }) => {
 							</PasswordStrengthMeter>
 						</div>
 
-						{/* <div>
+						<div>
 							<label htmlFor='confirmacaoSenha'>Confirme a sua senha* </label>
 							<Field name='confirmacaoSenha' type='password' />
 							{errors.confirmacaoSenha && touched.confirmacaoSenha ? (
 								<Errors>{errors.confirmacaoSenha}</Errors>
 							) : null}
-						</div> */}
+						</div>
 
 						<div className='signup-profile-img'>
 							<label htmlFor='foto' id='label-foto-perfil'>Imagem de perfil</label>
