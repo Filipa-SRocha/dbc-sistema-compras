@@ -7,6 +7,7 @@ export const UsersListContainer = styled.div`
   justify-content: space-evenly;
   gap: 20px 0;
   padding: 0 30px;
+  margin-bottom: 40px;
 `;
 
 export const UserComponent = styled.div`
@@ -44,7 +45,26 @@ export const RoleButton = styled.button`
 	}
 `;
 
+export const DeleteButton = styled.button`
+	width: 24px;
+	height: 24px;
+  font-size: 16px;
+	color: gray;
+	background: transparent;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+
+	:hover {
+		background-color: #f0f0f0;
+    color: red;
+	}
+`;
+
 export const RoleButtonsContainer = styled.div`
   display: flex;
-  gap: 0px;
+  gap: 6px;
 `

@@ -4,7 +4,7 @@ import UserEditRole from "./userEditRole"
 const UserDetailByAdmin = () => {
   return (
     <>
-      <DashboardPage title="Editar cargo" page={'/admin/user-detail'} children={<UserEditRole />} />
+      <DashboardPage title="Informações do usuário" page={'/admin/user-detail'} children={<UserEditRole />} />
     </>
   )
 }
