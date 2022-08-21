@@ -53,10 +53,11 @@ const AsideMenu = ({ nowActive, dispatch }) => {
 							</button>
 						</li>
 
-						<li className={active === 'users' ? 'navItem active' : 'navItem'}>
+						<li className={active === '/admin' ? 'navItem active' : 'navItem'}>
 							<button
 								onClick={() => {
-									setActive('users');
+									setActive('/admin');
+									navigate('/admin')
 								}}
 							>
 								<HiUserGroup />

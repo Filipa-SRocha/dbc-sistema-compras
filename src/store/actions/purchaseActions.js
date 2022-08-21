@@ -18,9 +18,14 @@ export async function handleNewPurchase(values, navigate, resetForm) {
 }
 
 export async function getAllPurchases(dispatch) {
+	
+	const token = localStorage.getItem('token');
+	
+if(token) {
 	try {
 		changeLoadingStatus(true, dispatch);
 
+		api.defaults.headers.common['Authorization'] = token;
 		const { data } = await api.get('/colaborador/compras');
 
 		const newList = {
@@ -47,6 +52,7 @@ export async function getAllPurchases(dispatch) {
 			error
 		);
 	}
+}
 }
 
 export async function deletePurchase(id, dispatch) {

@@ -4,8 +4,16 @@ import nProgress from 'nprogress';
 
 export const handleSignUp = async (values, dispatch, navigate) => {
   try {
+
+    const newUser = {
+      nome: values.nome,
+      email: values.email,
+      senha: values.senha,
+      foto: values.foto
+    }
+
     nProgress.start();
-    const { data } = await api.post("/usuario/create-user", values);
+    const { data } = await api.post("/usuario/create-user", newUser);
     localStorage.setItem('token', data.token);
     api.defaults.headers.common['Authorization'] = data.token;
 
