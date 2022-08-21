@@ -13,6 +13,7 @@ import EditPurchasePage from './pages/purchase/editPurchasePage';
 import PurchaseDetails from './pages/purchase/purchaseDetails';
 import Admin from './pages/admin/Admin'
 import 'nprogress/nprogress.css';
+import UserDetailByAdmin from './pages/admin/userDetailByAdmin'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -77,14 +78,7 @@ const Router = ({ auth, dispatch }) => {
 						</ProtectedRoute>
 					}
 				/>
-				<Route
-					path='/admin'
-					element={
-						<ProtectedRoute>
-							<Admin />
-						</ProtectedRoute>
-					}
-				/>
+
 				<Route
 					path='/user/change-info'
 					element={
@@ -101,6 +95,23 @@ const Router = ({ auth, dispatch }) => {
 						</ProtectedRoute>
 					}
 				/>
+				<Route
+					path='/admin'
+					element={
+						<ProtectedRoute>
+							<Admin />
+						</ProtectedRoute>
+					}
+					/>
+
+				<Route
+					path='/admin/user-detail'
+					element={
+						<ProtectedRoute>
+							<UserDetailByAdmin />
+						</ProtectedRoute>
+					}
+					/>
 				<Route path='/solicitacao-compra' element={<NewPurchasePage />} />
 				<Route
 					path='/editar-compra/:idCompra'

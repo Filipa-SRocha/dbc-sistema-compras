@@ -2,11 +2,14 @@ import { UserComponent, UserItemLabel, RoleButton, RoleButtonsContainer } from "
 import { FiEdit } from 'react-icons/fi';
 import { MdPersonAdd, MdPersonOff } from 'react-icons/md';
 import { BsPersonPlusFill, BsPersonDashFill } from 'react-icons/bs';
+import { editUserRole } from "../../store/actions/adminActions";
+import { useNavigate } from "react-router-dom";
 
-const UserBeingListed = ({ user }) => {
+const UserBeingListed = ({ user, editUserRole }) => {
 
-  const nomeCargo = user.cargos.name.replace(/ROLE_([A-Za-z])([A-Za-z]*)/, (p0, p1, p2) => { return (p1 + p2.toLowerCase()) });
+  const nomeCargo = user.cargos[0].name.replace(/ROLE_([A-Za-z])([A-Za-z]*)/, (p0, p1, p2) => { return (p1 + p2.toLowerCase()) });
 
+  const navigate = useNavigate();
 
   return (
 
@@ -23,7 +26,7 @@ const UserBeingListed = ({ user }) => {
         <strong>Cargo:</strong>
         <span>{nomeCargo}</span>
         <RoleButtonsContainer>
-          <RoleButton><FiEdit /></RoleButton>
+          <RoleButton onClick={() => {navigate('/admin/user-detail', { state: user })}}><FiEdit /></RoleButton>
           <RoleButton><BsPersonPlusFill /></RoleButton>
           <RoleButton><BsPersonDashFill /></RoleButton>
         </RoleButtonsContainer>

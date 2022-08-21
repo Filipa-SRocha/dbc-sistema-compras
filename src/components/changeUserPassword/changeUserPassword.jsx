@@ -43,18 +43,18 @@ const ChangeUserPassword = () => {
           }}
         >
           {({errors, touched}) => (
-            <Form>
+            <Form id='form-user-edit-password'>
               <div className="formCampo">
-                <label htmlFor="senhaAtual">Senha atual</label>
-                <Field name='senhaAtual' type='password' placeholder='********'
+                <label htmlFor="senhaAtual" id='user-edit-password-senha-atual-label'>Senha atual</label>
+                <Field name='senhaAtual' id='user-edit-password-senha-atual' type='password' placeholder='********'
                 />
                 {errors.senhaAtual && touched.senhaAtual ? (
                   <Errors>{errors.senhaAtual}</Errors>
                     ) : null}
               </div>
               <div className="formCampo">
-                <label htmlFor="novaSenha">Nova senha</label>
-                <Field name='novaSenha' type='password' placeholder='********' />
+                <label htmlFor="novaSenha" id='user-edit-password-nova-senha-label'>Nova senha</label>
+                <Field name='novaSenha' id='user-edit-password-nova-senha' type='password' placeholder='********' />
                 {errors.novaSenha && touched.novaSenha ? (
                   <Errors>{errors.novaSenha}</Errors>
                     ) : null}

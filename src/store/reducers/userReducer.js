@@ -3,8 +3,9 @@ const INITIAL_STATE = {
 		idUser: '',
 		nome: '',
 		email: '',
-		cargos: {},
-		imagemPerfilB64: ''
+		cargos: [],
+		imagemPerfilB64: '',
+		isAdmin: false
 	},
 	
 }
@@ -18,6 +19,7 @@ function userReducer(state = INITIAL_STATE, action){
 				email: action.email,
 				cargos: action.cargos,
 				imagemPerfilB64: action.imagemPerfilB64,
+				isAdmin: action.isAdmin
 			}
 		}
 	}
