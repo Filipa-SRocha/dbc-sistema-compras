@@ -23,28 +23,35 @@ const ManagerPage = ({ isLoading, purchasesList, dispatch }) => {
 				<h1>
 					{purchasesList.map((cotacao) => (
 						<div>
-							{cotacao.status === 'APROVADO' ? (
-								<h1>Aberto</h1>
-							) : (
-								<h1>Fechado</h1>
-							)}
-							<p>{cotacao.nome}</p>
-							<button
-								value='APROVAR'
-								onClick={(e) =>
-									manageQuotation(cotacao.idCotacao, e.target.value, dispatch)
-								}
-							>
-								Aprovar
-							</button>
-							<button
-								value='REPROVAR'
-								onClick={(e) =>
-									manageQuotation(cotacao.idCotacao, e.target.value, dispatch)
-								}
-							>
-								Reprovar
-							</button>
+							{cotacao.status === 'COTADO' ? (
+								<>
+									<p>{cotacao.nome}</p>
+									<button
+										value='APROVAR'
+										onClick={(e) =>
+											manageQuotation(
+												cotacao.idCotacao,
+												e.target.value,
+												dispatch
+											)
+										}
+									>
+										Aprovar
+									</button>
+									<button
+										value='REPROVAR'
+										onClick={(e) =>
+											manageQuotation(
+												cotacao.idCotacao,
+												e.target.value,
+												dispatch
+											)
+										}
+									>
+										Reprovar
+									</button>
+								</>
+							) : null}
 						</div>
 					))}
 				</h1>

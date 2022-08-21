@@ -1,4 +1,5 @@
 import { api } from '../../api';
+import { getAllPurchases } from './purchaseActions';
 
 // export async function getAllQuotations(dispatch) {
 // 	try {

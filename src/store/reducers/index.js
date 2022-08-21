@@ -5,6 +5,7 @@ import userReducer from './userReducer';
 import purchaseReducer from './purchaseReducer';
 import quotationReducer from './quotationReducer';
 import managerReducer from './managerReducer';
+import financesReducer from './financesReducer';
 
 export default combineReducers({
 	authReducer,
@@ -12,4 +13,5 @@ export default combineReducers({
 	purchaseReducer,
 	quotationReducer,
 	managerReducer,
+	financesReducer,
 });

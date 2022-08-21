@@ -69,7 +69,7 @@ export const ListItem = ({ purchase, dispatch }) => {
 
 			{(tipoCargo === 'comprador' && purchase.status === 'ABERTO') ||
 			(tipoCargo === 'comprador' && purchase.status === 'EM_COTACAO') ? (
-				<BuyerMenu idCompra={purchase.idCompra} />
+				<BuyerMenu idCompra={purchase.idCompra} dispatch={dispatch} />
 			) : (
 				<></>
 			)}
