@@ -45,9 +45,8 @@ export const ListItem = ({ purchase, dispatch }) => {
 
 	const openDetailsPage = () => {
 		navigate(`/details-page/${purchase.idCompra}`);
-		// setPurchaseToShow(purchase, dispatch);
 	};
-	const tipoCargo = 'comprador';
+	const tipoCargo = 'colaborador'; // colaborador, comprador
 
 	return (
 		<PurchaseItem onClick={openDetailsPage}>
@@ -69,7 +68,7 @@ export const ListItem = ({ purchase, dispatch }) => {
 			)}
 
 			{(tipoCargo === 'comprador' && purchase.status === 'ABERTO') ||
-			purchase.status === 'EM_COTACAO' ? (
+			(tipoCargo === 'comprador' && purchase.status === 'EM_COTACAO') ? (
 				<BuyerMenu idCompra={purchase.idCompra} />
 			) : (
 				<></>
