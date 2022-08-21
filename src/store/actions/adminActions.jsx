@@ -37,3 +37,22 @@ export const editUserRole = async (userId, newUserRole) => {
       });
   }
 }
+
+export const deleteUser = async (userId) => {
+  const token = localStorage.getItem('token');
+
+  if(token) {
+    api.defaults.headers.common['Authorization'] = token;
+    await api.delete(`/admin/delete/${userId}`);
+
+    toast.success('Usuário deletado!', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
+  }
+}
