@@ -19,16 +19,16 @@ export async function handleLogin(values, dispatch, navigate) {
 		navigate('/');
 	} catch (error) {
 		console.log('Senha ou login inválido');
-		
+
 		toast.error('Senha ou login inválidos', {
-			position: "top-center",
+			position: 'top-center',
 			autoClose: 5000,
 			hideProgressBar: false,
 			closeOnClick: true,
 			pauseOnHover: true,
 			draggable: true,
 			progress: undefined,
-			});
+		});
 	} finally {
 		nProgress.done();
 	}
@@ -49,16 +49,24 @@ export function handleLogout(dispatch) {
 	}
 }
 
-export function isAuth(dispatch) {
+export async function isAuth(dispatch) {
 	const token = localStorage.getItem('token');
 
 	if (token) {
 		api.defaults.headers.common['Authorization'] = token;
-		const logado = {
-			type: 'SET_LOGIN',
-			token: token,
-		};
-		dispatch(logado);
+
+		try {
+			const { data } = await api.get('/usuario/get-logged');
+
+			const logado = {
+				type: 'SET_LOGIN',
+				token: token,
+				cargos: data.cargos,
+			};
+			dispatch(logado);
+		} catch (error) {
+			console.log('erro', error);
+		}
 	} else {
 		const logout = {
 			type: 'SET_LOGOUT',

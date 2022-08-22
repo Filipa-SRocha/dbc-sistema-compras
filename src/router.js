@@ -11,9 +11,9 @@ import NewPurchasePage from './pages/purchase/purchasePage/newPurchasePage';
 import User from './pages/user/User';
 import EditPurchasePage from './pages/purchase/editPurchasePage';
 import PurchaseDetails from './pages/purchase/purchaseDetails';
-import Admin from './pages/admin/Admin'
+import Admin from './pages/admin/Admin';
 import 'nprogress/nprogress.css';
-import UserDetailByAdmin from './pages/admin/userDetailByAdmin'
+import UserDetailByAdmin from './pages/admin/userDetailByAdmin';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -49,6 +49,19 @@ const Router = ({ auth, dispatch }) => {
 		return children;
 	};
 
+	const Redirect = ({ children }) => {
+		switch (auth.cargos[0].name) {
+			case 'ROLE_COMPRADOR':
+				return <Navigate to='/comprador' />;
+			case 'ROLE_GESTOR':
+				return <Navigate to='/gestor' />;
+			case 'ROLE_FINANCEIRO':
+				return <Navigate to='/financeiro' />;
+			default:
+				return children;
+		}
+	};
+
 	return (
 		<BrowserRouter>
 			<ToastContainer
@@ -71,7 +84,9 @@ const Router = ({ auth, dispatch }) => {
 					path='/'
 					element={
 						<ProtectedRoute>
-							<Dashboard />
+							<Redirect>
+								<Dashboard />
+							</Redirect>
 						</ProtectedRoute>
 					}
 				/>
@@ -141,7 +156,7 @@ const Router = ({ auth, dispatch }) => {
 							<Admin />
 						</ProtectedRoute>
 					}
-					/>
+				/>
 
 				<Route
 					path='/admin/user-detail'
@@ -150,7 +165,7 @@ const Router = ({ auth, dispatch }) => {
 							<UserDetailByAdmin />
 						</ProtectedRoute>
 					}
-					/>
+				/>
 
 				<Route
 					path='/admin/new-user'
@@ -159,7 +174,7 @@ const Router = ({ auth, dispatch }) => {
 							<SignUpAdmin />
 						</ProtectedRoute>
 					}
-					/>
+				/>
 
 				<Route path='/solicitacao-compra' element={<NewPurchasePage />} />
 				<Route
