@@ -7,6 +7,8 @@ export const Container = styled.div`
 
 export const DashboardContainer = styled.div`
 	width: 100%;
+	height: 100vh;
+	overflow: scroll;
 	& h2 {
 		width: 100%;
 		margin-top: 40px;
