@@ -10,11 +10,11 @@ export async function handleLogin(values, dispatch, navigate) {
 
 		api.defaults.headers.common['Authorization'] = data;
 		const logado = {
-			type: 'SET_LOGIN',
+			type: 'SET_TOKEN_LOGIN',
 			token: data,
 		};
 		dispatch(logado);
-
+		getRole(dispatch);
 		//falta logica de redirecionamento de paginas de acordo com o tipo de usuario
 		navigate('/');
 	} catch (error) {
@@ -31,6 +31,20 @@ export async function handleLogin(values, dispatch, navigate) {
 		});
 	} finally {
 		nProgress.done();
+	}
+}
+
+async function getRole(dispatch) {
+	try {
+		const { data } = await api.get('/usuario/get-logged');
+
+		const logado = {
+			type: 'SET_ROLE',
+			cargos: data.cargos,
+		};
+		dispatch(logado);
+	} catch (error) {
+		console.log('erro', error);
 	}
 }
 

@@ -19,12 +19,23 @@ function authReducer(state = INITIAL_STATE, action) {
 		};
 	}
 
-	if (action.type === 'SET_LOGIN') {
+	if (action.type === 'SET_TOKEN_LOGIN') {
 		return {
 			auth: {
 				token: action.token,
 				isLogged: true,
+				isLoading: true,
+			},
+		};
+	}
+
+	if (action.type === 'SET_ROLE') {
+		return {
+			auth: {
+				...state,
+				isLogged: true,
 				isLoading: false,
+				cargos: action.cargos,
 			},
 		};
 	}
