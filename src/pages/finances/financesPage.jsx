@@ -1,11 +1,8 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import {
-	getPurchases,
-	manageFinancesApproval,
-} from '../../store/actions/financesAction';
+import { getPurchases } from '../../store/actions/financesAction';
 import DashboardPage from '../../components/dashboardPage/dashboardPage';
-import PurchaseList from '../../components/purchaseList/purchaseList';
+import FinancesList from '../../components/financesList/financesList';
 
 const FinancesPage = ({ isLoading, purchasesList, dispatch }) => {
 	useEffect(() => {
@@ -15,7 +12,11 @@ const FinancesPage = ({ isLoading, purchasesList, dispatch }) => {
 
 	return (
 		<DashboardPage title='Aprovação de Compras' page='/'>
-			<PurchaseList purchasesList={purchasesList} />
+			{isLoading ? (
+				<h1>Loading</h1>
+			) : (
+				<FinancesList purchasesList={purchasesList} />
+			)}
 
 			{/* <h1>Teste</h1>
 			{isLoading ? (

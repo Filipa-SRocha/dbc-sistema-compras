@@ -25,7 +25,7 @@ const ManagerPage = ({ isLoading, purchasesList, dispatch }) => {
 				// <PurchaseList
 				// 	purchasesList={purchasesList.map((purchase) => purchase.compraDTO)}
 				// />
-				<ManagerList />
+				<ManagerList purchasesList={purchasesList} />
 			)}
 		</DashboardPage>
 	);
