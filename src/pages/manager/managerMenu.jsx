@@ -1,13 +1,11 @@
 import { manageQuotation } from '../../store/actions/managerActions';
 
-const ManagerMenu = (idCotacao, dispatch) => {
+const ManagerMenu = ({ idCotacao, dispatch }) => {
 	return (
 		<div>
 			<button
 				value='APROVAR'
 				onClick={(e) => {
-					e.preventDefault();
-					e.stopPropagation();
 					manageQuotation(idCotacao, e.target.value, dispatch);
 				}}
 			>
@@ -16,8 +14,6 @@ const ManagerMenu = (idCotacao, dispatch) => {
 			<button
 				value='REPROVAR'
 				onClick={(e) => {
-					e.preventDefault();
-					e.stopPropagation();
 					manageQuotation(idCotacao, e.target.value, dispatch);
 				}}
 			>

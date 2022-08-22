@@ -1,41 +1,54 @@
 import { connect } from 'react-redux';
 import ManagerMenu from '../../pages/manager/managerMenu';
+import {
+	ManagerListContainer,
+	PurchaseContainer,
+	QuotationsContainer,
+} from './managerList.styled';
 
-const ManagerList = ({
-	onlyPurchaseInfo,
-	purchasesList,
-	isLoading,
-	purchasesIds,
-    dispatch
-}) => {
+const ManagerList = ({ purchasesList, isLoading, dispatch }) => {
 	return (
 		<div>
 			{isLoading ? (
 				<h1>Loading</h1>
 			) : (
-				<div>
-					{onlyPurchaseInfo.map((purchase) => (
-						<div>
-							<h1>{purchase.name}</h1>
-							<>
-								{purchasesList
-									.filter(
-										(quote) => quote.compraDTO.idCompra === purchase.idCompra
-									)
-									.map((quotation) => (
-										<div>
-											<h4>{quotation.nome}</h4>
-											{quotation.status === 'COTADO' ? <ManagerMenu idCotatcao={quotation.idCotacao} dispatch={dispatch}/>: <></>}
+				<ManagerListContainer>
+					{purchasesList
+						.filter((purchase) => purchase.status === 'COTADO')
+						.map((purchase) => (
+							<PurchaseContainer key={'compra' + purchase.idCompra}>
+								<h3> {purchase.name}</h3>
+								<p>{purchase.dataCompra}</p>
+								<small>{purchase.descricao}</small>
+								<h4>Cotações</h4>
+								<QuotationsContainer>
+									{purchase.cotacoes.map((cotacao) => (
+										<div key={`cotacao${cotacao.idCotacao}`}>
+											<h5>{cotacao.nome}</h5>
+											<p>Valor Total: {cotacao.valor}</p>
+
+											<h6>Itens</h6>
+											{cotacao.itemValorizadoDTOS.map((item) => (
+												<p>
+													{item.quantidade} x {item.nome} = {item.valorTotal}
+												</p>
+											))}
+											<ManagerMenu
+												idCotacao={cotacao.idCotacao}
+												dispatch={dispatch}
+											/>
 										</div>
 									))}
-							</>
-						</div>
-					))}
-				</div>
+								</QuotationsContainer>
+							</PurchaseContainer>
+						))}
+				</ManagerListContainer>
 			)}
 		</div>
 	);
 };
+
+// {quotation.status === 'COTADO' ? <ManagerMenu idCotacao={quotation.idCotacao} dispatch={dispatch}/>: <></>}
 
 const mapStateToProps = (state) => ({
 	purchasesList: state.managerReducer.purchasesList,
