@@ -23,6 +23,7 @@ import NewQuotation from './pages/quotation/newQuotation';
 import FinancesPage from './pages/finances/financesPage';
 import SignUpAdmin from './pages/admin/SignUpAdmin';
 import AdminDashboard from './pages/admin/adminDashboard';
+import NotFound from './pages/notFound/notFound';
 
 const Router = ({ auth, dispatch }) => {
 	useEffect(() => {
@@ -233,6 +234,8 @@ const Router = ({ auth, dispatch }) => {
 						</LogRoute>
 					}
 				/>
+
+				<Route path='*' element={<NotFound />} />
 			</Routes>
 		</BrowserRouter>
 	);
