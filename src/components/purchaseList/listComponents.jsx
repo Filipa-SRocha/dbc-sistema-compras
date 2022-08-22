@@ -44,17 +44,19 @@ export const ListHeader = () => {
 export const ListItem = ({ cargos, purchase, dispatch }) => {
 	const navigate = useNavigate();
 
+	console.log(purchase)
+
 	const openDetailsPage = () => {
 		navigate(`/details-page`, { state: purchase});
 	};
 
 	return (
 		<PurchaseItem onClick={openDetailsPage}>
-			<span>{purchase.name}</span>
-			<span>{moment(purchase.dataCompra).format('ll')}</span>
-			{purchase.valor ? <span>{purchase.valor}</span> : <span> - </span>}
+			<span>{purchase && purchase.name}</span>
+			<span>{moment(purchase && purchase.dataCompra).format('ll')}</span>
+			{purchase && purchase.valor ? <span>{purchase && purchase.valor}</span> : <span> - </span>}
 			<span> - </span>
-			<span>{purchase.status}</span>
+			<span>{purchase && purchase.status}</span>
 
 			{/* Logica a depender do cargo */}
 			{cargos[0].name === 'ROLE_COLABORADOR' && purchase.status === 'ABERTO' ? (

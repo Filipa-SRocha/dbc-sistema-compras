@@ -21,7 +21,7 @@ import AsideMenu from '../../components/asideMenu/asideMenu';
 import { Container, DashboardContainer } from '../dashboard/dashboard.styled';
 import Header from '../../components/header/header';
 
-const PurchaseDetails = ({ isLoading, dispatch, purchaseToShow }) => {
+const PurchaseDetails = ({ isLoading, cargos, dispatch, purchaseToShow }) => {
 	const { state } = useLocation();
 
 	// console.log(state.cotacoes.length)
@@ -32,7 +32,7 @@ const PurchaseDetails = ({ isLoading, dispatch, purchaseToShow }) => {
 		}
 	}, []);
 
-	console.log(purchaseToShow);
+	console.log(cargos);
 
 	return (
 		<div>
@@ -68,14 +68,14 @@ const PurchaseDetails = ({ isLoading, dispatch, purchaseToShow }) => {
 								</div>
 							</ItemsContainer>
 
-							{(purchaseToShow.status === 'ABERTO' || purchaseToShow.status === 'EM_COTACAO')  && <FormContainer>
+							{((purchaseToShow.status === 'ABERTO' || purchaseToShow.status === 'EM_COTACAO') && cargos.some(item => item.name === 'ROLE_COMPRADOR'))  && <FormContainer>
 								<h4>Nova Cotação</h4>
 								{purchaseToShow.idCompra && <QuotationForm purchaseToShow={purchaseToShow} />}
 							</FormContainer>}
-							<CotacoesContainer>
+							{(cargos.some(item => item.name === 'ROLE_COMPRADOR')) && <CotacoesContainer>
 								<h4>Todas as cotações</h4>
-								{state.cotacoes.length > 0 ? <QuotationList cotacoes={state.cotacoes} /> : <p>Não há cotações ainda</p>}
-							</CotacoesContainer>
+								{state.cotacoes && state.cotacoes.length > 0 ? <QuotationList cotacoes={state.cotacoes} /> : <p>Não há cotações ainda</p>}
+							</CotacoesContainer>}
 						</DetailsContainer>
 					</DashboardContainer>
 					
@@ -86,6 +86,7 @@ const PurchaseDetails = ({ isLoading, dispatch, purchaseToShow }) => {
 
 const mapStateToProps = (state) => ({
 	purchaseToShow: state.purchaseReducer.purchaseToShow,
+	cargos: state.authReducer.auth.cargos
 });
 
 export default connect(mapStateToProps)(PurchaseDetails);

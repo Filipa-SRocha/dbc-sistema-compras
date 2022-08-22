@@ -1,6 +1,7 @@
 import { api } from '../../api';
 import { convertToDateObject } from '../../utils/masks';
 import nProgress from 'nprogress';
+import { toast } from 'react-toastify';
 
 export async function handleNewPurchase(values, navigate, resetForm) {
 	try {
@@ -14,6 +15,15 @@ export async function handleNewPurchase(values, navigate, resetForm) {
 		await api.post('/colaborador/nova-compra', newPurchase);
 		navigate('/');
 		resetForm();
+		toast.success('Compra solicitada com sucesso!', {
+			position: "top-center",
+			autoClose: 5000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+		});
 	} catch (error) {
 		console.log('Não foi possível concluir a sua solicitação', error);
 	} finally {
@@ -61,6 +71,16 @@ export async function deletePurchase(id, dispatch) {
 		nProgress.start()
 		await api.delete(`/colaborador/compra/${id}`);
 		getAllPurchases(dispatch);
+
+		toast.success('Compra deletada com sucesso!', {
+			position: "top-center",
+			autoClose: 5000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+		});
 	} catch (error) {
 		console.log(
 			'Não foi possível eliminar esta solicitação. Erro no servidor',
@@ -82,6 +102,16 @@ export async function editPurchase(idCompra, dispatch, navigate) {
 			purchase: data[0],
 		};
 		dispatch(edit);
+
+		toast.success('Compra editada com sucesso!', {
+			position: "top-center",
+			autoClose: 5000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+		});
 	} catch (error) {
 		changeLoadingStatus(false, dispatch);
 		console.log('Não foi possível acessar essa solicitação!', error);
@@ -108,6 +138,16 @@ export async function handleEditPurchase(
 		dispatch(edit);
 		navigate('/');
 		resetForm();
+
+		toast.success('Compra editada com sucesso!', {
+			position: "top-center",
+			autoClose: 5000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+		});
 	} catch (error) {
 		console.log('Não foi possível editar esta solicitação!', error);
 	}

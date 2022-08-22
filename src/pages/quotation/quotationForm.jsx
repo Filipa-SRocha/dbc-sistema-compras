@@ -58,7 +58,7 @@ const QuotationForm = ({ purchaseToShow }) => {
 			.min(2, 'Nome demasiado curto.'),
 	});
 
-	console.log('Formik', purchaseToShow);
+	// console.log('Formik', purchaseToShow);
 
 	return (
 		<Formik
