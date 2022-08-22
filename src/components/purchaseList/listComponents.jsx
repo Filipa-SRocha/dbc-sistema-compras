@@ -45,7 +45,7 @@ export const ListItem = ({ cargos, purchase, dispatch }) => {
 	const navigate = useNavigate();
 
 	const openDetailsPage = () => {
-		navigate(`/details-page`, { state: purchase});
+		navigate(`/details-page`, { state: purchase });
 	};
 
 	return (
@@ -67,12 +67,6 @@ export const ListItem = ({ cargos, purchase, dispatch }) => {
 			(cargos[0].name === 'ROLE_COMPRADOR' &&
 				purchase.status === 'EM_COTACAO') ? (
 				<BuyerMenu idCompra={purchase.idCompra} compra={purchase} />
-			) : (
-				<></>
-			)}
-
-			{cargos[0].name === 'ROLE_GESTOR' && purchase.status === 'COTADO' ? (
-				<ManagerMenu idCompra={purchase.idCompra} dispatch={dispatch} />
 			) : (
 				<></>
 			)}

@@ -1,9 +1,12 @@
 import { connect } from 'react-redux';
-import ManagerMenu from '../../pages/manager/managerMenu';
+import { CancelQuotation, ManagerMenu } from '../../pages/manager/managerMenu';
 import {
+	InfoContainer,
+	ListItems,
 	ManagerListContainer,
 	PurchaseContainer,
 	QuotationsContainer,
+	ListItemsHeader,
 } from './managerList.styled';
 import { convertToDateObject } from '../../utils/masks';
 import moment from 'moment';
@@ -21,28 +24,43 @@ const ManagerList = ({ purchasesList, cargo, isLoading, dispatch }) => {
 					.filter((purchase) => purchase.status === 'COTADO')
 					.map((purchase) => (
 						<PurchaseContainer key={'compra' + purchase.idCompra}>
-							<div>
-								<h3> {purchase.name}</h3>
-								<p>
-									{moment(convertToDateObject(purchase.dataCompra)).format(
-										'll'
-									)}
-								</p>
+							<InfoContainer>
+								<div>
+									<h3> {purchase.name}</h3>
+									<p>
+										{moment(convertToDateObject(purchase.dataCompra)).format(
+											'll'
+										)}
+									</p>
+									<CancelQuotation
+										idCotacao={purchase.cotacoes[0].idCotacao}
+										dispatch={dispatch}
+									/>
+								</div>
 								<small>{purchase.descricao}</small>
-							</div>
+							</InfoContainer>
 
 							<h4>Cotações</h4>
 							<QuotationsContainer>
 								{purchase.cotacoes.map((cotacao) => (
 									<div key={`cotacao${cotacao.idCotacao}`}>
 										<h5>{cotacao.nome}</h5>
-										<p>Valor Total: {cotacao.valor}</p>
-										<h6>Itens</h6>
+
+										<ListItemsHeader>
+											<p>Qtd</p>
+											<p>Item</p>
+											<p>Valor</p>
+										</ListItemsHeader>
+
 										{cotacao.itemValorizadoDTOS.map((item) => (
-											<p>
-												{item.quantidade} x {item.nome} = {item.valorTotal}
-											</p>
+											<ListItems>
+												<p>{item.quantidade}</p>
+												<p>{item.nome}</p>
+												<p>{item.valorTotal}</p>
+											</ListItems>
 										))}
+
+										<p>Valor Total: {cotacao.valor}</p>
 										{cargo === 'ROLE_GESTOR' ? (
 											<ManagerMenu
 												idCotacao={cotacao.idCotacao}

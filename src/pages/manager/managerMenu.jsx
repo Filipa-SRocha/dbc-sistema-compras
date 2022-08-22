@@ -1,25 +1,27 @@
 import { manageQuotation } from '../../store/actions/managerActions';
 
-const ManagerMenu = ({ idCotacao, dispatch }) => {
+export const ManagerMenu = ({ idCotacao, dispatch }) => {
 	return (
-		<div>
-			<button
-				value='APROVAR'
-				onClick={(e) => {
-					manageQuotation(idCotacao, e.target.value, dispatch);
-				}}
-			>
-				Aprovar
-			</button>
-			<button
-				value='REPROVAR'
-				onClick={(e) => {
-					manageQuotation(idCotacao, e.target.value, dispatch);
-				}}
-			>
-				Reprovar
-			</button>
-		</div>
+		<button
+			value='APROVAR'
+			onClick={(e) => {
+				manageQuotation(idCotacao, e.target.value, dispatch);
+			}}
+		>
+			Aprovar
+		</button>
 	);
 };
-export default ManagerMenu;
+
+export const CancelQuotation = ({ idCotacao, dispatch }) => {
+	return (
+		<button
+			value='REPROVAR'
+			onClick={(e) => {
+				manageQuotation(idCotacao, e.target.value, dispatch);
+			}}
+		>
+			Reprovar
+		</button>
+	);
+};
