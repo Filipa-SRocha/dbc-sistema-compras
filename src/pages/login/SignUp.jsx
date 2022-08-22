@@ -17,8 +17,6 @@ const SignUp = ({ handleSignUp, dispatch }) => {
 	const navigate = useNavigate();
 
 	YupPassword(Yup);
-	
-	const [testeImagem, setTesteImagem] = useState(null);
 
 	const SignupSchema = Yup.object().shape({
 		nome: Yup.string()
@@ -48,7 +46,6 @@ const SignUp = ({ handleSignUp, dispatch }) => {
 	});
 
 	const getFiles = (files, setFieldValue) => {
-		setTesteImagem({ ...files });
 		const imgCode = files.base64.split(',');
 		const imgBase64 = imgCode[1];
 		setFieldValue('foto', imgBase64);
@@ -130,7 +127,6 @@ const SignUp = ({ handleSignUp, dispatch }) => {
 								onDone={(e) => getFiles(e, setFieldValue)}
 								className='fileBase64'
 							/>
-							{testeImagem ? <img src={testeImagem.base64} /> : null}
 						</div>
 
 						<PrimaryButton text='Cadastrar' id='signup-button' type='submit' />
