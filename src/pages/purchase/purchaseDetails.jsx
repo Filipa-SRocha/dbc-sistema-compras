@@ -21,13 +21,15 @@ import QuotationList from '../quotation/quotationList';
 const PurchaseDetails = ({ isLoading, dispatch, purchaseToShow }) => {
 	const { state } = useLocation();
 
-	console.log(state.cotacoes.length)
+	// console.log(state.cotacoes.length)
 
-	// useEffect(() => {
-	// 	if (idCompra) {
-	// 		setPurchaseToShow(idCompra, dispatch);
-	// 	}
-	// }, []);
+	useEffect(() => {
+		if (state.idCompra) {
+			setPurchaseToShow(state.idCompra, dispatch);
+		}
+	}, []);
+
+	console.log(purchaseToShow)
 
 	return (
 		<DashboardPage title='Solicitação de Compra' page='#'>
@@ -38,10 +40,10 @@ const PurchaseDetails = ({ isLoading, dispatch, purchaseToShow }) => {
 					</InfoContainer>
 					<ItemsContainer>
 						<h4>Itens</h4>
-						{state.cotacoes.length > 0 ? (
-							state.cotacoes[0].itemValorizadoDTOS.map((cotacao) => (
-								<p key={cotacao.idItem}>
-									{cotacao.quantidade} {cotacao.nome}
+						{purchaseToShow.itens && purchaseToShow.itens.length > 0 ? (
+							purchaseToShow.itens.map((item) => (
+								<p key={item.idItem}>
+									{item.quantidade} - {item.nome}
 								</p>
 							))
 						) : (
@@ -51,7 +53,9 @@ const PurchaseDetails = ({ isLoading, dispatch, purchaseToShow }) => {
 
 					<FormContainer>
 						<h4>Nova Cotação</h4>
-						<QuotationForm purchaseToShow={state} />
+						{purchaseToShow.idCompra && <QuotationForm purchaseToShow={purchaseToShow} />}
+						{/* {purchaseToShow.itens.length > 0 && <h4>Nova Cotação</h4>} */}
+						{/* {purchaseToShow.itens.length > 0 && <QuotationForm purchaseToShow={purchaseToShow} />} */}
 					</FormContainer>
 					<CotacoesContainer>
 						<h4>Todas as cotações</h4>
