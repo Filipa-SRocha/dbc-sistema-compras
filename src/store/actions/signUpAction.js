@@ -3,15 +3,16 @@ import { toast } from 'react-toastify';
 import nProgress from 'nprogress';
 
 export const handleSignUp = async (values, dispatch, navigate) => {
+  const newUser = {
+    nome: values.nome,
+    email: values.email,
+    senha: values.senha,
+    foto: values.foto
+  }
+
+  console.log(newUser)
+
   try {
-
-    const newUser = {
-      nome: values.nome,
-      email: values.email,
-      senha: values.senha,
-      foto: values.foto
-    }
-
     nProgress.start();
     const { data } = await api.post("/usuario/create-user", newUser);
     localStorage.setItem('token', data.token);
@@ -19,6 +20,7 @@ export const handleSignUp = async (values, dispatch, navigate) => {
 
     dispatch({type: "SET_LOGIN", token: data.token});
     // alert("Usuário criado!");
+    console.log(data);
 
     toast.success('Cadastro realizado com sucesso!', {
       position: "top-center",
