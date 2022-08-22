@@ -13,17 +13,19 @@ import { useNavigate } from 'react-router-dom';
 const QuotationForm = ({ purchaseToShow }) => {
 	const navigate = useNavigate();
 
-	console.log(purchaseToShow.itens[0])
+	console.log(purchaseToShow.itens[0]);
 
 	const handleSubmit = (values) => {
-
-		console.log(values)
+		console.log(values);
 
 		const newItems = values.items.map((item, index) => {
-			return { idItem: purchaseToShow.itens[index].idItem, valorDoItem: Number(item) };
+			return {
+				idItem: purchaseToShow.itens[index].idItem,
+				valorDoItem: Number(item),
+			};
 		});
 
-		console.log(newItems)
+		console.log(newItems);
 
 		const newValues = {
 			nome: values.nome,
@@ -46,14 +48,7 @@ const QuotationForm = ({ purchaseToShow }) => {
 	return (
 		<Formik
 			initialValues={{
-<<<<<<< HEAD
-				items:
-					purchaseToShow.cotacoes.length > 0
-						? [...purchaseToShow.cotacoes[0].itemValorizadoDTOS]
-						: [],
-=======
 				items: purchaseToShow.itens.map(() => ''),
->>>>>>> d6ba23caf7b361f96ce3f21ac8a202168116411a
 				nome: '',
 			}}
 			validationSchema={QuoteSchema}
@@ -80,9 +75,7 @@ const QuotationForm = ({ purchaseToShow }) => {
 								<>
 									{purchaseToShow.itens.map((item, index) => (
 										<div className='itens' key={index}>
-											<label htmlFor={`items.${index}`}>
-												{item.nome}
-											</label>
+											<label htmlFor={`items.${index}`}>{item.nome}</label>
 											<Field
 												id={`items.${index}`}
 												name={`items.${index}`}
