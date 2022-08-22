@@ -5,7 +5,6 @@ export async function getPurchases(dispatch) {
 		changeLoadingStatus(true, dispatch);
 
 		const { data } = await api.get('/financeiro/listar-compras-com-cotacoes');
-		console.log(data);
 		const newList = {
 			type: 'GET_FINANCES_PURCHASES',
 			list: data,
@@ -37,6 +36,7 @@ export async function manageFinancesApproval(idCompra, value, dispatch) {
 		await api.put(
 			`/financeiro/aprovar-reprovar-compra/${idCompra}?aprovacao=${value}`
 		);
+		getPurchases(dispatch);
 	} catch (error) {
 		console.log('Erro na aprovação de cotação', error);
 	}

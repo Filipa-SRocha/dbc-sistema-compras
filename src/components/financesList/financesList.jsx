@@ -6,7 +6,7 @@ import {
 } from '../managerList/managerList.styled';
 import FinancesMenu from '../../pages/finances/financesMenu';
 
-const FinancesList = ({ purchasesList, cargo, dispatch }) => {
+const FinancesList = ({ purchasesList, dispatch }) => {
 	if (
 		purchasesList.filter((purchase) => purchase.status === 'APROVADO_GESTOR')
 			.length <= 0
@@ -57,6 +57,7 @@ const FinancesList = ({ purchasesList, cargo, dispatch }) => {
 };
 const mapStateToProps = (state) => ({
 	cargo: state.userReducer.user.cargos[0].name,
+	purchasesList: state.financesReducer.purchasesList,
 });
 
 export default connect(mapStateToProps)(FinancesList);
