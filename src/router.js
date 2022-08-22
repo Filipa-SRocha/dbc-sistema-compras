@@ -62,6 +62,8 @@ const Router = ({ auth, dispatch }) => {
 				return <Navigate to='/gestor' />;
 			case 'ROLE_FINANCEIRO':
 				return <Navigate to='/financeiro' />;
+			case 'ROLE_COLABORADOR':
+				return <Navigate to='/colaborador' />;
 			default:
 				return children;
 		}
@@ -92,6 +94,14 @@ const Router = ({ auth, dispatch }) => {
 							<Redirect>
 								<Dashboard />
 							</Redirect>
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					path='/colaborador'
+					element={
+						<ProtectedRoute>
+							<Dashboard />
 						</ProtectedRoute>
 					}
 				/>
