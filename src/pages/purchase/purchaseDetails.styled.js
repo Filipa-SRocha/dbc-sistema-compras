@@ -1,19 +1,13 @@
 import styled from 'styled-components';
 import { primaryColor } from '../../consts';
 
-export const Container = styled.section`
+export const DetailsContainer = styled.section`
 	/* background-color: red; */
 	width: 100%;
 	padding: 40px;
-	display: grid;
-	grid-template-columns: 2fr 2fr;
-	grid-template-rows: auto;
-	grid-template-areas:
-		'title items'
-		'quote quote';
-
-	justify-items: left;
-	align-content: left;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 
 	h4 {
 		color: gray;
@@ -25,18 +19,17 @@ export const Container = styled.section`
 	label {
 		margin-left: 10px;
 		margin-bottom: 10px;
-		font-size: 18px;
 	}
 `;
 
 export const InfoContainer = styled.div`
-	grid-area: title;
-	> h3 {
-		font-size: 30px;
-		color: ${primaryColor};
-		text-align: center;
-	}
-
+	width: 600px;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: 20px;
+	border: solid 2px gray;
 	> p {
 		padding-left: 10px;
 		color: gray;
@@ -44,12 +37,44 @@ export const InfoContainer = styled.div`
 `;
 
 export const ItemsContainer = styled.div`
-	grid-area: items;
+	
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 20px;
+	max-width: 800px;
+	flex-wrap: wrap;
+
+	.itensListados {
+		display: flex;
+		gap: 10px;
+	}
+
+	.itemListado {
+		display: grid;
+		width: 100%;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 20px;
+		
+		p, strong {
+			justify-self: center;
+		}
+	}
+	
+	.item {
+		padding: 20px;
+		border: solid 1px gray;
+		border-radius: 20px;
+	}
 `;
 
 export const FormContainer = styled.div`
-	width: 100%;
+	width: 600px;
 	/* background-color: red; */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 20px;
 
 	div.itens {
 		margin-bottom: 10px;
@@ -61,8 +86,11 @@ export const FormContainer = styled.div`
 `;
 
 export const CotacoesContainer = styled.div`
-	grid-area: quote;
-	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 20px;
+
 	h5 {
 		font-size: 14px;
 		text-transform: uppercase;

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import DashboardPage from '../../components/dashboardPage/dashboardPage';
 
 import {
-	Container,
+	DetailsContainer,
 	InfoContainer,
 	ItemsContainer,
 	FormContainer,
@@ -17,6 +17,9 @@ import {
 } from '../../store/actions/purchaseActions';
 import QuotationForm from '../quotation/quotationForm';
 import QuotationList from '../quotation/quotationList';
+import AsideMenu from '../../components/asideMenu/asideMenu';
+import { Container, DashboardContainer } from '../dashboard/dashboard.styled';
+import Header from '../../components/header/header';
 
 const PurchaseDetails = ({ isLoading, dispatch, purchaseToShow }) => {
 	const { state } = useLocation();
@@ -29,40 +32,55 @@ const PurchaseDetails = ({ isLoading, dispatch, purchaseToShow }) => {
 		}
 	}, []);
 
-	console.log(purchaseToShow)
+	console.log(purchaseToShow);
 
 	return (
-		<DashboardPage title='Solicitação de Compra' page='#'>
+		<div>
 				<Container>
-					<InfoContainer>
-						<h3>Nome: {state.name}</h3>
-						<p>Descrição: {state.descricao}</p>
-					</InfoContainer>
-					<ItemsContainer>
-						<h4>Itens</h4>
-						{purchaseToShow.itens && purchaseToShow.itens.length > 0 ? (
-							purchaseToShow.itens.map((item) => (
-								<p key={item.idItem}>
-									{item.quantidade} - {item.nome}
-								</p>
-							))
-						) : (
-							<p>Não existem itens cadastrados!</p>
-						)}
-					</ItemsContainer>
+					<AsideMenu />
+					<DashboardContainer>
+						<Header />
+						<DetailsContainer>
+							<InfoContainer>
+								<p><strong>Nome:</strong> {state.name}</p>
+								<p><strong>Descrição:</strong> {state.descricao}</p>
+							</InfoContainer>
+							<ItemsContainer>
+								<h4>Itens</h4>
+								
+								<div className="itensListados">
+									{purchaseToShow.itens && purchaseToShow.itens.length > 0 ? (
+										purchaseToShow.itens.map((item) => (
+											<div className="item" key={item.idItem}>
+													<div className="itemListado">
+														<strong>Quantidade</strong>
+														<strong>Item</strong>
+													</div>
+												<div className='itemListado' >
+													<p>{item.quantidade}</p>
+													<p>{item.nome}</p>
+												</div>
+											</div>
+										))
+									) : (
+										<p>Não existem itens cadastrados!</p>
+									)}
+								</div>
+							</ItemsContainer>
 
-					<FormContainer>
-						<h4>Nova Cotação</h4>
-						{purchaseToShow.idCompra && <QuotationForm purchaseToShow={purchaseToShow} />}
-						{/* {purchaseToShow.itens.length > 0 && <h4>Nova Cotação</h4>} */}
-						{/* {purchaseToShow.itens.length > 0 && <QuotationForm purchaseToShow={purchaseToShow} />} */}
-					</FormContainer>
-					<CotacoesContainer>
-						<h4>Todas as cotações</h4>
-						{state.cotacoes.length > 0 ? <QuotationList cotacoes={state.cotacoes} /> : <p>Não há cotações ainda</p>}
-					</CotacoesContainer>
+							{(purchaseToShow.status === 'ABERTO' || purchaseToShow.status === 'EM_COTACAO')  && <FormContainer>
+								<h4>Nova Cotação</h4>
+								{purchaseToShow.idCompra && <QuotationForm purchaseToShow={purchaseToShow} />}
+							</FormContainer>}
+							<CotacoesContainer>
+								<h4>Todas as cotações</h4>
+								{state.cotacoes.length > 0 ? <QuotationList cotacoes={state.cotacoes} /> : <p>Não há cotações ainda</p>}
+							</CotacoesContainer>
+						</DetailsContainer>
+					</DashboardContainer>
+					
 				</Container>
-		</DashboardPage>
+		</div>
 	);
 };
 

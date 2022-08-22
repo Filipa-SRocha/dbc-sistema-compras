@@ -9,19 +9,28 @@ const QuotationList = ({ cotacoes, idCompra, quotationsList, isLoading, dispatch
 	// 	getPurchaseQuotations(idCompra, dispatch);
 	// }, []);
 
+	const anexoPrefixo = 'data:application/pdf;base64,';
+
 	console.log(cotacoes)
 
 	return (
 		<QuotationsContainer>
 			{cotacoes.map((cotacao) => (
 				<QuotationContainer key={cotacao.idCotacao}>
-					<h5>{cotacao.nome}</h5>
+					<div className="title">
+						<p><strong>Nome da cotação: </strong>{cotacao.nome}</p>
+					</div>
+					<div className="nomeEQtd">
+						<strong>Item</strong>
+						<strong>{`Valor Unitário (R$)`}</strong>
+					</div>
 						{cotacao.itemValorizadoDTOS.map((item) => (
-							<p key={item.idItem}>
-								{}
-								{item.nome} {item.valorUnitario}
-							</p>
+							<div className='nomeEQtd' key={item.idItem}>
+								<p>{item.nome}</p>
+								<p>{item.valorUnitario}</p>
+							</div>
 						))}
+				{/* {cotacao.anexo.length > 100 && <a href={anexoPrefixo+cotacao.anexo} download="Anexo.pdf">Anexo da cotação</a>} */}
 				</QuotationContainer>
 			))}
 		</QuotationsContainer>
