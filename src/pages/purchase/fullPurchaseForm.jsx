@@ -22,7 +22,7 @@ const FullPurchaseForm = ({
 }) => {
 	const navigate = useNavigate();
 
-	const handleSubmit = (values, resetForm) => {
+	const handleSubmit = (values, { resetForm }) => {
 		if (isEditMode) {
 			const newValues = {
 				name: values.name,
@@ -37,6 +37,8 @@ const FullPurchaseForm = ({
 				navigate,
 				resetForm
 			);
+
+			console.log(resetForm)
 		} else {
 			handleNewPurchase(values, navigate, resetForm);
 		}

@@ -26,7 +26,7 @@ const AsideMenu = ({ nowActive, user, dispatch }) => {
 					</Link>
 
 					<ul>
-						<li className={active === '/' ? 'navItem active' : 'navItem'}>
+						<li id='homepage' className={active === '/' ? 'navItem active' : 'navItem'}>
 							<button
 								onClick={() => {
 									setActive('/');
@@ -38,6 +38,7 @@ const AsideMenu = ({ nowActive, user, dispatch }) => {
 						</li>
 
 						<li
+							id='solicitacao-compra'
 							className={
 								active === '/solicitacao-compra' ? 'navItem active' : 'navItem'
 							}

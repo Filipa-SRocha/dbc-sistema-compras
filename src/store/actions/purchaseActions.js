@@ -103,15 +103,6 @@ export async function editPurchase(idCompra, dispatch, navigate) {
 		};
 		dispatch(edit);
 
-		toast.success('Compra editada com sucesso!', {
-			position: "top-center",
-			autoClose: 5000,
-			hideProgressBar: false,
-			closeOnClick: true,
-			pauseOnHover: true,
-			draggable: true,
-			progress: undefined,
-		});
 	} catch (error) {
 		changeLoadingStatus(false, dispatch);
 		console.log('Não foi possível acessar essa solicitação!', error);
@@ -130,6 +121,8 @@ export async function handleEditPurchase(
 ) {
 	try {
 		await api.put(`/colaborador/compra/novos-itens/${idCompra}`, values);
+		
+		console.log('cheguei')
 
 		const edit = {
 			type: 'FINALIZE_EDIT',
