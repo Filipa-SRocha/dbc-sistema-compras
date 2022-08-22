@@ -22,6 +22,7 @@ import BuyerDashboard from './pages/buyer/buyerDashboard';
 import NewQuotation from './pages/quotation/newQuotation';
 import FinancesPage from './pages/finances/financesPage';
 import SignUpAdmin from './pages/admin/SignUpAdmin';
+import AdminDashboard from './pages/admin/adminDashboard';
 
 const Router = ({ auth, dispatch }) => {
 	useEffect(() => {
@@ -50,6 +51,10 @@ const Router = ({ auth, dispatch }) => {
 	};
 
 	const Redirect = ({ children }) => {
+		if (auth.cargos.length > 1) {
+			return <Navigate to='/admin/dashboard' />;
+		}
+
 		switch (auth.cargos[0].name) {
 			case 'ROLE_COMPRADOR':
 				return <Navigate to='/comprador' />;
@@ -154,6 +159,14 @@ const Router = ({ auth, dispatch }) => {
 					element={
 						<ProtectedRoute>
 							<Admin />
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					path='/admin/dashboard'
+					element={
+						<ProtectedRoute>
+							<AdminDashboard />
 						</ProtectedRoute>
 					}
 				/>

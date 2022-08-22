@@ -34,10 +34,15 @@ const QuotationForm = ({ purchaseToShow }) => {
 			.min(2, 'Nome demasiado curto.'),
 	});
 
+	console.log('Formik', purchaseToShow);
+
 	return (
 		<Formik
 			initialValues={{
-				items: purchaseToShow.cotacoes.length > 0 ? [...purchaseToShow.cotacoes[0].itemValorizadoDTOS] : [],
+				items:
+					purchaseToShow.cotacoes.length > 0
+						? [...purchaseToShow.cotacoes[0].itemValorizadoDTOS]
+						: [],
 				nome: '',
 			}}
 			validationSchema={QuoteSchema}

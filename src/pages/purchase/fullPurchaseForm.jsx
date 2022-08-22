@@ -113,10 +113,11 @@ const FullPurchaseForm = ({
 												<div>
 													<label htmlFor=''>Nome</label>
 													<Field name={`items[${index}].nome`} />
-													{/* <Errors>{errors.items[index].nome}</Errors> */}
-													{/* {errors.items[index] &&
-													typeof errors.items[index].nome === 'string' ? (
-														<div>{errors.items[index].nome}</div>
+													{/* {errors.items &&
+													errors.items.length > 0 &&
+													errors.items[index].nome &&
+													touched.items[index].nome ? (
+														<Errors>{errors.items[index].nome}</Errors>
 													) : null} */}
 												</div>
 												<div>
