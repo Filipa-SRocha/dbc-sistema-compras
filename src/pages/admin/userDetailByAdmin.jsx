@@ -1,11 +1,23 @@
-import DashboardPage from "../../components/dashboardPage/dashboardPage"
-import UserEditRole from "./userEditRole"
+import DashboardPage from "../../components/dashboardPage/dashboardPage";
+import UserEditRole from "./userEditRole";
+import { Navigate } from "react-router-dom";
+import { connect } from 'react-redux';
 
-const UserDetailByAdmin = () => {
+const UserDetailByAdmin = ({ user }) => {
+  
+  if(!user.isAdmin) {
+    return <Navigate to='/' />;
+  }
+  
   return (
     <>
-      <DashboardPage title="Editar cargo" page={'/admin/user-detail'} children={<UserEditRole />} />
+      <DashboardPage title="Informações do usuário" page={'/admin/user-detail'} children={<UserEditRole />} />
     </>
   )
 }
-export default UserDetailByAdmin
+
+const mapStateToProps = (state) => ({
+  user: state.userReducer.user,
+})
+
+export default connect(mapStateToProps)(UserDetailByAdmin)

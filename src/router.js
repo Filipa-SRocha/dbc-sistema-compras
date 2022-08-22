@@ -21,6 +21,7 @@ import ManagerPage from './pages/manager/managerPage';
 import BuyerDashboard from './pages/buyer/buyerDashboard';
 import NewQuotation from './pages/quotation/newQuotation';
 import FinancesPage from './pages/finances/financesPage';
+import SignUpAdmin from './pages/admin/SignUpAdmin';
 
 const Router = ({ auth, dispatch }) => {
 	useEffect(() => {
@@ -150,6 +151,16 @@ const Router = ({ auth, dispatch }) => {
 						</ProtectedRoute>
 					}
 					/>
+
+				<Route
+					path='/admin/new-user'
+					element={
+						<ProtectedRoute>
+							<SignUpAdmin />
+						</ProtectedRoute>
+					}
+					/>
+
 				<Route path='/solicitacao-compra' element={<NewPurchasePage />} />
 				<Route
 					path='/editar-compra/:idCompra'

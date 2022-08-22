@@ -9,10 +9,10 @@ import { connect } from 'react-redux';
 const menu = ({dispatch}) => {
   return (
     <MenuItemContainer>
-      <Link to="/user" className="menuItem"><AiOutlineUser />Perfil</Link>
-      <Link to="/user/change-info" className="menuItem"><FiEdit />Editar perfil</Link>
-      <Link to="/user/change-password" className="menuItem"><RiLockPasswordFill />Mudar senha</Link>
-      <button className="menuItem" onClick={() => {handleLogout(dispatch)}}><RiLogoutBoxLine />Sair</button>
+      <Link to="/user" className="menuItem" id='menu-link-perfil'><AiOutlineUser />Perfil</Link>
+      <Link to="/user/change-info" className="menuItem" id='menu-link-editar-perfil'><FiEdit />Editar perfil</Link>
+      <Link to="/user/change-password" className="menuItem" id='menu-link-mudar-senha'><RiLockPasswordFill />Mudar senha</Link>
+      <button className="menuItem" id='menu-link-sair' onClick={() => {handleLogout(dispatch)}}><RiLogoutBoxLine />Sair</button>
     </MenuItemContainer>
   )
 }
