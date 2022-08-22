@@ -12,7 +12,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { DashboardMenu } from '../../pages/dashboard/dashboardMenu';
 import BuyerMenu from '../../pages/buyer/buyerMenu';
-import ManagerMenu from '../../pages/manager/managerMenu';
+import { ManagerMenu } from '../../pages/manager/managerMenu';
 
 export const ListHeader = () => {
 	return (
@@ -50,23 +50,29 @@ export const ListItem = ({ cargos, purchase, dispatch }) => {
 
 	return (
 		<PurchaseItem onClick={openDetailsPage}>
-			<span>{purchase.name}</span>
-			<span>{moment(purchase.dataCompra).format('ll')}</span>
-			{purchase.valor ? <span>{purchase.valor}</span> : <span> - </span>}
+			<span>{purchase && purchase.name}</span>
+			<span>{moment(purchase && purchase.dataCompra).format('ll')}</span>
+			{purchase && purchase.valor ? <span>{purchase && purchase.valor}</span> : <span> - </span>}
 			<span> - </span>
-			<span>{purchase.status}</span>
+			<span>{purchase && purchase.status}</span>
 
 			{/* Logica a depender do cargo */}
-			{cargos[0].name === 'ROLE_COLABORADOR' && purchase.status === 'ABERTO' ? (
+			{cargos[0]?.name === 'ROLE_COLABORADOR' && purchase.status === 'ABERTO' ? (
 				<DashboardMenu idCompra={purchase.idCompra} dispatch={dispatch} />
 			) : (
 				<></>
 			)}
 
-			{(cargos[0].name === 'ROLE_COMPRADOR' && purchase.status === 'ABERTO') ||
-			(cargos[0].name === 'ROLE_COMPRADOR' &&
+			{(cargos[0]?.name === 'ROLE_COMPRADOR' && purchase.status === 'ABERTO') ||
+			(cargos[0]?.name === 'ROLE_COMPRADOR' &&
 				purchase.status === 'EM_COTACAO') ? (
 				<BuyerMenu idCompra={purchase.idCompra} compra={purchase} />
+			) : (
+				<></>
+			)}
+
+			{cargos[0]?.name === 'ROLE_GESTOR' && purchase.status === 'COTADO' ? (
+				<ManagerMenu idCompra={purchase.idCompra} dispatch={dispatch} />
 			) : (
 				<></>
 			)}

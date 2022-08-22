@@ -15,6 +15,8 @@ const Dashboard = ({ isLoading, purchasesList, dispatch }) => {
 		updateList();
 	}, []);
 
+	console.log(purchasesList)
+
 	return (
 		<div>
 			<Container>
