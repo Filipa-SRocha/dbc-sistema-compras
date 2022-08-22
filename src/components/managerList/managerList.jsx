@@ -8,6 +8,11 @@ import {
 } from './managerList.styled';
 
 const ManagerList = ({ purchasesList, cargo, isLoading, dispatch }) => {
+	if (
+		purchasesList.filter((purchase) => purchase.status === 'COTADO').length <= 0
+	) {
+		return <h1>Sem Cotações para aprovar!</h1>;
+	}
 	return (
 		<div>
 			<ManagerListContainer>
