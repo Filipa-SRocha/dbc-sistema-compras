@@ -1,8 +1,10 @@
 import { api } from '../../api';
 import { convertToDateObject } from '../../utils/masks';
+import nProgress from 'nprogress';
 
 export async function handleNewPurchase(values, navigate, resetForm) {
 	try {
+		nProgress.start();
 		const newPurchase = {
 			name: values.name,
 			descricao: values.descricao,
@@ -14,11 +16,14 @@ export async function handleNewPurchase(values, navigate, resetForm) {
 		resetForm();
 	} catch (error) {
 		console.log('Não foi possível concluir a sua solicitação', error);
+	} finally {
+		nProgress.done();
 	}
 }
 
 export async function getAllPurchases(dispatch) {
 	try {
+		nProgress.start();
 		changeLoadingStatus(true, dispatch);
 		const { data } = await api.get('/colaborador/compras');
 
@@ -45,11 +50,14 @@ export async function getAllPurchases(dispatch) {
 			'Não foi possível atualizar a lista de solicitações. Erro no servidor',
 			error
 		);
+	} finally {
+		nProgress.done();
 	}
 }
 
 export async function deletePurchase(id, dispatch) {
 	try {
+		nProgress.start()
 		await api.delete(`/colaborador/compra/${id}`);
 		getAllPurchases(dispatch);
 	} catch (error) {
@@ -57,11 +65,14 @@ export async function deletePurchase(id, dispatch) {
 			'Não foi possível eliminar esta solicitação. Erro no servidor',
 			error
 		);
+	} finally {
+		nProgress.done()
 	}
 }
 
 export async function editPurchase(idCompra, dispatch, navigate) {
 	try {
+		nProgress.start()
 		changeLoadingStatus(true, dispatch);
 		const { data } = await api.get(`/colaborador/compras?idCompra=${idCompra}`);
 
@@ -74,6 +85,8 @@ export async function editPurchase(idCompra, dispatch, navigate) {
 		changeLoadingStatus(false, dispatch);
 		console.log('Não foi possível acessar essa solicitação!', error);
 		navigate('/');
+	} finally {
+		nProgress.done()
 	}
 }
 
@@ -105,6 +118,7 @@ export const disableEditMode = (dispatch) => {
 
 export async function setPurchaseToShow(idCompra, dispatch) {
 	try {
+		nProgress.start()
 		changeLoadingStatus(true, dispatch);
 		const { data } = await api.get(`/colaborador/compras-id?idCompra=${idCompra}`);
 
@@ -117,6 +131,8 @@ export async function setPurchaseToShow(idCompra, dispatch) {
 	} catch (error) {
 		changeLoadingStatus(false, dispatch);
 		console.log('Não foi possível aceder a esta solicitação. Erro no servidor');
+	} finally {
+		nProgress.done()
 	}
 }
 

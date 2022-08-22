@@ -4,6 +4,8 @@ import {
 	changeQuotationStatus,
 	getNumberPurchaseQuotations,
 } from '../../store/actions/quotationAction';
+import { ButtonContainer, AprovarButton, CotarButton } from './buyerMenu.styled';
+import { BsListCheck, BsBagCheck } from 'react-icons/bs'
 
 const BuyerMenu = ({ idCompra, compra }) => {
 	const [canBeApproved, setCanBeApproved] = useState(false);
@@ -24,8 +26,8 @@ const BuyerMenu = ({ idCompra, compra }) => {
 
 	const setup = async () => {
 		const number = await getNumberPurchaseQuotations(idCompra);
-		setCanBeApproved(number >= 2);
 		console.log(number);
+		setCanBeApproved(number >= 2);
 	};
 
 	useEffect(() => {
@@ -33,12 +35,12 @@ const BuyerMenu = ({ idCompra, compra }) => {
 	}, []);
 
 	return (
-		<div>
-			<button onClick={cotar}> COTAR</button>
-			<button disabled={!canBeApproved} onClick={sendToApproval}>
-				Enviar para aprovação
-			</button>
-		</div>
+		<ButtonContainer>
+			<CotarButton onClick={cotar}><BsListCheck /></CotarButton>
+			<AprovarButton disabled={!canBeApproved} onClick={sendToApproval}>
+				<BsBagCheck />
+			</AprovarButton>
+		</ButtonContainer>
 	);
 };
 export default BuyerMenu;
