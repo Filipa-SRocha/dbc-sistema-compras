@@ -40,6 +40,17 @@ function authReducer(state = INITIAL_STATE, action) {
 		};
 	}
 
+	if (action.type === 'SET_SIGNUP_LOGIN') {
+		return {
+			auth: {
+				token: action.token,
+				isLogged: true,
+				isLoading: false,
+				cargos: [{ name: 'ROLE_COLABORADOR' }],
+			},
+		};
+	}
+
 	if (action.type === 'SET_LOGOUT') {
 		return {
 			auth: {

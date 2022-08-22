@@ -34,7 +34,7 @@ export async function handleLogin(values, dispatch, navigate) {
 	}
 }
 
-async function getRole(dispatch) {
+export async function getRole(dispatch) {
 	try {
 		const { data } = await api.get('/usuario/get-logged');
 
