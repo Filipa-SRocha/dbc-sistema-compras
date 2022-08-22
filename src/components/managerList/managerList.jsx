@@ -61,10 +61,9 @@ const ManagerList = ({ purchasesList, cargo, isLoading, dispatch }) => {
 	);
 };
 
-// {quotation.status === 'COTADO' ? <ManagerMenu idCotacao={quotation.idCotacao} dispatch={dispatch}/>: <></>}
-
 const mapStateToProps = (state) => ({
 	cargo: state.userReducer.user.cargos[0].name,
+	purchasesList: state.managerReducer.purchasesList,
 });
 
 export default connect(mapStateToProps)(ManagerList);
