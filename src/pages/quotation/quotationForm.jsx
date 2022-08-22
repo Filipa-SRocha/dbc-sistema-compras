@@ -12,9 +12,6 @@ import { useNavigate } from 'react-router-dom';
 
 const QuotationForm = ({ purchaseToShow }) => {
 	const navigate = useNavigate();
-	useEffect(() => {
-		console.log(purchaseToShow);
-	});
 
 	const handleSubmit = (values) => {
 		const newItems = values.items.map((item) => {
@@ -40,7 +37,7 @@ const QuotationForm = ({ purchaseToShow }) => {
 	return (
 		<Formik
 			initialValues={{
-				items: purchaseToShow ? [...purchaseToShow.itens] : [],
+				items: purchaseToShow.cotacoes ? [...purchaseToShow.cotacoes[0].itemValorizadoDTOS] : [],
 				nome: '',
 			}}
 			validationSchema={QuoteSchema}
@@ -65,13 +62,14 @@ const QuotationForm = ({ purchaseToShow }) => {
 							{() => (
 								<>
 									{values.items.map((item, index) => (
-										<div className='itens'>
+										<div className='itens' key={index}>
 											<label htmlFor={`items[${index}].preco`}>
 												{item.nome}
 											</label>
 											<Field
 												id={`items[${index}].preco`}
 												name={`items[${index}].preco`}
+												defaultValue={''}
 											/>
 										</div>
 									))}

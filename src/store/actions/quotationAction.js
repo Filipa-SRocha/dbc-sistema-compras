@@ -59,7 +59,7 @@ export async function getNumberPurchaseQuotations(idCompra) {
 export async function handleNewQuotation(idCompra, values, navigate) {
 	try {
 		await api.post(`/comprador/cotar?idCompra=${idCompra}`, values);
-		navigate(`/details-page/${idCompra}`);
+		// navigate(`/details-page/`);
 	} catch (error) {
 		console.log('Não foi possível adicionar cotação. Erro no servidor', error);
 	}

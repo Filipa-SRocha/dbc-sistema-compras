@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import DashboardPage from '../../components/dashboardPage/dashboardPage';
 
@@ -19,30 +19,29 @@ import QuotationForm from '../quotation/quotationForm';
 import QuotationList from '../quotation/quotationList';
 
 const PurchaseDetails = ({ isLoading, dispatch, purchaseToShow }) => {
-	const { idCompra } = useParams();
+	const { state } = useLocation();
 
-	useEffect(() => {
-		if (idCompra) {
-			setPurchaseToShow(idCompra, dispatch);
-		}
-	}, []);
+	console.log(state.cotacoes[0])
+
+	// useEffect(() => {
+	// 	if (idCompra) {
+	// 		setPurchaseToShow(idCompra, dispatch);
+	// 	}
+	// }, []);
 
 	return (
 		<DashboardPage title='Solicitação de Compra' page='#'>
-			{isLoading ? (
-				<h1>LoadingP</h1>
-			) : (
 				<Container>
 					<InfoContainer>
-						<h3>{purchaseToShow.name}</h3>
-						<p>{purchaseToShow.descricao}</p>
+						<h3>{state.name}</h3>
+						<p>{state.descricao}</p>
 					</InfoContainer>
 					<ItemsContainer>
 						<h4>Itens</h4>
-						{purchaseToShow.itens ? (
-							purchaseToShow.itens.map((item) => (
-								<p key={item.idItem}>
-									{item.quantidade} {item.nome}
+						{state.cotacoes[0].itemValorizadoDTOS ? (
+							state.cotacoes[0].itemValorizadoDTOS.map((cotacao) => (
+								<p key={cotacao.idItem}>
+									{cotacao.quantidade} {cotacao.nome}
 								</p>
 							))
 						) : (
@@ -50,23 +49,21 @@ const PurchaseDetails = ({ isLoading, dispatch, purchaseToShow }) => {
 						)}
 					</ItemsContainer>
 
-					{/* <FormContainer>
+					<FormContainer>
 						<h4>Nova Cotação</h4>
-						<QuotationForm purchaseToShow={purchaseToShow} />
-					</FormContainer> */}
+						<QuotationForm purchaseToShow={state} />
+					</FormContainer>
 					<CotacoesContainer>
 						<h4>Todas as cotações</h4>
-						<QuotationList />
+						<QuotationList cotacoes={state.cotacoes} />
 					</CotacoesContainer>
 				</Container>
-			)}
 		</DashboardPage>
 	);
 };
 
 const mapStateToProps = (state) => ({
 	purchaseToShow: state.purchaseReducer.purchaseToShow,
-	isLoading: state.purchaseReducer.isLoading,
 });
 
 export default connect(mapStateToProps)(PurchaseDetails);

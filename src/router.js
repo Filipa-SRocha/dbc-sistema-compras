@@ -171,7 +171,7 @@ const Router = ({ auth, dispatch }) => {
 					}
 				/>
 				<Route
-					path='/details-page/:idCompra'
+					path='/details-page'
 					element={
 						<ProtectedRoute>
 							<PurchaseDetails />

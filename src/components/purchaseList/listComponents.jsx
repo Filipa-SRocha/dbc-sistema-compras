@@ -45,7 +45,7 @@ export const ListItem = ({ cargos, purchase, dispatch }) => {
 	const navigate = useNavigate();
 
 	const openDetailsPage = () => {
-		navigate(`/details-page/${purchase.idCompra}`);
+		navigate(`/details-page`, { state: purchase});
 	};
 
 	return (
