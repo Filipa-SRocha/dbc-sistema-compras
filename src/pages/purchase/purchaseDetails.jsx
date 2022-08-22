@@ -21,7 +21,7 @@ import QuotationList from '../quotation/quotationList';
 const PurchaseDetails = ({ isLoading, dispatch, purchaseToShow }) => {
 	const { state } = useLocation();
 
-	console.log(state.cotacoes[0])
+	console.log(state.cotacoes.length)
 
 	// useEffect(() => {
 	// 	if (idCompra) {
@@ -33,12 +33,12 @@ const PurchaseDetails = ({ isLoading, dispatch, purchaseToShow }) => {
 		<DashboardPage title='Solicitação de Compra' page='#'>
 				<Container>
 					<InfoContainer>
-						<h3>{state.name}</h3>
-						<p>{state.descricao}</p>
+						<h3>Nome: {state.name}</h3>
+						<p>Descrição: {state.descricao}</p>
 					</InfoContainer>
 					<ItemsContainer>
 						<h4>Itens</h4>
-						{state.cotacoes[0].itemValorizadoDTOS ? (
+						{state.cotacoes.length > 0 ? (
 							state.cotacoes[0].itemValorizadoDTOS.map((cotacao) => (
 								<p key={cotacao.idItem}>
 									{cotacao.quantidade} {cotacao.nome}
@@ -55,7 +55,7 @@ const PurchaseDetails = ({ isLoading, dispatch, purchaseToShow }) => {
 					</FormContainer>
 					<CotacoesContainer>
 						<h4>Todas as cotações</h4>
-						<QuotationList cotacoes={state.cotacoes} />
+						{state.cotacoes.length > 0 ? <QuotationList cotacoes={state.cotacoes} /> : <p>Não há cotações ainda</p>}
 					</CotacoesContainer>
 				</Container>
 		</DashboardPage>

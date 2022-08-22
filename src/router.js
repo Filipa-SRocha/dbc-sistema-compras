@@ -102,7 +102,7 @@ const Router = ({ auth, dispatch }) => {
 				/>
 
 				<Route
-					path='/comprador/nova-cotacao/:idCompra'
+					path='/comprador/nova-cotacao'
 					element={
 						<ProtectedRoute>
 							<NewQuotation />

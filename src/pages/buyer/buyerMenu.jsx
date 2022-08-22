@@ -5,14 +5,14 @@ import {
 	getNumberPurchaseQuotations,
 } from '../../store/actions/quotationAction';
 
-const BuyerMenu = ({ idCompra }) => {
+const BuyerMenu = ({ idCompra, compra }) => {
 	const [canBeApproved, setCanBeApproved] = useState(false);
 	const navigate = useNavigate();
 
 	const cotar = (e) => {
 		e.preventDefault();
 		e.stopPropagation();
-		navigate(`/comprador/nova-cotacao/${idCompra}`);
+		navigate(`/comprador/nova-cotacao`, { state: compra });
 	};
 
 	const sendToApproval = (e) => {

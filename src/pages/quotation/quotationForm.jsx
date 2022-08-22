@@ -37,7 +37,7 @@ const QuotationForm = ({ purchaseToShow }) => {
 	return (
 		<Formik
 			initialValues={{
-				items: purchaseToShow.cotacoes ? [...purchaseToShow.cotacoes[0].itemValorizadoDTOS] : [],
+				items: purchaseToShow.cotacoes.length > 0 ? [...purchaseToShow.cotacoes[0].itemValorizadoDTOS] : [],
 				nome: '',
 			}}
 			validationSchema={QuoteSchema}
