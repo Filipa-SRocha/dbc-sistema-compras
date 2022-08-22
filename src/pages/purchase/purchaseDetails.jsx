@@ -53,7 +53,7 @@ const PurchaseDetails = ({ isLoading, dispatch, purchaseToShow }) => {
 
 					<FormContainer>
 						<h4>Nova Cotação</h4>
-						<QuotationForm purchaseToShow={purchaseToShow} />
+						{purchaseToShow.idCompra && <QuotationForm purchaseToShow={purchaseToShow} />}
 						{/* {purchaseToShow.itens.length > 0 && <h4>Nova Cotação</h4>} */}
 						{/* {purchaseToShow.itens.length > 0 && <QuotationForm purchaseToShow={purchaseToShow} />} */}
 					</FormContainer>
