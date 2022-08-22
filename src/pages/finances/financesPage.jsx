@@ -60,6 +60,24 @@ const FinancesPage = ({ isLoading, purchasesList, dispatch }) => {
 									</button>
 								</>
 							) : null}
+
+							{purchase.status === 'APROVADO_FINANCEIRO' ? (
+								<>
+									<p>{purchase.name}</p>
+									<small>Colaborador: {purchase.nomeDoUsuario}</small>
+									<p>Valor Total: {purchase.valor}</p>
+									<div>
+										<h5>Itens</h5>
+										{purchase.itens.map((item) => (
+											<p>
+												{item.quantidade} {item.nome}
+											</p>
+										))}
+									</div>
+								</>
+							) : (
+								<></>
+							)}
 						</div>
 					))}
 				</h1>

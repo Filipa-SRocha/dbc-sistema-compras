@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import DashboardPage from '../../components/dashboardPage/dashboardPage';
+import ManagerList from '../../components/managerList/managerList';
+import PurchaseList from '../../components/purchaseList/purchaseList';
 import {
 	getPurchasesWithQuotations,
 	manageQuotation,
@@ -20,41 +22,10 @@ const ManagerPage = ({ isLoading, purchasesList, dispatch }) => {
 			{isLoading ? (
 				<h1>Loading</h1>
 			) : (
-				<h1>
-					{purchasesList.map((cotacao) => (
-						<div>
-							{cotacao.status === 'COTADO' ? (
-								<>
-									<p>{cotacao.nome}</p>
-									<button
-										value='APROVAR'
-										onClick={(e) =>
-											manageQuotation(
-												cotacao.idCotacao,
-												e.target.value,
-												dispatch
-											)
-										}
-									>
-										Aprovar
-									</button>
-									<button
-										value='REPROVAR'
-										onClick={(e) =>
-											manageQuotation(
-												cotacao.idCotacao,
-												e.target.value,
-												dispatch
-											)
-										}
-									>
-										Reprovar
-									</button>
-								</>
-							) : null}
-						</div>
-					))}
-				</h1>
+				// <PurchaseList
+				// 	purchasesList={purchasesList.map((purchase) => purchase.compraDTO)}
+				// />
+				<ManagerList />
 			)}
 		</DashboardPage>
 	);

@@ -2,11 +2,11 @@ import DashboardPage from '../../components/dashboardPage/dashboardPage';
 import PurchaseList from '../../components/purchaseList/purchaseList';
 import { connect } from 'react-redux';
 import { useEffect } from 'react';
-import { getAllPurchases } from '../../store/actions/purchaseActions';
+import { getBuyerPurchaseList } from '../../store/actions/buyerAction';
 
 const BuyerDashboard = ({ purchasesList, dispatch, isLoading }) => {
 	const updateList = () => {
-		getAllPurchases(dispatch);
+		getBuyerPurchaseList(dispatch);
 	};
 
 	useEffect(() => {
@@ -24,8 +24,8 @@ const BuyerDashboard = ({ purchasesList, dispatch, isLoading }) => {
 	);
 };
 const mapStateToProps = (state) => ({
-	purchasesList: state.purchaseReducer.purchasesList,
-	isLoading: state.purchaseReducer.isLoading,
+	purchasesList: state.buyerReducer.purchasesList,
+	isLoading: state.buyerReducer.isLoading,
 });
 
 export default connect(mapStateToProps)(BuyerDashboard);

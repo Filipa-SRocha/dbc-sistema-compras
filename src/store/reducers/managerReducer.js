@@ -1,6 +1,8 @@
 const INITIAL_STATE = {
 	purchasesList: [],
+	purchasesIds: [],
 	purchaseToShow: {},
+	onlyPurchaseInfo: [],
 	isLoading: true,
 };
 
@@ -9,6 +11,8 @@ function managerReducer(state = INITIAL_STATE, action) {
 		return {
 			...state,
 			purchasesList: action.list,
+			purchasesIds: action.purchasesIds,
+			onlyPurchaseInfo: action.onlyPurchaseInfo,
 			isLoading: false,
 		};
 	}

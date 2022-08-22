@@ -12,6 +12,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { DashboardMenu } from '../../pages/dashboard/dashboardMenu';
 import BuyerMenu from '../../pages/buyer/buyerMenu';
+import ManagerMenu from '../../pages/manager/managerMenu';
 
 export const ListHeader = () => {
 	return (
@@ -43,7 +44,6 @@ export const ListHeader = () => {
 export const ListItem = ({ cargos, purchase, dispatch }) => {
 	const navigate = useNavigate();
 
-	console.log('--------------------', cargos);
 	const openDetailsPage = () => {
 		navigate(`/details-page/${purchase.idCompra}`);
 	};
@@ -52,11 +52,7 @@ export const ListItem = ({ cargos, purchase, dispatch }) => {
 		<PurchaseItem onClick={openDetailsPage}>
 			<span>{purchase.name}</span>
 			<span>{moment(purchase.dataCompra).format('ll')}</span>
-			{purchase.valorTotal ? (
-				<span>purchase.valorTotal</span>
-			) : (
-				<span> - </span>
-			)}
+			{purchase.valor ? <span>{purchase.valor}</span> : <span> - </span>}
 			<span> - </span>
 			<span>{purchase.status}</span>
 
@@ -71,6 +67,12 @@ export const ListItem = ({ cargos, purchase, dispatch }) => {
 			(cargos[0].name === 'ROLE_COMPRADOR' &&
 				purchase.status === 'EM_COTACAO') ? (
 				<BuyerMenu idCompra={purchase.idCompra} />
+			) : (
+				<></>
+			)}
+
+			{cargos[0].name === 'ROLE_GESTOR' && purchase.status === 'COTADO' ? (
+				<ManagerMenu idCompra={purchase.idCompra} dispatch={dispatch} />
 			) : (
 				<></>
 			)}

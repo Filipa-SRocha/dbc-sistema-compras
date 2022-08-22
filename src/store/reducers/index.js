@@ -7,6 +7,7 @@ import adminReducer from './adminReducer';
 import quotationReducer from './quotationReducer';
 import managerReducer from './managerReducer';
 import financesReducer from './financesReducer';
+import buyerReducer from './buyerReducer';
 
 export default combineReducers({
 	authReducer,
@@ -16,4 +17,5 @@ export default combineReducers({
 	quotationReducer,
 	managerReducer,
 	financesReducer,
+	buyerReducer,
 });
