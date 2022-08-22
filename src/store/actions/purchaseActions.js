@@ -33,10 +33,11 @@ export async function getAllPurchases(dispatch) {
 		});
 
 		//Descending Data Filter
-		data.sort(
-			(purchaseA, purchaseB) =>
-				Number(purchaseB.dataCompra) - Number(purchaseA.dataCompra)
-		);
+		// data.sort(
+		// 	(purchaseA, purchaseB) =>
+		// 		Number(purchaseB.dataCompra) - Number(purchaseA.dataCompra)
+		// );
+		data.reverse();
 
 		dispatch(newList);
 	} catch (error) {
@@ -106,7 +107,9 @@ export const disableEditMode = (dispatch) => {
 export async function setPurchaseToShow(idCompra, dispatch) {
 	try {
 		changeLoadingStatus(true, dispatch);
-		const { data } = await api.get(`/colaborador/compras-id?idCompra=${idCompra}`);
+		const { data } = await api.get(
+			`/colaborador/compras-id?idCompra=${idCompra}`
+		);
 
 		const showPurchase = {
 			type: 'SET_SHOW_PURCHASE',
