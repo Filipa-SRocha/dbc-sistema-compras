@@ -4,7 +4,7 @@ export async function getPurchases(dispatch) {
 	try {
 		changeLoadingStatus(true, dispatch);
 
-		const { data } = await api.get('/financeiro/listar-compras');
+		const { data } = await api.get('/financeiro/listar-compras-com-cotacoes');
 		console.log(data);
 		const newList = {
 			type: 'GET_FINANCES_PURCHASES',

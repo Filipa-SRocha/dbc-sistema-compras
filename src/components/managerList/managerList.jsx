@@ -53,8 +53,7 @@ const ManagerList = ({ purchasesList, isLoading, dispatch }) => {
 const mapStateToProps = (state) => ({
 	purchasesList: state.managerReducer.purchasesList,
 	isLoading: state.managerReducer.isLoading,
-	purchasesIds: state.managerReducer.purchasesIds,
-	onlyPurchaseInfo: state.managerReducer.onlyPurchaseInfo,
+	cargos: state.userReducer.user.cargos,
 });
 
 export default connect(mapStateToProps)(ManagerList);

@@ -5,6 +5,7 @@ import {
 	manageFinancesApproval,
 } from '../../store/actions/financesAction';
 import DashboardPage from '../../components/dashboardPage/dashboardPage';
+import PurchaseList from '../../components/purchaseList/purchaseList';
 
 const FinancesPage = ({ isLoading, purchasesList, dispatch }) => {
 	useEffect(() => {
@@ -14,7 +15,9 @@ const FinancesPage = ({ isLoading, purchasesList, dispatch }) => {
 
 	return (
 		<DashboardPage title='Aprovação de Compras' page='/'>
-			<h1>Teste</h1>
+			<PurchaseList purchasesList={purchasesList} />
+
+			{/* <h1>Teste</h1>
 			{isLoading ? (
 				<h1>Loading</h1>
 			) : (
@@ -81,7 +84,7 @@ const FinancesPage = ({ isLoading, purchasesList, dispatch }) => {
 						</div>
 					))}
 				</h1>
-			)}
+			)} */}
 		</DashboardPage>
 	);
 };
