@@ -3,7 +3,7 @@ import { ListHeader, ListItem } from './listComponents';
 import { connect } from 'react-redux';
 
 const PurchaseList = ({ purchasesList, cargos, dispatch }) => {
-	console.log(purchasesList);
+	// console.log(purchasesList);
 	return (
 		<PurchaseContainer>
 			<ListHeader />

@@ -5,15 +5,29 @@ import * as Yup from 'yup';
 import {
 	Errors,
 	FormContainer,
-	FormStyle,
 } from '../../components/forms/form.styled';
-import { useEffect } from 'react';
+import { FormStyle } from './quotationForm.styled'
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import FileBase64 from 'react-file-base64';
 
 const QuotationForm = ({ purchaseToShow }) => {
 	const navigate = useNavigate();
 
-	console.log(purchaseToShow.itens[0]);
+	const reader = new FileReader();
+
+	const [file, setFile] = useState();
+
+	const fileToBase64 = (file) => {
+
+		reader.readAsDataURL(file);
+
+    reader.onload = async () => {
+      const base64 = reader.result;
+			const anexo = base64.split(",");
+		}
+
+	}
 
 	const handleSubmit = (values) => {
 		console.log(values);
@@ -25,14 +39,15 @@ const QuotationForm = ({ purchaseToShow }) => {
 			};
 		});
 
-		console.log(newItems);
-
 		const newValues = {
 			nome: values.nome,
 			listaDeValores: newItems,
-			anexo: 'string',
+			anexo: '',
 		};
 		handleNewQuotation(purchaseToShow.idCompra, newValues, navigate);
+
+		console.log(values)
+		
 	};
 
 	const QuoteSchema = Yup.object().shape({
@@ -50,6 +65,7 @@ const QuotationForm = ({ purchaseToShow }) => {
 			initialValues={{
 				items: purchaseToShow.itens.map(() => ''),
 				nome: '',
+				anexo: '',
 			}}
 			validationSchema={QuoteSchema}
 			enableReinitialize
@@ -62,20 +78,21 @@ const QuotationForm = ({ purchaseToShow }) => {
 				<FormStyle>
 					<Form>
 						<div>
-							<div>
-								<label htmlFor='nome'>Nome da Cotação </label>
+							<div className='labelEItemCotacao'>
+								<label htmlFor='nome'>Nome da Cotação</label>
 								<Field name='nome' id='nome' />
 							</div>
 							{errors.nome && touched.nome ? (
 								<Errors>{errors.nome}</Errors>
 							) : null}
 						</div>
+
 						<FieldArray name='items'>
 							{() => (
 								<>
 									{purchaseToShow.itens.map((item, index) => (
-										<div className='itens' key={index}>
-											<label htmlFor={`items.${index}`}>{item.nome}</label>
+										<div className='labelEItem' key={index}>
+											<label htmlFor={`items.${index}`}>{`Valor (R$) de `}{item.nome}</label>
 											<Field
 												id={`items.${index}`}
 												name={`items.${index}`}
@@ -87,7 +104,9 @@ const QuotationForm = ({ purchaseToShow }) => {
 							)}
 						</FieldArray>
 
-						<PrimaryButton text='Aceitar' type='submit' />
+						<div className="button">
+							<PrimaryButton text='Cadastrar cotação' type='submit' />
+						</div>
 					</Form>
 				</FormStyle>
 			)}

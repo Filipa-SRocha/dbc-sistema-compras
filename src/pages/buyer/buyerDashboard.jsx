@@ -3,8 +3,12 @@ import PurchaseList from '../../components/purchaseList/purchaseList';
 import { connect } from 'react-redux';
 import { useEffect } from 'react';
 import { getBuyerPurchaseList } from '../../store/actions/buyerAction';
+import { Container, DashboardContainer } from './buyerDashboard.styled';
+import AsideMenu from '../../components/asideMenu/asideMenu';
+import Header from '../../components/header/header';
 
 const BuyerDashboard = ({ purchasesList, dispatch, isLoading }) => {
+
 	const updateList = () => {
 		getBuyerPurchaseList(dispatch);
 	};
@@ -14,13 +18,14 @@ const BuyerDashboard = ({ purchasesList, dispatch, isLoading }) => {
 	}, []);
 
 	return (
-		<DashboardPage title='Solicitações' page='/'>
-			{isLoading ? (
-				<h1>Loading</h1>
-			) : (
-				<PurchaseList purchasesList={purchasesList} />
-			)}
-		</DashboardPage>
+		<Container>
+			<AsideMenu />
+			<DashboardContainer>
+				<Header />
+				<h2>Solicitações</h2>
+					<PurchaseList purchasesList={purchasesList} />
+			</DashboardContainer>
+		</Container>
 	);
 };
 const mapStateToProps = (state) => ({
