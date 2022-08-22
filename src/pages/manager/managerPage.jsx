@@ -11,7 +11,6 @@ const ManagerPage = ({ isLoading, dispatch }) => {
 
 	return (
 		<DashboardPage title='Aprovação de Cotações' page='/'>
-			<h1>Teste</h1>
 			{isLoading ? <h1>Loading</h1> : <ManagerList />}
 		</DashboardPage>
 	);

@@ -5,6 +5,8 @@ import {
 	PurchaseContainer,
 	QuotationsContainer,
 } from './managerList.styled';
+import { convertToDateObject } from '../../utils/masks';
+import moment from 'moment';
 
 const ManagerList = ({ purchasesList, cargo, isLoading, dispatch }) => {
 	if (
@@ -21,7 +23,11 @@ const ManagerList = ({ purchasesList, cargo, isLoading, dispatch }) => {
 						<PurchaseContainer key={'compra' + purchase.idCompra}>
 							<div>
 								<h3> {purchase.name}</h3>
-								<p>{purchase.dataCompra}</p>
+								<p>
+									{moment(convertToDateObject(purchase.dataCompra)).format(
+										'll'
+									)}
+								</p>
 								<small>{purchase.descricao}</small>
 							</div>
 
