@@ -13,10 +13,17 @@ import { useNavigate } from 'react-router-dom';
 const QuotationForm = ({ purchaseToShow }) => {
 	const navigate = useNavigate();
 
+	console.log(purchaseToShow.itens[0])
+
 	const handleSubmit = (values) => {
-		const newItems = values.items.map((item) => {
-			return { idItem: item.idItem, valorDoItem: Number(item.preco) };
+
+		console.log(values)
+
+		const newItems = values.items.map((item, index) => {
+			return { idItem: purchaseToShow.itens[index].idItem, valorDoItem: Number(item) };
 		});
+
+		console.log(newItems)
 
 		const newValues = {
 			nome: values.nome,
@@ -37,16 +44,17 @@ const QuotationForm = ({ purchaseToShow }) => {
 	return (
 		<Formik
 			initialValues={{
-				items: purchaseToShow.cotacoes.length > 0 ? [...purchaseToShow.cotacoes[0].itemValorizadoDTOS] : [],
+				items: purchaseToShow.itens.map(() => ''),
 				nome: '',
 			}}
 			validationSchema={QuoteSchema}
 			enableReinitialize
 			onSubmit={(values, resetForm) => {
 				handleSubmit(values, resetForm);
+				// console.log(values)
 			}}
 		>
-			{({ values, errors, touched }) => (
+			{({ values, errors, touched, setFieldValue }) => (
 				<FormStyle>
 					<Form>
 						<div>
@@ -61,15 +69,15 @@ const QuotationForm = ({ purchaseToShow }) => {
 						<FieldArray name='items'>
 							{() => (
 								<>
-									{values.items.map((item, index) => (
+									{purchaseToShow.itens.map((item, index) => (
 										<div className='itens' key={index}>
-											<label htmlFor={`items[${index}].preco`}>
+											<label htmlFor={`items.${index}`}>
 												{item.nome}
 											</label>
 											<Field
-												id={`items[${index}].preco`}
-												name={`items[${index}].preco`}
-												defaultValue={''}
+												id={`items.${index}`}
+												name={`items.${index}`}
+												// onChange={(e) => {setFieldValue(`items[${index}].preco`, e.target.value)}}
 											/>
 										</div>
 									))}

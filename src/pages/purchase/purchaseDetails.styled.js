@@ -49,7 +49,7 @@ export const ItemsContainer = styled.div`
 
 export const FormContainer = styled.div`
 	width: 100%;
-	background-color: red;
+	/* background-color: red; */
 
 	div.itens {
 		margin-bottom: 10px;
