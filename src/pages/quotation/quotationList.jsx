@@ -3,30 +3,27 @@ import { connect } from 'react-redux';
 import { getPurchaseQuotations } from '../../store/actions/quotationAction';
 import { QuotationContainer, QuotationsContainer } from './quotation.styled';
 
-const QuotationList = ({ idCompra, quotationsList, isLoading, dispatch }) => {
-	useEffect(() => {
-		getPurchaseQuotations(idCompra, dispatch);
-	}, []);
+const QuotationList = ({ cotacoes, idCompra, quotationsList, isLoading, dispatch }) => {
+	
+	// useEffect(() => {
+	// 	getPurchaseQuotations(idCompra, dispatch);
+	// }, []);
+
+	console.log(cotacoes)
 
 	return (
 		<QuotationsContainer>
-			{isLoading ? (
-				<h1>Loading...</h1>
-			) : (
-				<>
-					{quotationsList.map((quotation) => (
-						<QuotationContainer key={quotation.idCotacao}>
-							<h5>{quotation.nome}</h5>
-							{quotation.compraDTO.itens.map((item) => (
-								<p>
-									{}
-									{item.nome} {item.valorUnitario}
-								</p>
-							))}
-						</QuotationContainer>
-					))}
-				</>
-			)}
+			{cotacoes.map((cotacao) => (
+				<QuotationContainer key={cotacao.idCotacao}>
+					<h5>{cotacao.nome}</h5>
+						{cotacao.itemValorizadoDTOS.map((item) => (
+							<p key={item.idItem}>
+								{}
+								{item.nome} {item.valorUnitario}
+							</p>
+						))}
+				</QuotationContainer>
+			))}
 		</QuotationsContainer>
 	);
 };

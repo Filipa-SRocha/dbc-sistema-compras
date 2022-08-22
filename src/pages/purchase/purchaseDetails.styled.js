@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { primaryColor } from '../../consts';
 
 export const Container = styled.section`
+	/* background-color: red; */
 	width: 100%;
 	padding: 40px;
 	display: grid;
@@ -48,6 +49,7 @@ export const ItemsContainer = styled.div`
 
 export const FormContainer = styled.div`
 	width: 100%;
+	background-color: red;
 
 	div.itens {
 		margin-bottom: 10px;
