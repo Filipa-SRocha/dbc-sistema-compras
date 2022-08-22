@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import FinancesMenu from '../../pages/finances/financesMenu';
 import ManagerMenu from '../../pages/manager/managerMenu';
 import {
 	ManagerListContainer,
@@ -24,18 +23,8 @@ const ManagerList = ({ purchasesList, cargo, isLoading, dispatch }) => {
 								<h3> {purchase.name}</h3>
 								<p>{purchase.dataCompra}</p>
 								<small>{purchase.descricao}</small>
-								{cargo === 'ROLE_FINANCEIRO' && <p>Valor Final: {}</p>}
 							</div>
-							<div>
-								{cargo === 'ROLE_FINANCEIRO' ? (
-									<FinancesMenu
-										idCompra={purchase.idCompra}
-										dispatch={dispatch}
-									/>
-								) : (
-									<></>
-								)}
-							</div>
+
 							<h4>Cotações</h4>
 							<QuotationsContainer>
 								{purchase.cotacoes.map((cotacao) => (

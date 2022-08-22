@@ -4,6 +4,7 @@ import {
 	PurchaseContainer,
 	QuotationsContainer,
 } from '../managerList/managerList.styled';
+import { PurchaseInfo, QuotationInfo } from './financesListItems';
 import FinancesMenu from '../../pages/finances/financesMenu';
 
 const FinancesList = ({ purchasesList, dispatch }) => {
@@ -21,12 +22,7 @@ const FinancesList = ({ purchasesList, dispatch }) => {
 					.filter((purchase) => purchase.status === 'APROVADO_GESTOR')
 					.map((purchase) => (
 						<PurchaseContainer key={'compra' + purchase.idCompra}>
-							<div>
-								<h3> {purchase.name}</h3>
-								<p>{purchase.dataCompra}</p>
-								<small>{purchase.descricao}</small>
-								<p>Valor Final: {purchase.valorTotal}</p>
-							</div>
+							<PurchaseInfo purchase={purchase} />
 							<div>
 								<FinancesMenu
 									idCompra={purchase.idCompra}
@@ -37,21 +33,35 @@ const FinancesList = ({ purchasesList, dispatch }) => {
 							<QuotationsContainer>
 								{purchase.cotacoes.map((cotacao) => (
 									<div key={`cotacao${cotacao.idCotacao}`}>
-										{cotacao.status === 'APROVADA' && <p>Cotação aprovada!</p>}
-										<h5>{cotacao.nome}</h5>
-										<p>Valor Total: {cotacao.valor}</p>
-										<h6>Itens</h6>
-										{cotacao.itemValorizadoDTOS.map((item) => (
-											<p>
-												{item.quantidade} x {item.nome} = {item.valorTotal}
-											</p>
-										))}
+										<QuotationInfo cotacao={cotacao} />
 									</div>
 								))}
 							</QuotationsContainer>
 						</PurchaseContainer>
 					))}
 			</ManagerListContainer>
+			<hr />
+			{purchasesList
+				.filter(
+					(purchase) =>
+						purchase.status === 'APROVADO_FINANCEIRO' ||
+						purchase.status === 'REPROVADO_FINANCEIRO'
+				)
+				.map((purchase) => (
+					<PurchaseContainer key={'compra' + purchase.idCompra}>
+						<p>{purchase.status.split('_')[0]}</p>
+						<PurchaseInfo purchase={purchase} />
+
+						<h4>Cotações</h4>
+						<QuotationsContainer>
+							{purchase.cotacoes.map((cotacao) => (
+								<div key={`cotacao${cotacao.idCotacao}`}>
+									<QuotationInfo cotacao={cotacao} />
+								</div>
+							))}
+						</QuotationsContainer>
+					</PurchaseContainer>
+				))}
 		</div>
 	);
 };
