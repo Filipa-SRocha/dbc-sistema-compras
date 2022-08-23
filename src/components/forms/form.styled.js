@@ -128,6 +128,7 @@ export const PopUpFormContainer = styled(FormStyle)`
 			width: 220px;
 			padding: 0;
 			font-size: 12px;
+			padding-bottom: 20px;
 		}
 
 		& img {
