@@ -5,7 +5,6 @@ export async function getPurchasesWithQuotations(dispatch) {
 		changeLoadingStatus(true, dispatch);
 
 		const { data } = await api.get('/gestor/listar');
-		console.log('Dados gestor', data);
 
 		const newList = {
 			type: 'GET_MANAGER_PURCHASES',
