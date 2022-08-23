@@ -17,6 +17,7 @@ const ManagerList = ({ purchasesList, cargo, isLoading, dispatch }) => {
 	) {
 		return <h1>Sem Cotações para aprovar!</h1>;
 	}
+	console.log(cargo)
 	return (
 		<div>
 			<ManagerListContainer>

@@ -14,6 +14,11 @@ export const PurchaseContainer = styled.div`
 	}
 `;
 
+export const QuotationsFinanceContainer = styled.div`
+	display: flex;
+	margin-top: 20px;
+`
+
 export const InfoContainer = styled.div`
 	> div {
 		display: flex;

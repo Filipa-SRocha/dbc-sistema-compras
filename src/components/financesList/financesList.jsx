@@ -5,7 +5,7 @@ import {
 } from '../managerList/managerList.styled';
 import { PurchaseInfo, QuotationInfo } from './financesListItems';
 import FinancesMenu from '../../pages/finances/financesMenu';
-import { PurchaseContainer, FinancesHeader } from './financesList.styled';
+import { PurchaseContainer, FinancesHeader, QuotationsFinanceContainer } from './financesList.styled';
 
 const FinancesList = ({ purchasesList, dispatch }) => {
 	if (
@@ -31,14 +31,14 @@ const FinancesList = ({ purchasesList, dispatch }) => {
 									/>
 								</div>
 							</FinancesHeader>
-							<h4>Cotações</h4>
-							<QuotationsContainer>
+							<h4>Cotação aprovada</h4>
+							<QuotationsFinanceContainer>
 								{purchase.cotacoes.map((cotacao) => (
 									<div key={`cotacao${cotacao.idCotacao}`}>
-										<QuotationInfo cotacao={cotacao} />
+										{cotacao.status === 'APROVADO' && <QuotationInfo cotacao={cotacao} />}
 									</div>
 								))}
-							</QuotationsContainer>
+							</QuotationsFinanceContainer>
 						</PurchaseContainer>
 					))}
 			</ManagerListContainer>

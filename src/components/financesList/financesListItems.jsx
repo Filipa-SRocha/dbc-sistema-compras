@@ -11,12 +11,19 @@ export const PurchaseInfo = ({ purchase }) => {
 				<p>{moment(convertToDateObject(purchase.dataCompra)).format('ll')}</p>
 			</div>
 			<small>{purchase.descricao}</small>
-			<p>Valor Final: {purchase.valorTotal}</p>
+			{purchase.cotacoes.map((cotacao) => (
+				<div key={cotacao.idCotacao}>
+					{cotacao.status === 'APROVADO' && <strong>Valor Final: {cotacao.valor}</strong>}
+				</div>
+			))}
 		</InfoContainer>
 	);
 };
 
 export const QuotationInfo = ({ cotacao }) => {
+	
+	console.log(cotacao)
+
 	return (
 		<>
 			{cotacao.status === 'APROVADA' && <p>Cotação aprovada!</p>}
@@ -25,7 +32,7 @@ export const QuotationInfo = ({ cotacao }) => {
 			<ListItemsHeader>
 				<p>Qtd</p>
 				<p>Item</p>
-				<p>Valor</p>
+				<p>Valor Total</p>
 			</ListItemsHeader>
 
 			{cotacao.itemValorizadoDTOS.map((item) => (
