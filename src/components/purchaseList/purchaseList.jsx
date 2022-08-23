@@ -8,7 +8,7 @@ const PurchaseList = ({ purchasesList, cargos, dispatch }) => {
 		<PurchaseContainer>
 			<ListHeader />
 
-			<PurchaseComponent>
+			{purchasesList.length > 0 ? <PurchaseComponent>
 				{purchasesList.map((purchase) => {
 					return (
 						<ListItem
@@ -19,7 +19,7 @@ const PurchaseList = ({ purchasesList, cargos, dispatch }) => {
 						/>
 					);
 				})}
-			</PurchaseComponent>
+			</PurchaseComponent> : <p className='naoPossuiTitulo'>Você não possui solicitações de compras cadastradas</p>}
 		</PurchaseContainer>
 	);
 };
