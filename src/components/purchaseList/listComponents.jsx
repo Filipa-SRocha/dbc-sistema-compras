@@ -48,11 +48,13 @@ export const ListItem = ({ cargos, purchase, dispatch }) => {
 		navigate(`/details-page`, { state: purchase });
 	};
 
+	console.log(purchase)
+
 	return (
 		<PurchaseItem onClick={openDetailsPage}>
 			<span>{purchase && purchase.name}</span>
 			<span>{moment(purchase && purchase.dataCompra).format('ll')}</span>
-			{purchase && purchase.valor ? <span>{purchase && purchase.valor}</span> : <span> - </span>}
+			{purchase && purchase.valorTotal ? <span>{purchase && purchase.valorTotal}</span> : <span> - </span>}
 			<span> - </span>
 			<span>{purchase && purchase.status}</span>
 
