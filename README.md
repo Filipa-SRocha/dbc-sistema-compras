@@ -50,4 +50,5 @@ Cada tipo de usuário tem um cargo específico dentro do sistema e um fluxo de u
 - **Estilização:** Styled Components;
 - **Ícones:** React Icons;
 - **Tratamento de data:** Moment.js;
-- **Requisições:** Axios.
+- **Requisições:** Axios;
+- **Deploy:** Vercel.
