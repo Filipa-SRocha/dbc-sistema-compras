@@ -42,7 +42,7 @@ const QuotationForm = ({ purchaseToShow }) => {
 		const newValues = {
 			nome: values.nome,
 			listaDeValores: newItems,
-			anexo: '',
+			anexo: 'string',
 		};
 		handleNewQuotation(purchaseToShow.idCompra, newValues, navigate);
 
