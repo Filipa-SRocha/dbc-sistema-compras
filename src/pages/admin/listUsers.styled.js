@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const UsersListContainer = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 300px);
+  grid-template-columns: repeat(3, 440px);
   justify-content: space-evenly;
   gap: 20px 0;
   padding: 0 30px;
@@ -11,7 +11,7 @@ export const UsersListContainer = styled.div`
 `;
 
 export const UserComponent = styled.div`
-  width: 380px;
+  width: 440px;
   height: 90px;
   display: flex;
   flex-direction: column;
