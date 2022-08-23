@@ -1,70 +1,53 @@
-# Getting Started with Create React App
+# DBCompras - Vem Ser 9ª edição
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Repositório contendo o projeto final da equipe Sistema de Compras, do programa Vem Ser DBC - 9ª edição.
 
-## Available Scripts
+## Equipe
 
-In the project directory, you can run:
+**Front-end:**
 
-### `npm start`
+👩‍💻 [Filipa Rocha](https://github.com/Filipa-SRocha)  
+👩‍💻 [Mayra Amaral](https://github.com/mayraamaral)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**Back-end:**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+👨‍💻 [Gabriel Luppi](https://github.com/LancelotLuppi)  
+👨‍💻 [Rodrigo Nascimento](https://github.com/RodrigoSoaresNascimento)
 
-### `npm test`
+**QA:**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+👨‍💻 [Ályson Campos](https://github.com/alysoncampos)
 
-### `npm run build`
+### Links úteis
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+| Front-end                                                           | Back-end                                                                 | QA                                                                                      |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- |
+| [Repositório](https://github.com/Filipa-SRocha/dbc-sistema-compras) | [Repositório](https://github.com/LancelotLuppi/DBCompras/)               | [Repositório - Front-end](https://github.com/alysoncampos/dbcompras-selenium-testes)    |
+| [Deploy - Vercel](https://dbc-sistema-compras.vercel.app/)          | [Deploy - Heroku](https://dbcompras.herokuapp.com/swagger-ui/index.html) | [Repositório - Back-end](https://github.com/alysoncampos/dbcompras-rest-assured-testes) |
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Objetivo
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+✅ Desenvolver um sistema de compras para que o setor de compras da DBC possa comprar itens referentes às atividades da empresa.  
+**Tipos de usuário:** Administrador, Colaborador, Comprador, Gestor e Financeiro.  
+Cada tipo de usuário tem um cargo específico dentro do sistema e um fluxo de utilização específico.
 
-### `npm run eject`
+- Administrador: Gerencia os usuários que utiliza o sistema (criando ou excluindo contas e modificando os cargos dos usuários), também tem acesso a todas as telas dos outros tipos de usuário;
+- Colaborador: Pode criar, editar e excluir solicitações de compra que tenham sido feitas por ele(a);
+- Comprador: Pode visualizar a lista completa de solicitações de compra, criar cotações e solicitar aprovação;
+- Gestor: Pode aprovar ou recusar compras;
+- Financeiro: Pode aprovar ou recusar o pagamento.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 🛠 Tecnologias utilizadas
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Front-end**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **ReactJS**;
+- **Gerenciamento de estado:** Redux;
+- **Formulários:** Formik + Yup;
+- **Loading:** nProgress + States;
+- **Avisos ao usuário:** React Toastify;
+- **Arquivos/Base64:** React File Base64;
+- **Estilização:** Styled Components;
+- **Ícones:** React Icons;
+- **Tratamento de data:** Moment.js;
+- **Requisições:** Axios.
