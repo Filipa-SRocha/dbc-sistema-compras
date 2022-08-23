@@ -50,7 +50,7 @@ const ManagerList = ({ purchasesList, cargo, isLoading, dispatch }) => {
 										<ListItemsHeader>
 											<p>Qtd</p>
 											<p>Item</p>
-											<p>Valor</p>
+											<p>Valor Total</p>
 										</ListItemsHeader>
 
 										{cotacao.itemValorizadoDTOS.map((item) => (
