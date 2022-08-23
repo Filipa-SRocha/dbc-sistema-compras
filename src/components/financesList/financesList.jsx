@@ -5,7 +5,7 @@ import {
 } from '../managerList/managerList.styled';
 import { PurchaseInfo, QuotationInfo } from './financesListItems';
 import FinancesMenu from '../../pages/finances/financesMenu';
-import { PurchaseContainer } from './financesList.styled';
+import { PurchaseContainer, FinancesHeader } from './financesList.styled';
 
 const FinancesList = ({ purchasesList, dispatch }) => {
 	if (
@@ -22,13 +22,15 @@ const FinancesList = ({ purchasesList, dispatch }) => {
 					.filter((purchase) => purchase.status === 'APROVADO_GESTOR')
 					.map((purchase) => (
 						<PurchaseContainer key={'compra' + purchase.idCompra}>
-							<PurchaseInfo purchase={purchase} />
-							<div>
-								<FinancesMenu
-									idCompra={purchase.idCompra}
-									dispatch={dispatch}
-								/>
-							</div>
+							<FinancesHeader>
+								<PurchaseInfo purchase={purchase} />
+								<div>
+									<FinancesMenu
+										idCompra={purchase.idCompra}
+										dispatch={dispatch}
+									/>
+								</div>
+							</FinancesHeader>
 							<h4>Cotações</h4>
 							<QuotationsContainer>
 								{purchase.cotacoes.map((cotacao) => (

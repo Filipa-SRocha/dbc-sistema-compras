@@ -21,7 +21,6 @@ export const QuotationInfo = ({ cotacao }) => {
 		<>
 			{cotacao.status === 'APROVADA' && <p>Cotação aprovada!</p>}
 			<h5>{cotacao.nome}</h5>
-			<p>Valor Total: {cotacao.valor}</p>
 
 			<ListItemsHeader>
 				<p>Qtd</p>

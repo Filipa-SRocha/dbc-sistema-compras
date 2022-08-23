@@ -7,6 +7,7 @@ export const PurchaseContainer = styled.div`
 	margin: 20px;
 	padding: 20px;
 	border: 1px solid ${primaryColor};
+
 	> h4 {
 		margin-top: 20px;
 		color: ${secondaryColor};
@@ -32,5 +33,15 @@ export const InfoContainer = styled.div`
 	> p {
 		margin: 10px 0;
 		font-weight: 600;
+	}
+`;
+
+export const FinancesHeader = styled.div`
+	display: flex;
+	justify-content: space-between;
+
+	button {
+		margin-right: 20px;
+		padding: 6px;
 	}
 `;
