@@ -1,26 +1,40 @@
+import { InfoContainer } from './financesList.styled';
+import moment from 'moment';
+import { convertToDateObject } from '../../utils/masks';
+import { ListItems, ListItemsHeader } from '../managerList/managerList.styled';
+
 export const PurchaseInfo = ({ purchase }) => {
 	return (
-		<div>
-			<h3> {purchase.name}</h3>
-			<p>{purchase.dataCompra}</p>
+		<InfoContainer>
+			<div>
+				<h3> {purchase.name}</h3>
+				<p>{moment(convertToDateObject(purchase.dataCompra)).format('ll')}</p>
+			</div>
 			<small>{purchase.descricao}</small>
 			<p>Valor Final: {purchase.valorTotal}</p>
-		</div>
+		</InfoContainer>
 	);
 };
 
 export const QuotationInfo = ({ cotacao }) => {
-	console.log(cotacao);
 	return (
 		<>
 			{cotacao.status === 'APROVADA' && <p>Cotação aprovada!</p>}
 			<h5>{cotacao.nome}</h5>
 			<p>Valor Total: {cotacao.valor}</p>
-			<h6>Itens</h6>
+
+			<ListItemsHeader>
+				<p>Qtd</p>
+				<p>Item</p>
+				<p>Valor</p>
+			</ListItemsHeader>
+
 			{cotacao.itemValorizadoDTOS.map((item) => (
-				<p>
-					{item.quantidade} x {item.nome} = {item.valorTotal}
-				</p>
+				<ListItems>
+					<p>{item.quantidade}</p>
+					<p>{item.nome}</p>
+					<p> {item.valorTotal}</p>
+				</ListItems>
 			))}
 		</>
 	);

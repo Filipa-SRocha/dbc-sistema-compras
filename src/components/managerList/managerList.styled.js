@@ -45,7 +45,7 @@ export const QuotationsContainer = styled.div`
 	margin-top: 20px;
 	min-width: 200px;
 	display: flex;
-	/* justify-content: space-between; */
+	flex-wrap: wrap;
 	gap: 30px;
 
 	> div > h5 {
@@ -62,8 +62,8 @@ export const QuotationsContainer = styled.div`
 export const ListItems = styled.div`
 	display: grid;
 	grid-template-columns: 1fr 4fr 2fr;
-	gap: 4px;
-	margin-bottom: 4px;
+	gap: 8px;
+	margin-bottom: 6px;
 `;
 
 export const ListItemsHeader = styled(ListItems)`

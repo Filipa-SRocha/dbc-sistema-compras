@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import {
 	ManagerListContainer,
-	PurchaseContainer,
 	QuotationsContainer,
 } from '../managerList/managerList.styled';
 import { PurchaseInfo, QuotationInfo } from './financesListItems';
 import FinancesMenu from '../../pages/finances/financesMenu';
+import { PurchaseContainer } from './financesList.styled';
 
 const FinancesList = ({ purchasesList, dispatch }) => {
 	if (
