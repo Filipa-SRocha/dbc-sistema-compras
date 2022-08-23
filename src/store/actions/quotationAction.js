@@ -1,29 +1,7 @@
 import { api } from '../../api';
-import { getAllPurchases } from './purchaseActions';
+
 import { toast } from 'react-toastify';
 import nProgress from 'nprogress';
-
-// export async function getAllQuotations(dispatch) {
-// 	try {
-// 		changeLoadingStatus(true, dispatch);
-// 		const { data } = await api.get('/comprador/listar');
-
-// 		console.log('todas cotações', data);
-
-// 		const newList = {
-// 			type: 'GET_ALL_QUOTATIONS',
-// 			list: data,
-// 		};
-
-// 		dispatch(newList);
-// 	} catch (error) {
-// 		changeLoadingStatus(false, dispatch);
-// 		console.log(
-// 			'Não foi possível atualizar a lista de cotações. Erro no servidor',
-// 			error
-// 		);
-// 	}
-// }
 
 export async function getPurchaseQuotations(idCompra, dispatch) {
 	try {
@@ -48,11 +26,10 @@ export async function getPurchaseQuotations(idCompra, dispatch) {
 export async function getNumberPurchaseQuotations(idCompra) {
 	try {
 		const { data } = await api.get(`/comprador/listar`);
-		
-		const compra = data.find(compra => compra.idCompra === idCompra);
-		
+
+		const compra = data.find((compra) => compra.idCompra === idCompra);
+
 		return compra.cotacoes.length;
-		
 	} catch (error) {
 		console.log(
 			'Não foi possível obter lista de cotações. Erro no servidor',
@@ -67,7 +44,7 @@ export async function handleNewQuotation(idCompra, values, navigate) {
 		await api.post(`/comprador/cotar?idCompra=${idCompra}`, values);
 
 		toast.success('Cotação cadastrada com sucesso!', {
-			position: "top-center",
+			position: 'top-center',
 			autoClose: 5000,
 			hideProgressBar: false,
 			closeOnClick: true,
@@ -79,9 +56,9 @@ export async function handleNewQuotation(idCompra, values, navigate) {
 		navigate(`/`);
 	} catch (error) {
 		console.log('Não foi possível adicionar cotação. Erro no servidor', error);
-		
+
 		toast.error('Não foi possível adicionar a cotação!', {
-			position: "top-center",
+			position: 'top-center',
 			autoClose: 5000,
 			hideProgressBar: false,
 			closeOnClick: true,
@@ -98,7 +75,7 @@ export async function changeQuotationStatus(idCompra) {
 	try {
 		await api.put(`/comprador/concluir-cotacao?idCompra=${idCompra}`);
 		toast.success('Cotação concluída!', {
-			position: "top-center",
+			position: 'top-center',
 			autoClose: 5000,
 			hideProgressBar: false,
 			closeOnClick: true,
@@ -113,7 +90,7 @@ export async function changeQuotationStatus(idCompra) {
 		);
 
 		toast.error('Não foi possível enviar as cotações para o gestor!', {
-			position: "top-center",
+			position: 'top-center',
 			autoClose: 5000,
 			hideProgressBar: false,
 			closeOnClick: true,

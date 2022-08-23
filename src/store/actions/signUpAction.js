@@ -1,7 +1,6 @@
 import { api } from '../../api';
 import { toast } from 'react-toastify';
 import nProgress from 'nprogress';
-import { getRole } from './authActions';
 
 export const handleSignUp = async (values, dispatch, navigate) => {
 	const newUser = {
