@@ -11,7 +11,7 @@ const FinancesPage = ({ isLoading, purchasesList, dispatch }) => {
 
 	return (
 		<DashboardPage title='Aprovação de Compras' page='/'>
-			{isLoading ? <h1>Loading</h1> : <FinancesList />}
+			{isLoading ? <h1>Carregando compras...</h1> : <FinancesList />}
 		</DashboardPage>
 	);
 };
