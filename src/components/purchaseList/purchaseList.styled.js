@@ -6,6 +6,11 @@ export const PurchaseContainer = styled.div`
 	margin: 30px 30px 20px;
 	padding-bottom: 10px;
 	border-radius: 10px;
+
+	.naoPossuiTitulo {
+		text-align: center;
+		margin-top: 20px;
+	}
 `;
 
 export const PurchaseLabel = styled.div`

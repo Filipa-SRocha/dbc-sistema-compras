@@ -32,7 +32,7 @@ const Router = ({ auth, dispatch }) => {
 
 	const ProtectedRoute = ({ children }) => {
 		if (auth.isLoading) {
-			return <h1>Loading</h1>;
+			return <h1>Carregando página</h1>
 		}
 
 		if (!auth.isLogged) {
@@ -43,7 +43,7 @@ const Router = ({ auth, dispatch }) => {
 
 	const LogRoute = ({ children }) => {
 		if (auth.isLoading) {
-			return <h1>Loading</h1>;
+			return <h1>Carregando página</h1>;
 		}
 		if (auth.isLogged) {
 			return <Navigate to='/' />;

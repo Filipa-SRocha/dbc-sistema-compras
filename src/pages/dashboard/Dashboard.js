@@ -24,7 +24,7 @@ const Dashboard = ({ isLoading, purchasesList, dispatch }) => {
 				<DashboardContainer>
 					<Header />
 					{isLoading ? (
-						<h1>Loadinng..</h1>
+						<h1>Carregando dashboard...</h1>
 					) : (
 						<PurchaseList purchasesList={purchasesList} />
 					)}
